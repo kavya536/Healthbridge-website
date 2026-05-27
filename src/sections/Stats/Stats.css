@@ -1,0 +1,114 @@
+.stats-section {
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 80px 0; /* Standardized top and bottom spacing across all sections */
+}
+
+.stats-section .container {
+  width: 1296px; /* 1512px total width - 108px left margin - 108px right margin */
+  max-width: 92%;
+  height: 100px; /* Exact height from design */
+  margin: 0 auto;
+  padding: 0;
+}
+
+.stats-grid {
+  display: flex;
+  justify-content: space-evenly; /* Perfectly distributes equal space on the left, right, and in between all items */
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* Slightly increased gap for the larger icon */
+}
+
+.stat-icon {
+  width: 72px; /* Decreased circle size to match 2nd image proportion */
+  height: 72px; /* Decreased circle size to match 2nd image proportion */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Colors matching the design exactly */
+.icon-pink {
+  background-color: #ffeef2;
+  color: #ff4b72;
+}
+
+.icon-orange {
+  background-color: #fff4ec;
+  color: #ff784b;
+}
+
+.icon-purple {
+  background-color: #f4eeff;
+  color: #8b4bff;
+}
+
+.icon-yellow {
+  background-color: #fff8eb;
+  color: #ffb800;
+}
+
+.stat-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-value {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 28px; /* Slightly decreased size as requested */
+  font-weight: 700; /* Restored bold weight as requested */
+  color: #333333; 
+  line-height: 1; 
+  margin: 0; /* Clears browser default h3 margins */
+  margin-bottom: 12px; /* Increased to precisely match the user's provided empty spacing screenshot */
+}
+
+.stat-label {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 20px; /* Matches 18px-22px requested */
+  color: #7A7A7A; /* Exact color requested */
+  font-weight: 500; /* Medium weight requested */
+  line-height: 1;
+  text-transform: capitalize;
+  margin: 0; /* Critical: Clears huge browser default p tag margins to remove the gap! */
+}
+
+@media (max-width: 1024px) {
+  .stats-section {
+    padding: 60px 0;
+  }
+  .stats-section .container {
+    height: auto;
+  }
+  .stats-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 43px; /* Scaled down from 48px */
+  }
+  .stat-item {
+    width: 40%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-section {
+    padding: 40px 0;
+  }
+  .stat-item {
+    width: 100%;
+    justify-content: flex-start;
+    padding-left: 10%;
+  }
+}

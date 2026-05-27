@@ -1,0 +1,152 @@
+/* CTA Banner */
+.cta-banner-section {
+  padding: 80px 0; /* Standardized top and bottom spacing across all sections */
+  background-color: var(--bg-white); /* Crisp clean background outside the card */
+}
+
+.cta-banner-card {
+  padding: 70px 40px; /* Symmetrical inner breathing room padding matching the reference card exactly */
+  background: 
+    url("data:image/svg+xml,%3Csvg width='500' height='300' viewBox='0 0 500 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23ffffff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round' opacity='0.08'%3E%3Cg transform='translate%2830, 40%29 rotate%28-35%29 scale%280.9%29'%3E%3Crect x='6' y='10' width='8' height='24' rx='1'/%3E%3Cline x1='10' y1='34' x2='10' y2='42'/%3E%3Cline x1='10' y1='10' x2='10' y2='6'/%3E%3Cline x1='3' y1='6' x2='17' y2='6'/%3E%3Cline x1='7' y1='42' x2='13' y2='42'/%3E%3Cline x1='6' y1='16' x2='14' y2='16'/%3E%3Cline x1='6' y1='22' x2='14' y2='22'/%3E%3Cline x1='6' y1='28' x2='14' y2='28'/%3E%3C/g%3E%3Cg transform='translate%2880, 60%29 rotate%2815%29'%3E%3Crect x='5' y='10' width='18' height='24' rx='3'/%3E%3Crect x='8' y='5' width='12' height='5' rx='1'/%3E%3Cpath d='M14 17h-4m2-2v4'/%3E%3C/g%3E%3Cg transform='translate%28130, 70%29 rotate%2845%29 scale%280.9%29'%3E%3Ccircle cx='12' cy='12' r='7'/%3E%3Cline x1='17' y1='17' x2='26' y2='26'/%3E%3C/g%3E%3Cg transform='translate%28180, 90%29 rotate%28-10%29 scale%280.85%29'%3E%3Crect x='6' y='6' width='18' height='28' rx='3'/%3E%3Ccircle cx='11' cy='11' r='1.5'/%3E%3Ccircle cx='19' cy='11' r='1.5'/%3E%3Ccircle cx='11' cy='20' r='1.5'/%3E%3Ccircle cx='19' cy='20' r='1.5'/%3E%3Ccircle cx='11' cy='29' r='1.5'/%3E%3Ccircle cx='19' cy='29' r='1.5'/%3E%3C/g%3E%3Cg transform='translate%2815, 120%29 rotate%2890%29 scale%280.95%29'%3E%3Crect x='4' y='10' width='32' height='14' rx='3'/%3E%3Cline x1='12' y1='10' x2='12' y2='24'/%3E%3Cline x1='24' y1='10' x2='24' y2='24'/%3E%3C/g%3E%3Cg transform='translate%2865, 140%29 rotate%28-5%29 scale%281.05%29'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/g%3E%3Cg transform='translate%28120, 150%29 rotate%28-15%29 scale%280.9%29'%3E%3Crect x='6' y='8' width='20' height='26' rx='2'/%3E%3Crect x='11' y='4' width='10' height='4' rx='1'/%3E%3Cline x1='10' y1='15' x2='22' y2='15'/%3E%3Cline x1='10' y1='20' x2='22' y2='20'/%3E%3Cline x1='10' y1='25' x2='18' y2='25'/%3E%3C/g%3E%3Cg transform='translate%28210, 140%29 rotate%28-45%29 scale%280.95%29'%3E%3Crect x='8' y='6' width='6' height='28' rx='3'/%3E%3Ccircle cx='11' cy='32' r='4'/%3E%3Cline x1='11' y1='10' x2='11' y2='26'/%3E%3C/g%3E%3Cg transform='translate%28250, 190%29 rotate%2810%29'%3E%3Crect x='5' y='10' width='18' height='24' rx='3'/%3E%3Crect x='8' y='5' width='12' height='5' rx='1'/%3E%3Cpath d='M14 17h-4m2-2v4'/%3E%3C/g%3E%3Cg transform='translate%28300, 190%29 rotate%2835%29 scale%280.9%29'%3E%3Ccircle cx='12' cy='12' r='7'/%3E%3Cline x1='17' y1='17' x2='26' y2='26'/%3E%3C/g%3E%3Cg transform='translate%2840, 230%29 rotate%2820%29 scale%280.9%29'%3E%3Cpath d='M6 26h20L18 8V4h-4v4L6 26z'/%3E%3Cline x1='9' y1='20' x2='23' y2='20'/%3E%3C/g%3E%3Cg transform='translate%28100, 230%29 rotate%28-10%29 scale%280.9%29'%3E%3Cpath d='M4 6c0 5 3 8 8 8s8-3 8-8'/%3E%3Cline x1='12' y1='14' x2='12' y2='22'/%3E%3Ccircle cx='12' cy='24' r='2'/%3E%3Cline x1='4' y1='6' x2='6' y2='2'/%3E%3Cline x1='20' y1='6' x2='18' y2='2'/%3E%3C/g%3E%3Cg transform='translate%28160, 245%29 rotate%285%29 scale%280.9%29'%3E%3Crect x='4' y='8' width='24' height='20' rx='3'/%3E%3Crect x='11' y='4' width='10' height='4' rx='1'/%3E%3Cpath d='M16 18h-4m2-2v4'/%3E%3C/g%3E%3Cg transform='translate%28220, 255%29 rotate%2815%29 scale%280.9%29'%3E%3Crect x='4' y='10' width='32' height='14' rx='3'/%3E%3Cline x1='12' y1='10' x2='12' y2='24'/%3E%3Cline x1='24' y1='10' x2='24' y2='24'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat left center / 50% 100%, 
+    linear-gradient(to right, #1D4ED8 0%, #0EA5E9 30%, #00C2A0 65%, #00C2A0 100%);
+  border-radius: 24px; /* Smooth, modern, premium rounded card corners */
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.12); /* Soft glow brand shadow */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 1150px; /* Symmetrical centering with slightly decreased left/right spacing */
+  margin: 0 auto;
+}
+
+.cta-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 42px; /* Standardized to match About Us reference */
+  line-height: 1.3;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.cta-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px; /* Standardized size */
+  font-weight: 400;
+  color: #ffffff; /* Must be white */
+  margin-bottom: 20px; /* Standardized size */
+  opacity: 0.9;
+}
+
+.cta-join-btn {
+  background-color: #00C2A0; /* Exact vibrant teal background from the reference image */
+  color: #ffffff !important; /* Force white text */
+  border: none;
+  padding: 14px 29px; /* Scaled down from 16px 32px */
+  border-radius: 27px; /* Scaled down from 30px */
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px; /* Scaled down from 16px */
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px; /* Scaled down from 8px */
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Premium depth shadow making it stand out clearly */
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.cta-join-btn:hover {
+  background-color: #00D2B2; /* Glowing neon cyan on hover */
+  color: #ffffff !important; /* Ensures it never turns black on hover! */
+  transform: translateY(-2px); /* Reactive premium lift */
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.cta-join-btn:active {
+  background-color: #00B293; /* Richer dark teal on active click */
+  transform: translateY(0); /* Press down effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* App Download Section */
+.app-download-section {
+  padding: 45px 0 160px 0; /* Substantial bottom padding to give plenty of space after the section before the footer */
+  background-color: var(--bg-white);
+}
+
+.app-layout {
+  display: flex;
+  align-items: flex-end; /* Align bottoms of store buttons and phones perfectly */
+  justify-content: center; /* Center to bring columns closer together */
+  gap: 60px; /* Comfortable middle gap */
+  max-width: 1150px; /* Premium desktop grid width */
+  margin: 0 auto;
+}
+
+.app-content {
+  flex: 0 0 520px; /* Increased to give text and heading beautiful breathing room */
+}
+
+.app-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px; /* Standardized size */
+  font-weight: 400;
+  line-height: 1.8;
+  color: #718096; /* Standardized color */
+  margin-bottom: 24px; /* Slightly more margin to separate from the store buttons */
+}
+
+.store-buttons {
+  display: flex;
+  gap: 20px; /* Larger gap matching reference image */
+}
+
+.store-btn {
+  display: inline-block;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.store-btn:hover {
+  transform: translateY(-2px); /* Premium subtle lift */
+  filter: brightness(1.08); /* Light glow on hover */
+}
+
+.store-btn img {
+  height: 55px; /* Significantly increased height from 43px to match the reference image exactly and make them clearly visible */
+  border-radius: 8px; /* Smooth rounded corners for store badges */
+  display: block;
+}
+
+.app-image-wrapper {
+  flex: 0 0 520px; /* Increased flex basis to accommodate larger phone images without compression */
+  height: 480px; /* Increased height to make mobile cards significantly larger */
+  display: flex;
+  align-items: flex-end; /* Align to bottom so any size increase goes downwards */
+  justify-content: center;
+  position: relative;
+}
+
+.app-image {
+  max-width: 100%;
+  max-height: 520px; /* Increased phone height constraint for perfect visibility and premium look */
+  width: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  transform: translateY(35px); /* Pushes phone mockup down below the layout bottom edge exactly like in the reference image */
+}
+
+/* Decorative glowing gradient aura and shadows below phones matching the reference image exactly */
+.app-image-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: -35px; /* Shifted down to perfectly match the translated mobile phones */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 120px;
+  background: #61E8CF66; /* Exact semi-transparent glowing teal from reference */
+  border-radius: 50%;
+  filter: blur(40px); /* Soft glow blur for visual excellence */
+  backdrop-filter: blur(107.30000305175781px); /* Exact backdrop blur value requested */
+  z-index: 1;
+  box-shadow: 0 15px 45px rgba(97, 232, 207, 0.4); /* Premium depth shadows */
+}

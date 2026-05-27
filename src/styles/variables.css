@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap');
+
+:root {
+  --primary: #29C3A6; /* The distinct teal color */
+  --primary-hover: #21a38b;
+  --text-dark: #222222;
+  --text-body: #555555;
+  --text-light: #888888;
+  --bg-white: #ffffff;
+  --bg-light: #f9fbfb;
+  --bg-soft: #f0fdfa; /* Very light teal */
+  
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-nunito: 'Nunito Sans', sans-serif;
+  --container-width: 1200px;
+  
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 24px;
+  --border-radius-pill: 9999px;
+}

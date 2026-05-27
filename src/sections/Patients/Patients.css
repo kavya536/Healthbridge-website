@@ -1,0 +1,133 @@
+.patients-section {
+  padding: 80px 0; /* Standardized top and bottom spacing across all sections */
+  background-color: #ffffff; /* Crisp white background */
+}
+
+.patients-container {
+  display: flex;
+  align-items: flex-end; /* Align the bottom of the image and the download button perfectly */
+  justify-content: center; /* Centering with a precise gap */
+  gap: 30px; /* Reduced middle gap significantly to bring columns closer */
+  max-width: 1230px; /* Increased limit to give gorgeous side spacing without squeezing columns */
+  margin: 0 auto;
+  padding: 0 80px; /* Generous, premium spacing from left & right sides */
+}
+
+.patients-image-wrapper {
+  flex: 0 0 530px; /* Increased image size wrapper as requested to make doctor image larger */
+}
+
+.patients-image {
+  width: 100%;
+  height: auto; /* Full image visible, no cropping */
+  border-radius: 16px;
+  display: block;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.05);
+}
+
+.patients-content {
+  flex: 0 0 510px; /* Perfectly sized content column to keep total width aligned with standard grid */
+  /* Display is block by default, which ensures the button does not stretch to 100% width! */
+}
+
+.section-tag {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 14px; /* Standardized size */
+  letter-spacing: 1px; /* Standardized */
+  text-transform: uppercase;
+  color: #34C759;
+  margin-bottom: 10px; /* Reduced from 20px to 10px for tight visual grouping */
+  display: block;
+}
+
+.section-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 42px; /* Standardized to match About Us reference */
+  line-height: 1.3;
+  color: #2d3748;
+  margin-bottom: 24px;
+}
+
+.nowrap-line {
+  white-space: nowrap; /* Absolutely forces text to stay on its designated line! */
+}
+
+.text-teal {
+  color: #20C7B6;
+}
+
+.patients-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 17.5px; /* Increased for clear visibility matching 2nd image style */
+  font-weight: 450; /* Slightly bolder for robust legibility */
+  line-height: 1.75; /* Perfect line height for premium readability */
+  color: #334155; /* Cool slate-blue matching the user's cropped color exactly */
+  margin-bottom: 24px;
+}
+
+.patients-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Elegant, premium spacing between feature items */
+}
+
+.patients-features li {
+  display: flex;
+  align-items: center;
+  gap: 14px; /* Slightly wider spacing between checkmark icon and text */
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16.5px; /* Substantially increased from 14px for extreme legibility */
+  font-weight: 650; /* Stronger semi-bold matching the reference style */
+  color: #334155; /* Matching cool slate-blue for perfectly uniform and clear visibility */
+}
+
+.download-btn {
+  background-color: #20C7B6;
+  color: #ffffff;
+  border: none;
+  border-radius: 27px; /* Scaled down from 30px */
+  padding: 14px 29px; /* Scaled down from 16x 32px */
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px; /* Scaled down from 16px */
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px; /* Scaled down from 12px */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+  background-color: #1ba89a;
+}
+
+@media (max-width: 1150px) {
+  .patients-container {
+    gap: 30px;
+    padding: 0 40px;
+  }
+  .patients-image-wrapper {
+    flex: 0 1 510px;
+  }
+  .patients-content {
+    flex: 0 1 490px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .patients-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    align-items: center; /* Center the layout vertically on mobile devices */
+  }
+  
+  .patients-features li {
+    justify-content: center;
+  }
+}

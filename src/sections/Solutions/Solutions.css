@@ -1,0 +1,113 @@
+.solutions-section {
+  padding: 80px 0; /* Standardized top and bottom spacing across all sections */
+  background-color: #F4FBFA; /* Exact background hex requested */
+}
+
+.solutions-header {
+  text-align: center; /* Center only the heading */
+  margin-bottom: 54px; /* Scaled down from 60px */
+}
+
+.solutions-tag {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 14px; /* Standardized size */
+  letter-spacing: 1px; /* Standardized */
+  color: #34C759;
+  text-transform: uppercase;
+  margin-bottom: 10px; /* Reduced from 20px to 10px for tight visual grouping */
+  display: block;
+}
+
+.solutions-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 42px; /* Standardized to match About Us reference */
+  line-height: 1.3;
+  color: #2d3748;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.text-teal {
+  color: #20C7B6;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Naturally starts rows from the left, not centered */
+  gap: 27px; /* Scaled down from 30px */
+  max-width: 1035px; /* Scaled down from 1150px to perfectly mirror outer left/right margins */
+  margin: 0 auto;
+}
+
+.solution-card {
+  background: #ffffff;
+  border-radius: 22px; /* Scaled down from 24px */
+  padding: 29px; /* Scaled down from 32px */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.solution-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+}
+
+.icon-box {
+  width: 58px; /* Scaled down from 64px */
+  height: 58px; /* Scaled down from 64px */
+  background: #EEFAF8;
+  border-radius: 14px; /* Scaled down from 16px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px; /* Scaled down from 24px */
+}
+
+.solution-card h3 {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 18px; /* Scaled down from 20px */
+  font-weight: 800;
+  color: #2d3748;
+  margin-bottom: 14px; /* Scaled down from 16px */
+}
+
+.solution-card p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px; /* Scaled down from 15px */
+  line-height: 1.6;
+  color: #718096;
+  margin-bottom: 22px; /* Scaled down from 24px */
+  flex-grow: 1;
+}
+
+.learn-more {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px; /* Scaled down from 18px */
+  font-weight: 800; /* Extra bold */
+  color: #20C7B6;
+  display: flex;
+  align-items: center;
+  gap: 7px; /* Scaled down from 8px */
+  /* Just a div with text! No <a> tags, no blue color, no underline! */
+}
+
+@media (max-width: 1024px) {
+  .solutions-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .solutions-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  .solutions-section {
+    padding: 70px 0;
+  }
+}

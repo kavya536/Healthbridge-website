@@ -1,0 +1,141 @@
+.ecosystem-section {
+  padding: 80px 0; /* Standardized top and bottom spacing across all sections */
+  background-color: var(--bg-white);
+}
+
+.eco-layout {
+  display: flex;
+  align-items: flex-start; /* Aligns the tops of both columns perfectly */
+  justify-content: center; /* Centers the columns together to remove distributed spacing */
+  gap: 126px; /* Optimized middle gap based on the reference layout image */
+  max-width: 1296px; /* Matches exact left/right spacing of Home Page containers */
+  margin: 0 auto;
+}
+
+.eco-content {
+  flex: 1 1 480px; /* Allows the content column to shrink proportionally on smaller screens */
+  max-width: 480px;
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 24px; /* Text starts exactly a bit below the top of the right-side image */
+}
+
+.eco-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 17px; /* Increased from 16px to 17px to match About Us paragraph style */
+  font-weight: 400;
+  line-height: 1.8;
+  color: #718096; /* Standardized color */
+  margin-bottom: 20px; /* Standardized size */
+}
+
+.eco-image-wrapper {
+  flex: 1 1 650px; /* Allows the image wrapper to shrink proportionally on smaller screens */
+  max-width: 650px;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 650 / 460; /* Optimizes container height based on the reference layout image */
+  height: auto;
+  display: flex;
+}
+
+.eco-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Enables cropping of the wide image */
+  object-position: 12% center; /* Aligns both patient & doctor phones cleanly with elegant outer green boundaries */
+  border-radius: 20px; /* Exact border-radius from your Figma specification */
+  display: block;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 1024px) {
+  .eco-layout {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  
+  .eco-content {
+    max-width: 100%;
+    flex: 1 1 auto;
+    padding-top: 0; /* Reset top padding when stacked */
+  }
+  
+  .eco-image-wrapper {
+    max-width: 100%;
+    flex: 1 1 auto;
+    margin: 0 auto;
+  }
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 80px 0; /* Standardized top and bottom spacing across all sections */
+  background-color: #F4FBFA; /* Soft mint background from image */
+}
+
+.faq-list {
+  max-width: 720px; /* Scaled down from 800px */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* Scaled down from 16px */
+}
+
+.faq-item {
+  background-color: #ffffff;
+  border-radius: 16px; /* Smooth, premium card borders matching the site's styling */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  cursor: pointer;
+  transition: box-shadow 0.2s, background-color 0.2s;
+  overflow: hidden;
+}
+
+.faq-item:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+}
+
+.faq-question-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 28px; /* Optimized premium spacing */
+}
+
+.faq-question {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 16px; /* Optimized readable size for single-column cards */
+  font-weight: 600; /* Senior UI standard: elegant semi-bold weight replacing heavy boldness */
+  line-height: 1.4;
+  color: #2d3748;
+}
+
+.faq-icon {
+  font-size: 20px; /* Scaled down from 22px */
+  font-weight: 500;
+  color: #20C7B6;
+  transition: transform 0.3s ease;
+}
+
+.faq-answer {
+  padding: 0 28px 20px 28px; /* Symmetric, balanced bottom padding */
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px; /* Increased from 13px for comfortable, high-quality reading */
+  line-height: 1.7; /* Premium paragraph breathing room */
+  color: #4a5568;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (min-width: 1025px) {
+  .eco-nowrap {
+    white-space: nowrap;
+  }
+}

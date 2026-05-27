@@ -1,0 +1,143 @@
+.community-section {
+  position: relative;
+  padding: 80px 0; /* Standardized top and bottom spacing across all sections */
+  color: var(--bg-white);
+  text-align: center;
+}
+
+.community-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.community-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.community-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 42, 64, 0.90); /* Darker and richer deep blue-teal overlay to make text pop out clearly */
+}
+
+.community-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1150px; /* Increased to align with standard site grid (1150px) to prevent squishing */
+  margin: 0 auto;
+  padding: 0 40px; /* Symmetrical left and right padding */
+}
+
+.community-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 42px; /* Standardized to match About Us reference */
+  line-height: 1.3;
+  color: #ffffff;
+  margin-bottom: 24px;
+}
+
+.community-subtitle {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 17.5px; /* Increased for excellent reading clarity */
+  font-weight: 400; /* Regular weight as requested */
+  line-height: 1.75;
+  color: #ffffff; /* Pure white text color as requested */
+  margin-bottom: 45px;
+}
+
+.community-tag {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 14px; /* Standardized size */
+  letter-spacing: 1px; /* Standardized */
+  color: #34C759;
+  text-transform: uppercase;
+  margin-bottom: 10px; /* Reduced from 20px to 10px for tight visual grouping */
+  display: block;
+}
+
+.community-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px; /* Reduced spacing between each card as requested */
+  width: 100%;
+}
+
+.com-card {
+  background: #FFFFFF4D; /* 30% white opacity matching the reference perfectly */
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px; /* Smooth rounded corners */
+  padding: 30px 26px; /* Symmetrical, generous internal padding for breathing room */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 220px; /* Comfortable height to prevent layout shifts */
+}
+
+.com-card-icon {
+  width: 52px; /* Prominent icon container */
+  height: 52px;
+  background-color: rgba(14, 56, 84, 0.65); /* Rich, deep matching background */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.com-card-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 21px; /* Substantially increased to make titles extremely clear */
+  font-weight: 800; /* Extra bold for premium contrast */
+  color: #ffffff; /* Crisp white */
+  margin-bottom: 12px;
+}
+
+.com-card-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px; /* Substantially increased from 13px for absolute legibility */
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.95); /* Extremely bright white for maximum visibility on blue background */
+}
+
+@media (max-width: 991px) {
+  .community-cards {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    gap: 15px; /* Reduced spacing between cards on tablet */
+  }
+}
+
+@media (max-width: 767px) {
+  .community-section {
+    padding: 60px 0;
+  }
+  .community-cards {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    gap: 14px; /* Reduced spacing between cards on mobile */
+  }
+  .community-title {
+    font-size: 32px; /* Adaptive smaller heading size on mobile */
+  }
+  .community-subtitle {
+    font-size: 15.5px;
+    line-height: 1.65;
+    margin-bottom: 30px;
+  }
+  .com-card {
+    min-height: auto; /* Fluid height on mobile */
+    padding: 24px 20px;
+  }
+}

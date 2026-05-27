@@ -1,0 +1,161 @@
+.about-section {
+  padding: 80px 0; /* Standardized top and bottom spacing across all sections */
+  background-color: var(--bg-white);
+  overflow: hidden;
+}
+
+.about-section .container {
+  width: 1296px; /* Matches exact left/right spacing of the Hero and Stats sections */
+  max-width: 92%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.about-layout {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center; /* Centers the columns together to remove any distributed middle spacing */
+  gap: 35px; /* Symmetrical offset gap compensating for the 40px horizontal circle translation */
+}
+
+.about-content {
+  flex: 1;
+  max-width: 620px;
+}
+
+.section-tag {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 14px; /* Scaled down from 16px */
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #34C759;
+  margin-bottom: 10px; /* Reduced from 20px to 10px for senior-level visual grouping */
+  display: block;
+}
+
+.section-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 42px; /* Increased back up for the first line */
+  line-height: 1.3;
+  margin-bottom: 24px;
+  color: #2d3748;
+}
+
+.heading-small {
+  font-size: 32px; /* Distinctly decreased size for the second line */
+}
+
+.about-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  font-size: 17px; /* Slightly increased for readability and text flow */
+  line-height: 1.8;
+  color: #718096;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.about-highlight {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 18px; /* Standardized to 18px bold as per Senior UI recommendation */
+  font-weight: 700; /* Bold weight */
+  line-height: 1.8; /* Paragraph line height */
+  color: #2d3748; /* Dark charcoal text color */
+  margin-top: 30px; /* Reduced to remove the empty space above the paragraph */
+  text-align: left; /* Changed from justify to left to prevent word stretching and badge collision */
+  text-transform: none; /* Enforce Title Case from JSX */
+}
+
+.about-highlight-line1 {
+  display: inline;
+}
+
+.about-highlight-line2 {
+  display: inline-block;
+}
+
+@media (min-width: 1025px) {
+  .about-highlight-line1 {
+    white-space: nowrap;
+  }
+  .about-highlight-line2 {
+    white-space: nowrap;
+  }
+}
+
+.about-highlight .text-teal {
+  color: #20C7B6; /* Premium teal color */
+  font-weight: 700;
+  text-transform: none; /* Enforce Title Case from JSX */
+}
+
+.about-section .text-teal {
+  color: #20C7B6;
+  text-transform: none; /* Enforce Title Case / CamelCase */
+  font-size: inherit; /* Reset global font-size override from other sections */
+  font-weight: inherit; /* Reset global font-weight override */
+  line-height: inherit; /* Reset global line-height override */
+  font-family: inherit; /* Reset global font-family override */
+}
+
+.about-image-wrapper {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: 620px; /* Symmetrical 620px size matching the text content wrapper */
+  margin-top: 36px; /* Scaled down from 40px */
+  flex-shrink: 0;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 666 / 514;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.05);
+}
+
+.experience-badge {
+  position: absolute;
+  bottom: -72px; /* Perfect middle position between -55px and -90px */
+  left: 0;
+  transform: translateX(-30px); /* Shifted slightly to the right from -40px to -30px to give the '20+' text perfect alignment and breathing room */
+  width: 180px; /* Perfect sizing matching the third image's text and icon scale */
+  height: auto;
+  z-index: 2;
+}
+
+@media (max-width: 1024px) {
+  .about-layout {
+    flex-direction: column;
+    text-align: center;
+    gap: 36px;
+  }
+  .about-content {
+    max-width: 100%;
+  }
+  .about-image-wrapper {
+    margin-top: 18px;
+    max-width: 450px;
+  }
+  .about-highlight {
+    max-width: 100%;
+    margin-top: 20px;
+    text-align: center; /* Center align when stacked on tablet */
+  }
+  .experience-badge {
+    left: 20%;
+    transform: translate(-50%, -50%);
+    width: 135px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 70px 0;
+  }
+}

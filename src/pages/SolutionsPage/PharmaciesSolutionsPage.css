@@ -1,0 +1,2009 @@
+/* ==========================================================================
+   HEALTHBRIDGE PHARMACY FLOW STYLES
+   ========================================================================== */
+
+.pharmacy-sol-page {
+  font-family: 'Nunito Sans', sans-serif;
+  color: #333333;
+  margin-top: 140px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-white);
+}
+
+.max-width-sm {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.bg-light-tint {
+  background-color: #F4F9F8 !important;
+}
+
+/* 1. Services Promo Banner */
+.pharmacy-promo-banner-section {
+  padding: 40px 0 20px;
+  background: radial-gradient(circle at 10% 20%, rgba(240, 253, 250, 0.5) 0%, rgba(255, 255, 255, 1) 90%);
+}
+
+.promo-banner-card {
+  background: linear-gradient(135deg, #2c3e50, #29c3a6);
+  border-radius: 20px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 30px;
+  align-items: center;
+  color: #FFFFFF;
+  box-shadow: 0 10px 30px rgba(41,195,166,0.15);
+}
+
+.promo-banner-text-col h2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.promo-banner-text-col p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 24px;
+}
+
+.promo-view-more-btn {
+  background-color: #FFFFFF;
+  color: #2c3e50;
+  font-weight: 800;
+  padding: 12px 30px;
+  border-radius: var(--border-radius-pill);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.promo-view-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.promo-banner-graphic-col {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.promo-banner-image {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+}
+
+/* 2. Pharmacy Search Hero Section */
+.pharmacy-search-hero-section {
+  padding: 20px 0 40px;
+  background-color: #FFFFFF;
+}
+
+.pharmacy-hero-headers {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.pharmacy-hero-title {
+  font-size: 40px;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 12px;
+  text-transform: none !important;
+}
+
+.pharmacy-hero-title .text-teal {
+  color: var(--primary);
+  text-transform: none !important;
+}
+
+.pharmacy-hero-subtitle {
+  font-size: 18px;
+  color: var(--text-body);
+}
+
+/* Advanced Search Bar Card */
+.pharmacy-search-bar-card {
+  background: #FFFFFF;
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 10px 30px rgba(41, 195, 166, 0.08), 0 1px 8px rgba(0, 0, 0, 0.02);
+  padding: 32px;
+  border: 1px solid rgba(41, 195, 166, 0.1);
+}
+
+.p-search-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr auto;
+  gap: 20px;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+
+.p-search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.p-search-field label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #4A5568;
+}
+
+.input-with-icon-p {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-with-icon-p .icon {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  color: var(--primary);
+  pointer-events: none;
+}
+
+.input-with-icon-p input,
+.input-with-icon-p select {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px 0 44px;
+  border: 1.5px solid #E2E8F0;
+  border-radius: var(--border-radius-md);
+  font-size: 16px;
+  outline: none;
+  background-color: #F8FAFC;
+  transition: all 0.3s ease;
+}
+
+.input-with-icon-p input:focus {
+  border-color: var(--primary);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(41, 195, 166, 0.1);
+}
+
+.p-search-primary-btn {
+  height: 52px;
+  padding: 0 36px;
+  background: linear-gradient(135deg, var(--primary), #36DCD0);
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: var(--border-radius-md);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(41, 195, 166, 0.3);
+}
+
+.p-search-primary-btn:hover {
+  transform: translateY(-2px);
+}
+
+.pharmacy-inline-filters-row {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  border-top: 1.5px solid #EDF2F7;
+  padding-top: 20px;
+  flex-wrap: wrap;
+}
+
+.rating-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #4A5568;
+}
+
+.rating-select-wrapper select {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1.5px solid #CBD5E0;
+  outline: none;
+}
+
+/* 3. Categories section */
+.pharmacy-categories-section {
+  padding: 30px 0;
+  background-color: #FFFFFF;
+}
+
+.sec-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.sec-header-row h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #2D3748;
+  text-transform: none !important;
+}
+
+.view-all-text-btn {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.categories-pills-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 12px 4px 10px;
+  margin-top: -12px;
+  scrollbar-width: none;
+}
+
+.categories-pills-row::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-pill-item {
+  flex: 0 0 190px;
+  height: 110px;
+  border-radius: 20px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+}
+
+.cat-pill-item:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.cat-pill-item.item-blue {
+  background: linear-gradient(135deg, rgba(238, 250, 248, 0.8), rgba(200, 242, 235, 0.8));
+  color: #1b8a75;
+  border: 1.5px solid rgba(41, 195, 166, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.cat-pill-item.item-blue:hover {
+  box-shadow: 0 12px 28px rgba(41, 195, 166, 0.2);
+  border-color: rgba(41, 195, 166, 0.6);
+  background: linear-gradient(135deg, rgba(238, 250, 248, 1), rgba(180, 235, 225, 1));
+}
+
+.cat-pill-item.item-orange {
+  background: linear-gradient(135deg, rgba(255, 250, 240, 0.8), rgba(254, 235, 200, 0.8));
+  color: #c05621;
+  border: 1.5px solid rgba(221, 107, 32, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.cat-pill-item.item-orange:hover {
+  box-shadow: 0 12px 28px rgba(221, 107, 32, 0.2);
+  border-color: rgba(221, 107, 32, 0.6);
+  background: linear-gradient(135deg, rgba(255, 250, 240, 1), rgba(253, 220, 170, 1));
+}
+
+.cat-pill-item.item-green {
+  background: linear-gradient(135deg, rgba(240, 255, 244, 0.8), rgba(198, 246, 213, 0.8));
+  color: #276749;
+  border: 1.5px solid rgba(56, 161, 105, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.cat-pill-item.item-green:hover {
+  box-shadow: 0 12px 28px rgba(56, 161, 105, 0.2);
+  border-color: rgba(56, 161, 105, 0.6);
+  background: linear-gradient(135deg, rgba(240, 255, 244, 1), rgba(180, 240, 195, 1));
+}
+
+.cat-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  transition: all 0.25s ease;
+}
+
+.cat-pill-item:hover .cat-icon-wrapper {
+  transform: rotate(-5deg) scale(1.08);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.cat-icon-wrapper svg {
+  width: 22px;
+  height: 22px;
+}
+
+.cat-pill-item span {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+/* 4. Nearby Pharmacy Section */
+.nearby-pharmacies-section {
+  background-color: #F4F9F8;
+  padding: 60px 0 100px;
+  border-top: 1px solid rgba(41, 195, 166, 0.08);
+}
+
+.sec-area-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.area-tab-btn {
+  height: 36px;
+  padding: 0 16px;
+  border-radius: var(--border-radius-pill);
+  font-size: 13px;
+  font-weight: 700;
+  color: #718096;
+  background-color: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.area-tab-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.area-tab-btn.active {
+  background-color: var(--primary);
+  color: #FFFFFF;
+  border-color: var(--primary);
+  box-shadow: 0 4px 10px rgba(41,195,166,0.25);
+}
+
+.pharmacies-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.pharmacy-card-item {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.02);
+  border: 1px solid rgba(41, 195, 166, 0.06);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.pharmacy-card-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(41,195,166,0.08);
+  border-color: rgba(41, 195, 166, 0.15);
+}
+
+.ph-card-banner {
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  background-color: #EDF2F7;
+}
+
+.ph-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  object-position: center 25%;
+}
+
+.pharmacy-card-item:hover .ph-banner-img {
+  transform: scale(1.05);
+}
+
+.ph-status-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--border-radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.badge-red {
+  background-color: #FFF5F5;
+  color: #E53E3E;
+}
+
+.badge-green {
+  background-color: #F0FFF4;
+  color: #38A169;
+}
+
+.ph-card-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.ph-card-content h4 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 8px;
+  text-transform: none !important;
+}
+
+.ph-card-address {
+  display: flex;
+  gap: 8px;
+  font-size: 13.5px;
+  color: #718096;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  height: 38px;
+  overflow: hidden;
+}
+
+.ph-card-address .pin-icon {
+  color: var(--primary);
+  flex-shrink: 0;
+  margin-top: 3px;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.ph-card-footer-metrics {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13.5px;
+  color: #718096;
+  border-top: 1px solid #EDF2F7;
+  padding-top: 14px;
+  margin-bottom: 16px;
+}
+
+.metric-delivery {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+}
+
+.metric-delivery .delivery-icon {
+  color: var(--primary);
+  width: 15px !important;
+  height: 15px !important;
+}
+
+.metric-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.metric-rating .star-icon {
+  width: 14px;
+  height: 14px;
+  color: #D69E2E;
+}
+
+.ph-view-profile-btn {
+  width: 100%;
+  height: 40px;
+  background-color: var(--bg-soft);
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 13.5px;
+  border-radius: var(--border-radius-sm);
+  transition: all 0.2s ease;
+  border: 1px solid rgba(41, 195, 166, 0.15);
+  margin-top: auto;
+}
+
+.ph-view-profile-btn:hover {
+  background-color: var(--primary);
+  color: #FFFFFF;
+  border-color: var(--primary);
+}
+
+/* ==========================================================================
+   5. Pharmacy Profile Tabbed layout (Matching Screens 2 & 3)
+   ========================================================================== */
+.profile-header-actions {
+  margin-bottom: 24px;
+}
+
+.profile-doc-main-header-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  border: 1px solid rgba(41,195,166,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.ph-full-address-label {
+  font-size: 14px;
+  color: #4A5568;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.ph-delivery-timing {
+  font-size: 13px;
+  color: #718096;
+  margin-top: 4px;
+}
+
+.upload-prescription-fab-box {
+  flex-shrink: 0;
+}
+
+.upload-prescription-fab-btn {
+  background: linear-gradient(135deg, var(--primary), #36DCD0);
+  color: #FFFFFF;
+  font-weight: 850;
+  font-size: 14.5px;
+  padding: 14px 28px;
+  border-radius: var(--border-radius-pill);
+  box-shadow: 0 6px 20px rgba(41,195,166,0.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+}
+
+.upload-prescription-fab-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(41,195,166,0.35);
+}
+
+.pharmacy-profile-tabs-wrapper {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  border: 1px solid rgba(41,195,166,0.06);
+  margin-bottom: 100px;
+}
+
+.profile-tabs-row-ph {
+  display: flex;
+  gap: 16px;
+  border-bottom: 1.5px solid #EDF2F7;
+  padding-bottom: 10px;
+  margin-bottom: 24px;
+}
+
+.profile-tab-btn-ph {
+  height: 38px;
+  padding: 0 20px;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #718096;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.profile-tab-btn-ph:hover {
+  color: var(--primary);
+}
+
+.profile-tab-btn-ph.active {
+  color: var(--primary);
+}
+
+.profile-tab-btn-ph.active:after {
+  content: '';
+  position: absolute;
+  bottom: -11.5px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--primary);
+  border-radius: 3px 3px 0 0;
+}
+
+/* Medicines catalog tab view */
+.medicines-filter-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 440px;
+  margin-bottom: 24px;
+}
+
+.medicines-filter-search-box .icon-search-sm {
+  position: absolute;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  color: #A0AEC0;
+}
+
+.medicines-filter-search-box input {
+  width: 100%;
+  height: 44px;
+  padding-left: 44px;
+  padding-right: 16px;
+  border-radius: 8px;
+  border: 1.5px solid #E2E8F0;
+  outline: none;
+  font-size: 14px;
+  background-color: #F8FAFC;
+  transition: all 0.25s ease;
+}
+
+.medicines-filter-search-box input:focus {
+  border-color: var(--primary);
+  background-color: #FFFFFF;
+}
+
+.medicines-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.medicine-card-item-box {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  border: 1.5px solid #E2E8F0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.medicine-card-item-box:hover {
+  border-color: #E2E8F0 !important;
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(41, 195, 166, 0.08);
+}
+
+.med-image-wrapper {
+  height: 180px;
+  background-color: #EDF2F7;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.medicine-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.med-discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #EEFAF8;
+  color: var(--primary);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(41,195,166,0.3);
+}
+
+.med-details-wrapper {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.med-details-wrapper h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #2D3748;
+  margin: 0;
+  text-transform: none !important;
+}
+
+.med-generic-label {
+  font-size: 12px;
+  color: #718096;
+  font-weight: 600;
+}
+
+.med-pack-label {
+  font-size: 12px;
+  color: #A0AEC0;
+}
+
+.med-price-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.med-price {
+  font-size: 16px;
+  font-weight: 850;
+  color: var(--primary);
+}
+
+.med-old-price {
+  font-size: 12.5px;
+  color: #A0AEC0;
+  text-decoration: line-through;
+}
+
+.med-add-to-cart-btn {
+  width: 100%;
+  height: 36px;
+  background-color: var(--bg-soft);
+  color: var(--primary);
+  border: 1.2px solid rgba(41,195,166,0.2);
+  border-radius: 6px;
+  font-weight: 750;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  margin-top: auto;
+}
+
+.med-add-to-cart-btn:hover {
+  background-color: var(--primary);
+  color: #FFFFFF;
+}
+
+.out-of-stock-label-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.out-of-stock-tag {
+  color: #E53E3E;
+  font-weight: 800;
+  font-size: 11px;
+  background-color: #FFF5F5;
+  padding: 4px;
+  text-align: center;
+  border-radius: 4px;
+}
+
+.alt-suggest {
+  font-size: 10px;
+  color: #718096;
+  font-style: italic;
+}
+
+/* Floating cart bar */
+.cart-floating-footer-panel {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
+  background: linear-gradient(135deg, #1b8a75, #29c3a6);
+  color: #FFFFFF;
+  border-radius: var(--border-radius-lg);
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(41,195,166,0.3);
+  z-index: 999;
+}
+
+.cart-summary-line {
+  display: flex;
+  gap: 30px;
+  font-size: 14.5px;
+}
+
+.cart-summary-line strong {
+  color: #FFE066;
+}
+
+.cart-checkout-proceed-btn {
+  background-color: #FFFFFF;
+  color: #1b8a75;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 10px 24px;
+  border-radius: var(--border-radius-pill);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.25s ease;
+}
+
+.cart-checkout-proceed-btn:hover {
+  transform: translateY(-1px);
+  background-color: #f7fafc;
+  color: #29c3a6;
+}
+
+/* ==========================================================================
+   6. Upload Prescription Styles
+   ========================================================================== */
+.upload-prescrip-card {
+  padding: 32px;
+}
+
+.upload-prescrip-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 4px;
+  text-transform: none !important;
+}
+
+.card-subtitle-text {
+  font-size: 13.5px;
+  color: #718096;
+  margin-bottom: 24px;
+}
+
+.file-uploader-box {
+  border: 2px dashed #CBD5E0;
+  border-radius: 12px;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #F8FAFC;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.file-uploader-box:hover {
+  border-color: var(--primary);
+}
+
+.file-upload-trigger-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.upload-icon-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #EEFAF8;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-icon-circle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.file-upload-trigger-label strong {
+  font-size: 15px;
+  color: #2D3748;
+}
+
+.file-upload-trigger-label span {
+  font-size: 12px;
+  color: #A0AEC0;
+}
+
+.prescription-preview-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.prescrip-img-preview {
+  max-height: 200px;
+  border-radius: 8px;
+  border: 1px solid #CBD5E0;
+}
+
+.remove-prescrip-btn {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #E53E3E;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.upload-actions-row {
+  margin-top: 32px;
+  border-top: 1.5px solid #EDF2F7;
+  padding-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.upload-continue-btn {
+  height: 48px;
+  padding: 0 40px;
+  background-color: var(--primary);
+  color: #FFFFFF;
+  font-weight: 800;
+  border-radius: var(--border-radius-pill);
+  box-shadow: 0 4px 12px rgba(41,195,166,0.25);
+  transition: all 0.2s ease;
+}
+
+.upload-continue-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   7. Availability check, Cart & Check Out
+   ========================================================================== */
+.cart-layout-wider-container {
+  max-width: 1040px !important;
+  margin: 0 auto;
+}
+
+.availability-check-card {
+  padding: 32px;
+}
+
+.availability-check-card h3 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 4px;
+  text-transform: none !important;
+}
+
+.subtitle-sm {
+  font-size: 11px;
+  font-weight: 800;
+  color: #A0AEC0;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+}
+
+.uploaded-prescrip-indicator-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background-color: #F0FFF4;
+  border: 1px solid #C6F6D5;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+.prescrip-mini-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #38A169;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.prescrip-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+}
+
+.prescrip-details strong {
+  color: #276749;
+}
+
+.prescrip-details span {
+  color: #38A169;
+}
+
+.cart-two-column-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.cart-left-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-medicines-list-ph {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cart-med-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: border-color 0.2s ease;
+}
+
+.cart-med-item-row:hover {
+  border-color: rgba(41, 195, 166, 0.3);
+}
+
+.cart-item-left-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.cart-item-thumb-box {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.cart-item-thumb-img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.med-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.med-info-col strong {
+  font-size: 15px;
+  font-weight: 800;
+  color: #2D3748;
+}
+
+.med-info-col span {
+  font-size: 12px;
+  color: #718096;
+}
+
+.med-actions-qty-col {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.qty-selectors-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1.5px solid #CBD5E0;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.qty-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #718096;
+  font-size: 15px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.qty-btn:hover {
+  background-color: #EDF2F7;
+  color: var(--primary);
+}
+
+.qty-num {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2D3748;
+  padding: 0 12px;
+}
+
+.item-subtotal {
+  font-size: 16px;
+  font-weight: 850;
+  color: var(--primary);
+  width: 70px;
+  text-align: right;
+}
+
+.item-remove-btn {
+  font-size: 14px;
+  color: #A0AEC0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  padding: 4px;
+}
+
+.item-remove-btn:hover {
+  color: #E53E3E;
+}
+
+/* Sidebar Order Summary Box */
+.cart-right-sidebar {
+  position: sticky;
+  top: 160px;
+}
+
+.summary-sidebar-box {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  border: 1.5px solid #E2E8F0;
+  padding: 24px;
+}
+
+.summary-sidebar-box h4 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 20px;
+  text-transform: none !important;
+}
+
+.summary-details-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-row-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #718096;
+}
+
+.summary-row-line strong {
+  color: #2D3748;
+}
+
+.summary-row-line .text-teal {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.summary-divider-line {
+  height: 1.5px;
+  background-color: #E2E8F0;
+  margin: 6px 0;
+}
+
+.summary-row-line.total-highlight {
+  font-size: 16px;
+  color: #2D3748;
+  font-weight: 800;
+}
+
+.summary-row-line.total-highlight strong {
+  font-size: 20px;
+  font-weight: 850;
+  color: var(--primary);
+}
+
+.cart-checkout-proceed-btn-full {
+  width: 100%;
+  height: 48px;
+  background-color: var(--primary);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 14.5px;
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(41,195,166,0.25);
+  margin-top: 24px;
+  transition: all 0.25s ease;
+}
+
+.cart-checkout-proceed-btn-full:hover {
+  background-color: #1fa38a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(41,195,166,0.35);
+}
+
+.cart-trust-badges {
+  margin-top: 24px;
+  border-top: 1.5px solid #EDF2F7;
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.badge-item-tr {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #718096;
+  font-weight: 600;
+}
+
+.badge-icon {
+  width: 15px;
+  height: 15px;
+  color: var(--primary);
+}
+
+.availability-totals-card {
+  border-top: 1.5px solid #EDF2F7;
+  padding-top: 20px;
+}
+
+.totals-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+
+.totals-line span {
+  color: #718096;
+  font-weight: 600;
+}
+
+.totals-line strong {
+  font-size: 18px;
+  font-weight: 850;
+  color: var(--primary);
+}
+
+.empty-cart-suggest-prescrip {
+  text-align: center;
+  padding: 24px;
+}
+
+.no-items-warning {
+  color: #E53E3E;
+  font-weight: 800;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.prefill-pack-btn {
+  background-color: var(--primary);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 13.5px;
+  padding: 10px 24px;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   8. Order Summary Step 5 Styles
+   ========================================================================== */
+.order-summary-card {
+  padding: 24px;
+}
+
+.order-summary-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 24px;
+  text-transform: none !important;
+}
+
+.summary-section-box {
+  margin-bottom: 24px;
+  border-bottom: 1.5px solid #EDF2F7;
+  padding-bottom: 16px;
+}
+
+.summary-section-box:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.section-title-lbl {
+  font-size: 11px;
+  font-weight: 800;
+  color: #A0AEC0;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.section-value-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: #2D3748;
+  display: block;
+}
+
+.section-subtitle-lbl {
+  font-size: 12.5px;
+  color: #718096;
+  display: block;
+  margin-top: 4px;
+}
+
+.shipping-fields-card {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.shipping-field-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px;
+  font-size: 13.5px;
+}
+
+.shipping-field-row span {
+  color: #718096;
+  font-weight: 600;
+}
+
+.shipping-field-row strong {
+  color: #2D3748;
+  text-align: left;
+}
+
+.shipping-address-val {
+  line-height: 1.4;
+}
+
+.bill-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #4A5568;
+}
+
+.bill-row span {
+  font-weight: 600;
+}
+
+.bill-row strong {
+  color: #2D3748;
+}
+
+.bill-divider {
+  height: 1px;
+  background-color: #CBD5E0;
+  margin: 6px 0;
+}
+
+.total-bill-line {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.total-bill-line span {
+  color: #2D3748;
+}
+
+/* ==========================================================================
+   9. Payment Gateway Styles
+   ========================================================================== */
+.payment-gateway-card {
+  padding: 32px 24px;
+}
+
+.payment-gateway-card h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 4px;
+  text-transform: none !important;
+}
+
+.p-subtitle {
+  font-size: 11px;
+  font-weight: 800;
+  color: #A0AEC0;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   10. Order Success timeline dashboard
+   ========================================================================== */
+.order-success-modal-section {
+  padding: 60px 0 100px;
+}
+
+.success-tracking-card {
+  padding: 44px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.success-icon-badge-large {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 24px;
+}
+
+.success-icon-badge-large svg {
+  width: 100%;
+  height: 100%;
+}
+
+.success-tracking-card h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 8px;
+  text-transform: none !important;
+}
+
+.order-number-tag {
+  font-size: 14.5px;
+  color: #718096;
+  margin-bottom: 24px;
+}
+
+.order-number-tag strong {
+  color: var(--primary);
+}
+
+.order-tracking-progress-box {
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.order-tracking-progress-box h5 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 16px;
+  text-transform: none !important;
+}
+
+.tracking-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  padding-left: 24px;
+}
+
+.tracking-timeline:before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background-color: #E2E8F0;
+}
+
+.track-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.track-dot {
+  position: absolute;
+  left: -24px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #E2E8F0;
+  border: 2px solid #FFFFFF;
+}
+
+.track-label {
+  font-size: 13.5px;
+  color: #A0AEC0;
+  font-weight: 600;
+}
+
+.track-step.active .track-dot {
+  background-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(41,195,166,0.25);
+}
+
+.track-step.active .track-label {
+  color: #2D3748;
+  font-weight: 700;
+}
+
+.modal-done-btn-ph {
+  width: 100%;
+  height: 48px;
+  background-color: var(--primary);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 15px;
+  border-radius: var(--border-radius-pill);
+  box-shadow: 0 4px 12px rgba(41,195,166,0.25);
+  transition: all 0.25s ease;
+}
+
+.modal-done-btn-ph:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(41,195,166,0.35);
+}
+
+/* Tab contents and responsive styles */
+.hours-schedule-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #F8FAFC;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+}
+
+.schedule-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.schedule-row span {
+  font-weight: 600;
+  color: #718096;
+}
+
+.schedule-row strong {
+  color: #2D3748;
+}
+
+.text-red {
+  color: #E53E3E !important;
+}
+
+.ph-services-list {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ph-services-list li {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #4A5568;
+}
+
+.reviews-stack-ph {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.review-comment-box-ph {
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 14px;
+}
+
+.review-comment-box-ph strong {
+  font-size: 13.5px;
+  color: #2D3748;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.review-comment-box-ph p {
+  font-size: 13px;
+  color: #718096;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .p-search-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .promo-banner-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .promo-banner-graphic-col {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .p-search-grid {
+    grid-template-columns: 1fr;
+  }
+  .categories-pills-row {
+    flex-wrap: wrap;
+  }
+  .ph-services-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Premium Payment Option Selection SVG Logo styling */
+.pay-svg-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  font-weight: 800;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.pay-svg-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.phonepe-purple {
+  background: linear-gradient(135deg, #5f259f, #7f39cc);
+}
+
+.paytm-blue {
+  background: linear-gradient(135deg, #00baf2, #002970);
+}
+
+.gpay-teal {
+  background: linear-gradient(135deg, #0f9d58, #34a853);
+}
+
+.card-slate {
+  background: linear-gradient(135deg, #4a5568, #2d3748);
+}
+
+.payment-options-list {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 20px !important;
+  margin-bottom: 24px !important;
+}
+
+@media (max-width: 600px) {
+  .payment-options-list {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.payment-method-item {
+  border: 1.5px solid rgba(226, 232, 240, 0.8) !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.04) !important;
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+}
+
+.payment-method-item:hover,
+.payment-method-item.method-selected {
+  border-color: var(--primary) !important;
+  background: rgba(240, 255, 249, 0.7) !important;
+  box-shadow: 0 10px 24px rgba(41,195,166,0.12) !important;
+  transform: translateY(-2px);
+}
+
+.bill-row strong,
+.total-bill-line strong {
+  text-transform: none !important;
+}
+
+.bill-row .text-teal {
+  text-transform: none !important;
+  font-weight: 700 !important;
+}
+
+/* Success Receipt Custom premium look */
+.modal-receipt-box {
+  width: 100% !important;
+  background-color: #F8FAFC !important;
+  border: 1.5px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  margin-bottom: 28px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  text-align: left !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02) !important;
+}
+
+.m-receipt-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  font-size: 14.5px !important;
+  border-bottom: 1.5px dashed #EDF2F7 !important;
+  padding-bottom: 12px !important;
+}
+
+.m-receipt-row:last-of-type {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.m-receipt-row .lbl {
+  color: #718096 !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+}
+
+.m-receipt-row .val {
+  color: #2D3748 !important;
+  font-weight: 800 !important;
+  text-align: right !important;
+  font-size: 14.5px !important;
+  text-transform: none !important;
+}
+
+.m-receipt-row .val.text-teal {
+  color: var(--primary) !important;
+  font-size: 16px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Disabled Place Order CTAs */
+.cart-checkout-proceed-btn:disabled,
+.cart-checkout-proceed-btn-full:disabled {
+  background: #CBD5E0 !important;
+  color: #718096 !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Step 5: Review Appointment-Style Store Header Card */
+.review-appointment-summary-box {
+  background-color: #F8FAFC;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.store-appointment-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.store-avatar-thumb {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  border: 1.5px solid #E2E8F0;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.store-thumb-avatar-img {
+  max-width: 95%;
+  max-height: 95%;
+  object-fit: contain;
+}
+
+.store-appointment-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.store-appointment-details h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: #2D3748;
+  margin: 0;
+}
+
+.store-location-info {
+  font-size: 12px;
+  color: #718096;
+  font-weight: 600;
+}
+
+.store-timing-info {
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Align Summary Back/Confirm CTA Row to match Review Appointment */
+.summary-footer-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  border-top: 1.5px solid #EDF2F7;
+  padding-top: 24px;
+}
+
+.summary-back-btn {
+  height: 46px;
+  padding: 0 28px;
+  background-color: #FFFFFF;
+  color: #718096;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1.5px solid #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+.summary-back-btn:hover {
+  background-color: #F8FAFC;
+  color: #2D3748;
+  border-color: #CBD5E0;
+}
+
+.summary-proceed-btn {
+  height: 46px;
+  padding: 0 32px;
+  background-color: var(--primary);
+  color: #FFFFFF;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(41,195,166,0.25);
+  transition: all 0.2s ease;
+}
+
+.summary-proceed-btn:hover {
+  background-color: #1fa38a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(41,195,166,0.35);
+}
+
+/* Reduced Delivery Text & Total Price case styles */
+.text-teal-small {
+  color: var(--primary) !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  text-transform: none !important;
+}
+
+.text-teal-total {
+  color: var(--primary) !important;
+  font-size: 20px !important;
+  font-weight: 850 !important;
+}
+
+/* Step 7: Centered Frosted Success Modal Backdrop Overlay */
+.order-success-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(45, 55, 72, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 20px;
+}
+
+.success-modal-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.success-modal-card h2 {
+  font-size: 24px;
+  font-weight: 800;
+  color: #2D3748;
+  margin-bottom: 8px;
+  text-transform: none !important;
+}
+
+.order-id-highlight {
+  color: var(--primary) !important;
+  font-weight: 800 !important;
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

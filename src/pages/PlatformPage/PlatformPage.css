@@ -1,0 +1,695 @@
+.platform-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(97, 232, 207, 0.19) 0%, rgba(207, 248, 240, 0.19) 55.1%, rgba(255, 255, 255, 0.19) 100%);
+}
+
+/* --- Ecosystem Hero Section --- */
+.platform-hero-section {
+  padding: 210px 0 140px 0; /* Clear header space and provide beautiful breathing room */
+  background-color: transparent;
+  overflow: hidden;
+  position: relative;
+}
+
+.platform-hero-layout {
+  display: flex;
+  gap: 60px; /* Precise spacing between content and image as requested */
+  justify-content: center;
+  align-items: center; /* Vertically center aligned for perfect symmetry */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px; /* Comfortable left/right padding */
+}
+
+.platform-hero-content {
+  flex: 1;
+  max-width: 560px;
+}
+
+.platform-hero-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 39px;
+  line-height: 1.25;
+  color: #2d3748;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.platform-hero-title .text-teal {
+  color: #29C3A6; /* Vibrant brand teal matching the exact color sample image */
+  text-transform: none;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+}
+
+.platform-hero-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.8;
+  color: #808080; /* Neutral gray color for premium aesthetic flow */
+  margin-bottom: 32px;
+}
+
+.platform-hero-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.platform-hero-actions .btn-solid {
+  background-color: #20C7B6;
+  color: #ffffff;
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  border: 2px solid #20C7B6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.platform-hero-actions .btn-solid:hover {
+  background-color: #1ba89a;
+  border-color: #1ba89a;
+}
+
+.platform-hero-actions .btn-outline {
+  background-color: transparent;
+  color: #20C7B6;
+  padding: 14px 32px;
+  border-radius: 30px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  border: 2px solid #20C7B6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.platform-hero-actions .btn-outline:hover {
+  background-color: rgba(32, 199, 182, 0.08);
+}
+
+/* Image Wrapper with Rounded Corners & Subtle Shadows */
+.platform-hero-image-wrapper {
+  flex: 0 0 500px;
+  height: 480px;
+  border-radius: 24px; /* Premium smooth rounded corners */
+  overflow: hidden;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.06); /* Soft elevation drop shadow */
+  position: relative;
+  z-index: 1;
+}
+
+.platform-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 1024px) {
+  .platform-hero-layout {
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 30px;
+    text-align: center;
+  }
+  .platform-hero-content {
+    width: 100%;
+    max-width: 100%;
+  }
+  .platform-hero-actions {
+    justify-content: center;
+  }
+  .platform-hero-image-wrapper {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 500px;
+    height: 400px;
+  }
+  .platform-hero-section {
+    padding: 160px 0 80px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .platform-hero-title {
+    font-size: 32px;
+  }
+  .platform-hero-desc {
+    font-size: 16px;
+  }
+  .platform-hero-actions {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .platform-hero-actions button {
+    width: 100%;
+  }
+  .platform-hero-image-wrapper {
+    height: 300px;
+  }
+}
+
+/* --- How Healthcare Entities Work Together Section --- */
+.entities-work-section {
+  padding: 100px 0;
+  background-color: #fafbfc;
+}
+
+.entities-section-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+  text-align: center;
+  color: #2d3748;
+  margin-top: 0;
+  margin-bottom: 54px;
+}
+
+.entities-section-title .text-teal {
+  color: #29C3A6;
+  text-transform: none;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+}
+
+.entities-layout {
+  display: flex;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Sidebar List - Styled as a single unified card container */
+.entities-sidebar {
+  flex: 0 0 280px;
+  background-color: #FFFFFF;
+  border-radius: 24px;
+  padding: 24px 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: flex-start;
+  margin-top: 0; /* Aligned both cards perfectly to start at the same line */
+}
+
+.entity-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background-color: transparent;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500; /* Regular weight for Doctors, Hospitals, Pharmacies, PG Students */
+  font-size: 21px; /* Large, clearly legible text size matching reference image */
+  color: #555555; /* Lighter gray for regular items */
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.entity-item:hover {
+  background-color: rgba(41, 195, 166, 0.05); /* Premium soft highlight on hover */
+  color: #29C3A6; 
+}
+
+.entity-item.active {
+  background-color: transparent !important;
+  color: #353535 !important; /* Changed active text color back to dark charcoal as requested */
+  font-weight: 800 !important; /* Bold weight applied strictly to active Patients item */
+  box-shadow: none !important;
+}
+
+.entity-icon {
+  width: 32px; /* Increased stethoscope icon size for outstanding visibility */
+  height: 32px; /* Increased stethoscope icon size for outstanding visibility */
+  color: #29C3A6; /* All icons are a beautiful matching teal */
+  flex-shrink: 0;
+}
+
+/* Dashboard Container */
+.entity-dashboard {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 28px;
+  padding: 44px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); /* Enhanced premium shadow for rich visibility */
+  border: 1px solid #e2e8f0; /* Crisp and highly visible border */
+}
+
+.dashboard-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 24px;
+  color: #353535; /* Custom text color #353535 */
+  margin-top: 0;
+  margin-bottom: 36px;
+  text-align: left;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+
+.dashboard-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  background-color: #304F6E0D; /* Exact custom background #304F6E0D */
+  border-radius: 20px;
+  border: none; /* Removed card borders completely as requested */
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+}
+
+.card-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  background-color: transparent; /* Removed soft red background circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-custom-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.card-info {
+  text-align: left;
+}
+
+.card-info h4 {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 18px; /* Increased font-size to 18px to be highly visible and bold */
+  color: #2d3748; /* Dark charcoal color for premium visibility */
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+.card-info p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px; /* Increased font-size to 15px */
+  font-weight: 500;
+  color: #4b5563; /* High contrast slate-gray for extreme visibility */
+  margin: 0;
+}
+
+/* Stats Footer */
+.dashboard-stats {
+  display: flex;
+  justify-content: space-between;
+  border-top: none; /* Removed the top horizontal line inside the container */
+  padding-top: 36px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.stat-item:not(:last-child) {
+  border-right: none; /* Removed the vertical division lines inside the container */
+}
+
+.stat-number {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  color: #2d3748;
+  margin-bottom: 6px;
+}
+
+.stat-label {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #808080;
+}
+
+/* --- Real-Time Healthcare Data Exchange Section --- */
+.data-exchange-section {
+  padding: 100px 0 180px 0; /* Expanded bottom padding for skyline silhouette overlay */
+  background: #008080; /* Rich exact teal color #008080 requested by user */
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.exchange-section-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+  text-align: center;
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 64px;
+}
+
+.exchange-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 60px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.exchange-node {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.node-icon-wrapper {
+  width: 64px; /* Perfectly sized circular container as shown in the image */
+  height: 64px;
+  background-color: rgba(0, 102, 95, 0.45); /* Exact translucent dark teal background */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.node-icon {
+  width: 28px;
+  height: 28px;
+  color: #F5A27D; /* Beautiful orange/peach clock color matching the image exactly */
+  stroke-width: 2;
+}
+
+.node-info {
+  text-align: left;
+}
+
+.node-info h3 {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 19px; /* Highly visible text size */
+  color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+.node-info p {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7); /* Translucent soft white/gray color for premium visibility */
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Skyline silhouette SVG background at bottom */
+.skyline-decor {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 120' preserveAspectRatio='none'%3E%3Cpath d='M0 120 V 100 H 20 V 90 H 30 V 100 H 50 V 85 H 65 V 100 H 80 V 70 H 100 V 85 H 110 V 100 H 130 V 60 H 155 V 80 H 165 V 100 H 180 V 85 H 195 V 100 H 210 V 50 H 240 V 75 H 255 V 100 H 270 V 90 H 280 V 100 H 300 V 70 H 325 V 85 H 340 V 100 H 360 V 60 H 385 V 80 H 395 V 100 H 410 V 85 H 425 V 100 H 440 V 40 H 475 V 70 H 490 V 100 H 510 V 85 H 525 V 100 H 540 V 65 H 565 V 80 H 580 V 100 H 600 V 50 H 630 V 75 H 645 V 100 H 660 V 90 H 670 V 100 H 690 V 70 H 715 V 85 H 730 V 100 H 750 V 60 H 775 V 80 H 785 V 100 H 800 V 85 H 815 V 100 H 830 V 55 H 860 V 75 H 875 V 100 H 890 V 90 H 900 V 100 H 920 V 70 H 945 V 85 H 960 V 100 H 980 V 60 H 1000 V 120 Z' fill='%23006a63' opacity='0.25'/%3E%3C/svg%3E") repeat-x bottom / cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- Spacing Adaptability for Responsive Screens --- */
+@media (max-width: 1024px) {
+  .entities-layout {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .entities-sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    align-self: stretch;
+  }
+  .entity-item {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+  .exchange-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .stat-item:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 16px;
+  }
+  .exchange-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .entities-section-title, .exchange-section-title {
+    font-size: 30px;
+  }
+  .entity-dashboard {
+    padding: 24px;
+  }
+}
+
+/* --- Powering Every Healthcare Operation Section --- */
+.operations-section {
+  padding: 100px 0;
+  background-color: #F2FAF9; /* Soft light cyan background matching the reference */
+}
+
+.operations-section-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 38px;
+  text-align: center;
+  color: #2d3748;
+  margin-top: 0;
+  margin-bottom: 54px;
+  text-transform: none !important; /* Force camelcase rendering */
+}
+
+.operations-section-title .text-teal {
+  color: #29C3A6;
+  text-transform: none !important; /* Force camelcase rendering */
+}
+
+.operations-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Left Column: Big Cards wrapper */
+.operations-main-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Precise alignment using explicit heights so mini-cards never stretch */
+.op-card-patient {
+  height: 250px; /* Decreased height to eliminate excess empty space for a tight, premium look */
+  box-sizing: border-box;
+}
+
+.op-card-hospital {
+  height: 250px; /* Made exactly identical to Patient Management card size for perfect symmetry */
+  box-sizing: border-box;
+}
+
+.op-large-card {
+  background-color: #FFFFFF;
+  border-radius: 24px;
+  padding: 24px 28px 16px 28px; /* Tighter padding for perfect inner spacing */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+  border: 1px solid #eef2f5;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: space-between;
+  overflow: hidden; /* Prevent any potential visual bleeding */
+}
+
+.op-card-header {
+  margin-bottom: 12px;
+}
+
+.op-icon-square {
+  width: 48px; /* Slightly more compact square matching figma proportions */
+  height: 48px;
+  background-color: rgba(41, 195, 166, 0.08); /* Transparent soft teal square background */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.op-icon {
+  width: 26px;
+  height: 26px;
+  color: #29C3A6; /* Clean premium teal stethoscope icon */
+}
+
+.op-card-body {
+  margin-bottom: 16px;
+}
+
+.op-large-card .op-card-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: #2d3748;
+  margin: 0 0 4px 0;
+}
+
+.op-large-card .op-card-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px; /* Increased by 1px for maximum readability */
+  font-weight: 500;
+  color: #808080;
+  margin: 0;
+}
+
+/* Custom Graphs */
+.op-graph-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 70px; /* Aligned height with max bar height */
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  gap: 10px;
+}
+
+.op-bar {
+  flex: 1;
+  max-width: 44px;
+  border-radius: 4px 4px 0 0;
+  transition: transform 0.3s ease;
+}
+
+.op-bar:hover {
+  transform: scaleY(1.05);
+}
+
+.op-patient-graph .op-bar {
+  background: linear-gradient(91.36deg, #2563EB 44.91%, #2EB8A1 108.22%);
+}
+
+.op-hospital-graph .op-bar {
+  background: linear-gradient(90deg, #601CC7 0%, #B834C7 100%);
+}
+
+/* Right Column: Mini Cards */
+.operations-side-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Maintain clean consistent layout gaps */
+}
+
+.op-mini-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 24px 30px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.015);
+  border: 1px solid #eef2f5;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.op-mini-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+}
+
+.op-mini-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.op-mini-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 19px;
+  color: #2d3748;
+  margin: 0 0 4px 0;
+}
+
+.op-mini-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 15px; /* Increased by 1px for maximum readability */
+  font-weight: 500;
+  color: #808080;
+  margin: 0;
+}
+
+/* Spacing Adaptability for Responsive Screens */
+@media (max-width: 992px) {
+  .operations-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .operations-section-title {
+    font-size: 30px;
+  }
+  .op-large-card {
+    padding: 24px;
+  }
+  .op-mini-card {
+    padding: 20px;
+    gap: 16px;
+  }
+}
+

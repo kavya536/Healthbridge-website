@@ -1,0 +1,208 @@
+.blog-page {
+  padding-top: 210px; /* Aligned with about page hero */
+  padding-bottom: 120px;
+  background: linear-gradient(180deg, rgba(97, 232, 207, 0.19) 0%, rgba(207, 248, 240, 0.19) 45%, rgba(255, 255, 255, 1) 75%);
+}
+
+.blog-hero {
+  text-align: center;
+  margin-bottom: 32px; /* Reduced to pull cards closer to heading */
+}
+
+.blog-hero-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 42px;
+  line-height: 1.3;
+  color: #2d3748;
+  margin-bottom: 24px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+.blog-hero-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #718096;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+/* --- Blog Cards Grid --- */
+.blog-content-section {
+  padding: 0; /* Removed padding to close up vertical space */
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* Reduced gap from 30px to 20px for tight reference image spacing */
+  max-width: 970px; /* Perfect tight fit: 310px * 3 + 20px * 2 */
+  margin: 0 auto;
+  padding: 0;
+  justify-content: center;
+  justify-items: center;
+}
+
+.blog-card {
+  width: 100%;
+  max-width: 310px;
+  height: auto; /* Removed fixed height to let content flow naturally without empty vertical gaps */
+  background-color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.blog-card-image-wrapper {
+  width: 100%;
+  height: 170px; /* Slightly decreased image height */
+  overflow: hidden;
+  position: relative;
+}
+
+.blog-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.blog-card-content {
+  height: auto; /* Removed fixed content height so there's no empty spacing */
+  padding: 16px; /* Optimized tight padding for small card dimensions */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.blog-card-meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.blog-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 12px; /* Decreased font size */
+  font-weight: 600;
+  color: #a0aec0;
+}
+
+.meta-icon {
+  width: 13px;
+  height: 13px;
+  color: #a0aec0;
+}
+
+.blog-card-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  font-size: 15px; /* Decreased title size */
+  line-height: 1.4;
+  color: #2d3748;
+  margin-top: 0;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+}
+
+.blog-card-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  font-size: 12.5px; /* Decreased description size to 12.5px */
+  line-height: 1.5;
+  color: #718096;
+  margin-top: 0;
+  margin-bottom: 0; /* Removed auto margin to close up empty space */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+}
+
+.blog-card-link {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 13px; /* Decreased link size */
+  color: #20C7B6;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+  margin-top: 12px;
+}
+
+.blog-card-link:hover {
+  color: #1ba89a;
+}
+
+.link-arrow {
+  transition: transform 0.2s ease;
+}
+
+.blog-card-link:hover .link-arrow {
+  transform: translateX(4px);
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 1200px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 960px;
+    padding: 0 30px;
+  }
+  .blog-page {
+    padding-top: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+    padding: 0 20px;
+  }
+  .blog-page {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+  .blog-hero-title {
+    font-size: 32px;
+  }
+  .blog-hero-desc {
+    font-size: 16px;
+  }
+  .blog-card {
+    height: auto; /* Allow cards to adjust dynamically on small mobile devices to avoid overflow */
+  }
+  .blog-card-content {
+    height: auto;
+  }
+  .blog-card-desc {
+    margin-bottom: 16px;
+  }
+}
+
+/* --- Blog CTA Banner Spacing --- */
+.blog-cta-banner {
+  padding: 80px 0 20px 0 !important; /* Reduced bottom padding to remove extra vertical space before the footer */
+}

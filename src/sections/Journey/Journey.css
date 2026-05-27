@@ -1,0 +1,63 @@
+.journey-section {
+  padding: 90px 0; /* Scaled down from 100px */
+  background-color: var(--bg-white);
+}
+
+.journey-layout {
+  display: flex;
+  align-items: center;
+  gap: 54px; /* Scaled down from 60px */
+}
+
+.journey-image-wrapper {
+  flex: 1;
+}
+
+.journey-image {
+  width: 100%;
+  border-radius: var(--border-radius-lg);
+  display: block;
+}
+
+.journey-content {
+  flex: 1;
+}
+
+.journey-desc {
+  font-size: 13px; /* Scaled down from 15px */
+  line-height: 1.8;
+  color: var(--text-light);
+  margin-bottom: 22px; /* Scaled down from 24px */
+}
+
+.journey-features {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* Scaled down from 16px */
+  margin-bottom: 18px; /* Scaled down from 20px */
+}
+
+.journey-features li {
+  display: flex;
+  align-items: center;
+  gap: 11px; /* Scaled down from 12px */
+  font-size: 13px; /* Scaled down from 14px */
+  color: var(--text-body);
+}
+
+.check-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; /* Scaled down from 20px */
+  height: 18px; /* Scaled down from 20px */
+  background-color: var(--primary);
+  color: var(--bg-white);
+  border-radius: 50%;
+  font-size: 11px; /* Scaled down from 12px */
+  font-weight: 800;
+}
+
+.mobile-icon {
+  font-size: 14px; /* Scaled down from 16px */
+}

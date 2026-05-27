@@ -1,0 +1,130 @@
+.footer-section {
+  background-color: #0f172a; /* Dark slate */
+  color: var(--bg-white);
+  padding: 80px 40px; /* Spacing from all 4 sides around the inner content card wrapper */
+}
+
+.footer-content-card {
+  max-width: 1150px; /* Custom Figma grid alignment width */
+  margin: 0 auto; /* Centered layout card */
+  padding: 0; /* Cleared inner padding since top border was removed, keeping spacing perfectly symmetric as per the image */
+}
+
+.footer-layout {
+  display: flex;
+  gap: 90px; /* Decreased middle spacing between the brand column and the link columns as per user request */
+  justify-content: flex-start; /* Aligns elements closer together instead of pushing them to extreme margins */
+}
+
+.footer-brand {
+  flex: 0 0 257px; /* Locks to your exact Figma width of 257px */
+}
+
+.footer-logo {
+  width: 137px;
+  object-fit: contain;
+  margin-bottom: 24px;
+  /* Removed white filter to allow original logo colors */
+}
+
+.footer-desc {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7); /* Premium soft white for paragraph text */
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.footer-copy {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5); /* Premium soft white for fine print */
+}
+
+.footer-links-container {
+  flex: 1; /* Occupies the remaining layout space beautifully and cleanly */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px; /* Standard balanced grid gaps between the 4 platform link columns */
+}
+
+.footer-col-title {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 18px; /* Prominent and highly legible category titles */
+  font-weight: 700;
+  color: #ffffff; /* Crisp white */
+  margin-bottom: 20px; /* Snug separation to group with content */
+}
+
+.footer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none; /* Removes default browser black dots */
+  padding: 0; /* Removes default browser indentation */
+  margin: 0;
+}
+
+.footer-item {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 14px; /* Increased from 13px for clear legibility */
+  font-weight: 500; /* Medium weight for premium hierarchy */
+  color: #ffffff; /* Crisp white for solid visibility */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bullet {
+  font-size: 8px;
+}
+
+.footer-bottom {
+  display: flex;
+  gap: 24px; /* Reduced gap for a neat, direct connection */
+  justify-content: flex-start;
+  margin: 80px 0 0; /* Top gap from columns, centered by parent card */
+  align-items: center;
+  width: 100%;
+}
+
+.footer-bottom-left {
+  flex-shrink: 0; /* Keep copyright text on a single line without wrapping */
+}
+
+.footer-bottom-right {
+  flex-grow: 1; /* Let the horizontal line occupy all remaining space to the right */
+  display: flex;
+  align-items: center;
+}
+
+.footer-line {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.15);
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .footer-layout {
+    flex-direction: column;
+  }
+  .footer-links-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .footer-bottom-left, .footer-bottom-right {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-links-container {
+    grid-template-columns: 1fr;
+  }
+}
