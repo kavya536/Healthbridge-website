@@ -213,7 +213,7 @@
     flex-direction: column;
     align-items: stretch; /* Override flex-start alignment to ensure beautiful full-width stacking on mobile viewports */
     gap: 45px; /* Comfortable breathing room between left column details and right form block when stacked */
-    padding: 0 40px; /* Comfortable side spacing on tablet and mobile screens */
+    padding: 0 24px; /* Comfortable side spacing on tablet and mobile screens */
   }
   .contact-info, .contact-form-card {
     flex: 1;
@@ -221,5 +221,16 @@
   }
   .contact-form-card {
     margin-top: 0; /* Reset top margin when columns stack vertically on mobile */
+    padding: 24px; /* More compact padding on mobile viewports */
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-page {
+    padding-top: 140px; /* Additional clearance for the navigation bar on small devices */
+  }
+  .form-row {
+    flex-direction: column;
+    gap: 24px; /* Stack inputs vertically with standard gaps */
   }
 }

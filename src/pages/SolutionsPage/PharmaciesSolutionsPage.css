@@ -1693,6 +1693,10 @@
   .ph-services-list {
     grid-template-columns: 1fr;
   }
+  .sec-area-tabs {
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
 }
 
 /* Premium Payment Option Selection SVG Logo styling */

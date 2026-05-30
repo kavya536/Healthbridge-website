@@ -150,3 +150,55 @@
   z-index: 1;
   box-shadow: 0 15px 45px rgba(97, 232, 207, 0.4); /* Premium depth shadows */
 }
+
+@media (max-width: 1024px) {
+  .cta-banner-card {
+    padding: 50px 24px;
+    margin: 0 24px;
+  }
+  .cta-title {
+    font-size: 30px;
+  }
+  .app-layout {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+    padding: 0 24px;
+  }
+  .app-content {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  .app-image-wrapper {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    margin: 0 auto;
+  }
+  .app-image {
+    max-height: 380px;
+    transform: translateY(0);
+  }
+  .app-image-wrapper::after {
+    bottom: 0;
+    height: 60px;
+  }
+  .store-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .cta-title {
+    font-size: 24px;
+  }
+  .store-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .store-btn img {
+    height: 48px;
+  }
+}
