@@ -125,9 +125,30 @@
     text-align: center;
     gap: 40px;
     align-items: center; /* Center the layout vertically on mobile devices */
+    padding: 0 24px;
   }
   
+  .patients-image-wrapper {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 480px;
+  }
+  
+  .patients-content {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
   .patients-features li {
     justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .nowrap-line {
+    white-space: normal !important;
+  }
+  .section-title {
+    font-size: 30px;
   }
 }
