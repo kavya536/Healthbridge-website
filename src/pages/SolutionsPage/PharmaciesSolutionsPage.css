@@ -1697,6 +1697,19 @@
     flex-wrap: wrap !important;
     gap: 10px !important;
   }
+  .profile-tabs-row-ph {
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+    padding-bottom: 4px !important;
+  }
+  .profile-tabs-row-ph::-webkit-scrollbar {
+    display: none !important;
+  }
+  .profile-tab-btn-ph {
+    flex-shrink: 0 !important;
+  }
 }
 
 /* Premium Payment Option Selection SVG Logo styling */
