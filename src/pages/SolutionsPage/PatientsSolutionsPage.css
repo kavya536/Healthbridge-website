@@ -748,16 +748,20 @@
   .doc-booking-info {
     border-left: none;
     border-top: 1px solid #EDF2F7;
-    padding-left: 0;
-    padding-top: 16px;
+    padding: 16px 12px 0 12px;
     text-align: center;
     align-items: center;
     gap: 12px;
-  }
-  .fee-box, .slot-box {
-    justify-content: center;
-    gap: 16px;
     width: 100%;
+    box-sizing: border-box;
+  }
+  .doc-booking-info .fee-box, 
+  .doc-booking-info .slot-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
   }
   .filters-card {
     padding: 16px;

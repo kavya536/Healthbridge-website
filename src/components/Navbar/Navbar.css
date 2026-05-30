@@ -267,13 +267,13 @@
   min-width: max-content;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   border-radius: 12px;
-  padding: 16px 0;
+  padding: 8px 0;
   z-index: 1000;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-top: 24px;
+  gap: 0px; /* Removed spacing between items in the dropdown */
+  margin-top: 8px;
   
   /* Smooth fading and sliding transition with delay to persist hover state */
   opacity: 0;
@@ -283,14 +283,14 @@
   transition-delay: 0.2s; /* Persists for 200ms when mouse leaves */
 }
 
-/* Transparent bridge to prevent losing hover state over the 24px gap */
+/* Transparent bridge to prevent losing hover state over the 8px gap */
 .dropdown-menu::before {
   content: "";
   position: absolute;
-  top: -28px;
+  top: -12px;
   left: 0;
   right: 0;
-  height: 28px;
+  height: 12px;
   background: transparent;
 }
 
@@ -311,11 +311,11 @@
   gap: 12px !important;
   color: #333333 !important;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.2px;
   font-family: 'Nunito Sans', sans-serif;
   text-decoration: none;
-  padding: 10px 16px !important;
+  padding: 4px 16px !important; /* Tight padding to minimize spacing between items */
   border-radius: 8px;
   transition: all 0.25s ease;
 }
@@ -330,7 +330,7 @@
   height: 18px;
   color: #000000 !important;
   stroke: #000000 !important;
-  stroke-width: 1.8;
+  stroke-width: 2.5;
   transition: stroke-width 0.2s ease, transform 0.2s ease;
   flex-shrink: 0;
 }

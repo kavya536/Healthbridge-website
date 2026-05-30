@@ -282,7 +282,7 @@ export default function DoctorsSolutionsPage() {
                 <div key={doc.id} className="doctor-profile-card">
                   <div className="doc-main-info">
                     <img 
-                      src={doc.fallbackImage} 
+                      src={doc.image || doc.fallbackImage} 
                       alt={doc.name} 
                       className="doc-avatar" 
                     />
