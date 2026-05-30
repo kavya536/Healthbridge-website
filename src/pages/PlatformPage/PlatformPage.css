@@ -215,9 +215,9 @@
   border-radius: 12px;
   background-color: transparent;
   font-family: 'Nunito Sans', sans-serif;
-  font-weight: 500; /* Regular weight for Doctors, Hospitals, Pharmacies, PG Students */
+  font-weight: 500; /* Regular normal weight */
   font-size: 21px; /* Large, clearly legible text size matching reference image */
-  color: #555555; /* Lighter gray for regular items */
+  color: #000000; /* Default black text color only */
   cursor: pointer;
   transition: all 0.25s ease;
 }
@@ -229,16 +229,21 @@
 
 .entity-item.active {
   background-color: transparent !important;
-  color: #353535 !important; /* Changed active text color back to dark charcoal as requested */
-  font-weight: 800 !important; /* Bold weight applied strictly to active Patients item */
+  color: #000000 !important; /* Keep default black text color only */
+  font-weight: 500 !important; /* Normal font weight instead of bold */
   box-shadow: none !important;
 }
 
 .entity-icon {
-  width: 32px; /* Increased stethoscope icon size for outstanding visibility */
-  height: 32px; /* Increased stethoscope icon size for outstanding visibility */
-  color: #29C3A6; /* All icons are a beautiful matching teal */
+  width: 32px;
+  height: 32px;
+  color: #000000; /* Default black icon color */
   flex-shrink: 0;
+  transition: color 0.25s ease;
+}
+
+.entity-item.active .entity-icon {
+  color: #29C3A6; /* Active logo color changes to teal when clicked */
 }
 
 /* Dashboard Container */

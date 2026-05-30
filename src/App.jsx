@@ -6,9 +6,12 @@ import ContactPage from './pages/ContactPage/ContactPage';
 import AboutPage from './pages/AboutPage/AboutPage';
 import BlogPage from './pages/BlogPage/BlogPage';
 import PlatformPage from './pages/PlatformPage/PlatformPage';
+import SolutionsPage from './pages/SolutionsPage/SolutionsPage';
 import PatientsSolutionsPage from './pages/SolutionsPage/PatientsSolutionsPage';
 import PharmaciesSolutionsPage from './pages/SolutionsPage/PharmaciesSolutionsPage';
 import HospitalsSolutionsPage from './pages/SolutionsPage/HospitalsSolutionsPage';
+import DoctorsSolutionsPage from './pages/SolutionsPage/DoctorsSolutionsPage';
+import PGStudentsSolutionsPage from './pages/SolutionsPage/PGStudentsSolutionsPage';
 import './App.css';
 
 export default function App() {
@@ -22,9 +25,12 @@ export default function App() {
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/platform" element={<PlatformPage />} />
+          <Route path="/solutions" element={<SolutionsPage />} />
           <Route path="/solutions/patients" element={<PatientsSolutionsPage />} />
           <Route path="/solutions/pharmacies" element={<PharmaciesSolutionsPage />} />
           <Route path="/solutions/hospitals" element={<HospitalsSolutionsPage />} />
+          <Route path="/solutions/doctors" element={<DoctorsSolutionsPage />} />
+          <Route path="/solutions/pg-students" element={<PGStudentsSolutionsPage />} />
         </Routes>
         <Footer />
       </div>

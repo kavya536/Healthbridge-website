@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './PlatformPage.css';
 import '../../sections/Trust/Trust.css';
 import '../../sections/CTA/CTA.css';
@@ -25,6 +26,81 @@ const faqs = [
 export default function PlatformPage() {
   const [openIdx, setOpenIdx] = useState(null);
 
+  const [activeTab, setActiveTab] = useState('Patients');
+
+  const entityDashboards = {
+    Patients: {
+      title: "Patient Experience Dashboard",
+      stats: [
+        { value: "50,234", label: "Active Patients" },
+        { value: "1,847", label: "Consultations Today" },
+        { value: "3,421", label: "Prescriptions Issued" }
+      ],
+      cards: [
+        { title: "Book Appointments", subtitle: "24/7 Access" },
+        { title: "Medical Records", subtitle: "Secure Storage" },
+        { title: "Teleconsultations", subtitle: "Live Sessions" },
+        { title: "E-Prescriptions", subtitle: "Digital Delivery" }
+      ]
+    },
+    Doctors: {
+      title: "Doctor Operations Console",
+      stats: [
+        { value: "8,940", label: "Verified Doctors" },
+        { value: "1,240", label: "Active Consultations" },
+        { value: "12,490", label: "Digital Rx Written" }
+      ],
+      cards: [
+        { title: "E-Prescription Desk", subtitle: "Instant Generation" },
+        { title: "EHR Direct Integrator", subtitle: "Patient History" },
+        { title: "Income & Settlements", subtitle: "Automated Payouts" },
+        { title: "Schedule Manager", subtitle: "Availability Slots" }
+      ]
+    },
+    Hospitals: {
+      title: "Hospital Operational System",
+      stats: [
+        { value: "420", label: "Connected Beds" },
+        { value: "156", label: "Emergency Admissions" },
+        { value: "1,850", label: "OPD Visitors Today" }
+      ],
+      cards: [
+        { title: "Beds & Ward Management", subtitle: "Real-time Tracking" },
+        { title: "Live OPD Coordinator", subtitle: "Patient Flow Control" },
+        { title: "Emergency Direct Node", subtitle: "Instant Response" },
+        { title: "Discharge Analytics", subtitle: "Optimized Billing" }
+      ]
+    },
+    Pharmacies: {
+      title: "Pharmacy Dispensing Portal",
+      stats: [
+        { value: "12,450", label: "Partner Pharmacies" },
+        { value: "9,820", label: "Orders Dispatched" },
+        { value: "22 mins", label: "Avg Delivery Time" }
+      ],
+      cards: [
+        { title: "Rx Verification Engine", subtitle: "Authenticity Check" },
+        { title: "Digital Order Pool", subtitle: "Fulfillment Queue" },
+        { title: "Inventory Coordinator", subtitle: "Stock Alerts" },
+        { title: "Smart Delivery Integration", subtitle: "Route Optimization" }
+      ]
+    },
+    'PG Students': {
+      title: "Post-Graduate Medical Suite",
+      stats: [
+        { value: "15,800", label: "Medical Students" },
+        { value: "4,900", label: "Clinical Q&As Clarified" },
+        { value: "320 slots", label: "Observer-ships Booked" }
+      ],
+      cards: [
+        { title: "Clinical Cases Library", subtitle: "Interactive Cases" },
+        { title: "Expert Mentor Connect", subtitle: "Doubt Clarification" },
+        { title: "Live Audit Simulator", subtitle: "Auditing Audits" },
+        { title: "Joint Accreditation", subtitle: "Accredited Certs" }
+      ]
+    }
+  };
+
   const toggleFaq = (idx) => {
     setOpenIdx(openIdx === idx ? null : idx);
   };
@@ -46,12 +122,12 @@ export default function PlatformPage() {
               HealthBridge Seamlessly Connects Patients, Doctors, Hospitals, Pharmacies, And PG Students, And Clinical Systems Through One Intelligent Healthcare Platform.
             </p>
             <div className="platform-hero-actions">
-              <button className="btn-solid">
+              <Link to="/contact" className="btn-solid" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                 Explore Ecosystem
-              </button>
-              <button className="btn-outline">
+              </Link>
+              <Link to="/solutions/doctors" className="btn-outline" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                 Open Live Console
-              </button>
+              </Link>
             </div>
           </div>
           
@@ -60,7 +136,7 @@ export default function PlatformPage() {
           </div>
         </div>
       </section>
-
+ 
       {/* How Healthcare Entities Work Together Section */}
       <section className="entities-work-section">
         <div className="container">
@@ -71,43 +147,56 @@ export default function PlatformPage() {
           <div className="entities-layout">
             {/* Sidebar list of entities */}
             <div className="entities-sidebar">
-              <div className="entity-item active">
-                <svg className="entity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-                  <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
-                  <circle cx="20" cy="10" r="2"/>
+              <div 
+                className={`entity-item ${activeTab === 'Patients' ? 'active' : ''}`}
+                onClick={() => setActiveTab('Patients')}
+              >
+                <svg className="entity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
                 </svg>
                 <span>Patients</span>
               </div>
-              <div className="entity-item">
-                <svg className="entity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <div 
+                className={`entity-item ${activeTab === 'Doctors' ? 'active' : ''}`}
+                onClick={() => setActiveTab('Doctors')}
+              >
+                <svg className="entity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
                   <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
                   <circle cx="20" cy="10" r="2"/>
                 </svg>
                 <span>Doctors</span>
               </div>
-              <div className="entity-item">
-                <svg className="entity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-                  <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
-                  <circle cx="20" cy="10" r="2"/>
+              <div 
+                className={`entity-item ${activeTab === 'Hospitals' ? 'active' : ''}`}
+                onClick={() => setActiveTab('Hospitals')}
+              >
+                <svg className="entity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 21h18" />
+                  <path d="M5 21V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14" />
+                  <path d="M9 21v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4" />
+                  <path d="M12 9v4" />
+                  <path d="M10 11h4" />
                 </svg>
                 <span>Hospitals</span>
               </div>
-              <div className="entity-item">
-                <svg className="entity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-                  <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
-                  <circle cx="20" cy="10" r="2"/>
+              <div 
+                className={`entity-item ${activeTab === 'Pharmacies' ? 'active' : ''}`}
+                onClick={() => setActiveTab('Pharmacies')}
+              >
+                <svg className="entity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M10.5 3a5 5 0 0 1 7.1 7.1l-6.4 6.4a5 5 0 0 1-7.1-7.1zM8.5 11l6 6" />
                 </svg>
                 <span>Pharmacies</span>
               </div>
-              <div className="entity-item">
-                <svg className="entity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-                  <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
-                  <circle cx="20" cy="10" r="2"/>
+              <div 
+                className={`entity-item ${activeTab === 'PG Students' ? 'active' : ''}`}
+                onClick={() => setActiveTab('PG Students')}
+              >
+                <svg className="entity-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                  <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
                 </svg>
                 <span>PG Students</span>
               </div>
@@ -115,64 +204,30 @@ export default function PlatformPage() {
             
             {/* Dashboard Container */}
             <div className="entity-dashboard">
-              <h3 className="dashboard-title">Patient Experience Dashboard</h3>
+              <h3 className="dashboard-title">{entityDashboards[activeTab].title}</h3>
               
               <div className="dashboard-grid">
-                <div className="dashboard-card">
-                  <div className="card-icon-wrapper">
-                    <img src="/icon.png" alt="Book Appointments Icon" className="card-custom-icon" />
+                {entityDashboards[activeTab].cards.map((card, idx) => (
+                  <div className="dashboard-card" key={idx}>
+                    <div className="card-icon-wrapper">
+                      <img src="/icon.png" alt={`${card.title} Icon`} className="card-custom-icon" />
+                    </div>
+                    <div className="card-info">
+                      <h4>{card.title}</h4>
+                      <p>{card.subtitle}</p>
+                    </div>
                   </div>
-                  <div className="card-info">
-                    <h4>Book Appointments</h4>
-                    <p>24/7 Access</p>
-                  </div>
-                </div>
-
-                <div className="dashboard-card">
-                  <div className="card-icon-wrapper">
-                    <img src="/icon.png" alt="Medical Records Icon" className="card-custom-icon" />
-                  </div>
-                  <div className="card-info">
-                    <h4>Medical Records</h4>
-                    <p>Secure Storage</p>
-                  </div>
-                </div>
-
-                <div className="dashboard-card">
-                  <div className="card-icon-wrapper">
-                    <img src="/icon.png" alt="Teleconsultations Icon" className="card-custom-icon" />
-                  </div>
-                  <div className="card-info">
-                    <h4>Teleconsultations</h4>
-                    <p>Live Sessions</p>
-                  </div>
-                </div>
-
-                <div className="dashboard-card">
-                  <div className="card-icon-wrapper">
-                    <img src="/icon.png" alt="E-Prescriptions Icon" className="card-custom-icon" />
-                  </div>
-                  <div className="card-info">
-                    <h4>E-Prescriptions</h4>
-                    <p>Digital Delivery</p>
-                  </div>
-                </div>
+                ))}
               </div>
 
               {/* Stats Footer */}
               <div className="dashboard-stats">
-                <div className="stat-item">
-                  <span className="stat-number">50,234</span>
-                  <span className="stat-label">Active Patients</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-number">1,847</span>
-                  <span className="stat-label">Consultations Today</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-number">3,421</span>
-                  <span className="stat-label">Prescriptions Issued</span>
-                </div>
+                {entityDashboards[activeTab].stats.map((stat, idx) => (
+                  <div className="stat-item" key={idx}>
+                    <span className="stat-number">{stat.value}</span>
+                    <span className="stat-label">{stat.label}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -284,10 +339,9 @@ export default function PlatformPage() {
               <div className="op-large-card op-card-patient">
                 <div className="op-card-header">
                   <div className="op-icon-square">
-                    <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-                      <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
-                      <circle cx="20" cy="10" r="2"/>
+                    <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
                     </svg>
                   </div>
                 </div>
@@ -310,10 +364,12 @@ export default function PlatformPage() {
               <div className="op-large-card op-card-hospital">
                 <div className="op-card-header">
                   <div className="op-icon-square">
-                    <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-                      <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
-                      <circle cx="20" cy="10" r="2"/>
+                    <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 21h18" />
+                      <path d="M5 21V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14" />
+                      <path d="M9 21v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4" />
+                      <path d="M12 9v4" />
+                      <path d="M10 11h4" />
                     </svg>
                   </div>
                 </div>
@@ -338,7 +394,7 @@ export default function PlatformPage() {
             <div className="operations-side-cards">
               <div className="op-mini-card op-card-doctor">
                 <div className="op-icon-square">
-                  <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
                     <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
                     <circle cx="20" cy="10" r="2"/>
@@ -352,10 +408,8 @@ export default function PlatformPage() {
 
               <div className="op-mini-card op-card-pharmacy">
                 <div className="op-icon-square">
-                  <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-                    <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
-                    <circle cx="20" cy="10" r="2"/>
+                  <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M10.5 3a5 5 0 0 1 7.1 7.1l-6.4 6.4a5 5 0 0 1-7.1-7.1zM8.5 11l6 6" />
                   </svg>
                 </div>
                 <div className="op-mini-info">
@@ -366,10 +420,9 @@ export default function PlatformPage() {
 
               <div className="op-mini-card op-card-student">
                 <div className="op-icon-square">
-                  <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-                    <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
-                    <circle cx="20" cy="10" r="2"/>
+                  <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                    <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
                   </svg>
                 </div>
                 <div className="op-mini-info">
@@ -380,10 +433,10 @@ export default function PlatformPage() {
 
               <div className="op-mini-card op-card-analytics">
                 <div className="op-icon-square">
-                  <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"/>
-                    <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/>
-                    <circle cx="20" cy="10" r="2"/>
+                  <svg className="op-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
                   </svg>
                 </div>
                 <div className="op-mini-info">

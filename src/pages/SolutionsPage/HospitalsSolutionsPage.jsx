@@ -120,6 +120,10 @@ export default function HospitalsSolutionsPage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    const scrollTimer = setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 50);
+    return () => clearTimeout(scrollTimer);
   }, []);
 
   const filteredHospitals = mockHospitals.filter(hosp => 
@@ -133,7 +137,7 @@ export default function HospitalsSolutionsPage() {
       <section className="hospitals-hero-section">
         <div className="container">
           <div className="hospitals-hero-headers">
-            <span className="section-tag">For Hospitals & Clinics</span>
+            <span className="section-tag" style={{ textTransform: 'none' }}>Hospitals & Clinics</span>
             <h1 className="hospitals-hero-title">
               Find Premium <span className="text-teal">Hospitals & Clinics</span>
             </h1>
@@ -230,7 +234,7 @@ export default function HospitalsSolutionsPage() {
                         setBookingConfirmed(true);
                       }}
                     >
-                      Book Now
+                      Visit
                     </button>
                   </div>
                 </div>

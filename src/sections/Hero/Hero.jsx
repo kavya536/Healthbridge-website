@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Hero.css';
 
 export default function Hero() {
@@ -20,9 +21,9 @@ export default function Hero() {
           Learning – Unified In One Intelligent Platform.
         </p>
         <div className="hero__actions">
-          <button className="btn-hero-primary">
+          <Link to="/solutions/patients" className="btn-hero-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
             Book Appointment &rarr;
-          </button>
+          </Link>
           <button className="btn-hero-secondary">
             <span className="play-icon-wrapper">
               <svg width="14" height="16" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">

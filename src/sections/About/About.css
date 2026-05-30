@@ -107,6 +107,20 @@
   max-width: 620px; /* Symmetrical 620px size matching the text content wrapper */
   margin-top: 36px; /* Scaled down from 40px */
   flex-shrink: 0;
+  animation: floatAboutImage 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes floatAboutImage {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .about-image {

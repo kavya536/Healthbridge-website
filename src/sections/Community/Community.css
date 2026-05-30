@@ -74,9 +74,8 @@
 }
 
 .com-card {
-  background: #FFFFFF4D; /* 30% white opacity matching the reference perfectly */
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: #14354e; /* Premium solid dark deep blue-teal that matches the overlay perfectly */
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px; /* Smooth rounded corners */
   padding: 30px 26px; /* Symmetrical, generous internal padding for breathing room */
   text-align: left;
@@ -84,6 +83,17 @@
   flex-direction: column;
   justify-content: flex-start;
   min-height: 220px; /* Comfortable height to prevent layout shifts */
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  will-change: transform; /* Enable hardware acceleration to prevent scroll lag */
+  transform: translate3d(0, 0, 0); /* Force GPU paint layer */
+  backface-visibility: hidden;
+}
+
+.com-card:hover {
+  transform: translate3d(0, -8px, 0);
+  background-color: #173d5a; /* Brighter dark deep blue on hover */
+  border-color: rgba(32, 199, 182, 0.6); /* Vibrant glowing teal border */
+  box-shadow: 0 15px 30px rgba(32, 199, 182, 0.2);
 }
 
 .com-card-icon {
@@ -96,6 +106,21 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  transition: background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.com-card-icon svg {
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.com-card:hover .com-card-icon {
+  background-color: #20C7B6; /* Vibrant teal glow on hover */
+  border-color: #20C7B6;
+  transform: scale(1.1);
+}
+
+.com-card:hover .com-card-icon svg {
+  transform: rotate(12deg) scale(1.1); /* Elegant rotation and scale */
 }
 
 .com-card-title {

@@ -35,6 +35,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease, background-color 0.4s ease;
+  cursor: pointer;
+}
+
+.stat-icon svg {
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.stat-item:hover .stat-icon {
+  transform: translateY(-5px) scale(1.08);
+}
+
+.stat-item:hover .stat-icon svg {
+  transform: rotate(8deg) scale(1.05);
 }
 
 /* Colors matching the design exactly */
@@ -43,9 +57,17 @@
   color: #ff4b72;
 }
 
+.stat-item:hover .icon-pink {
+  box-shadow: 0 10px 22px rgba(255, 75, 114, 0.25);
+}
+
 .icon-orange {
   background-color: #fff4ec;
   color: #ff784b;
+}
+
+.stat-item:hover .icon-orange {
+  box-shadow: 0 10px 22px rgba(255, 120, 75, 0.25);
 }
 
 .icon-purple {
@@ -53,9 +75,17 @@
   color: #8b4bff;
 }
 
+.stat-item:hover .icon-purple {
+  box-shadow: 0 10px 22px rgba(139, 75, 255, 0.25);
+}
+
 .icon-yellow {
   background-color: #fff8eb;
   color: #ffb800;
+}
+
+.stat-item:hover .icon-yellow {
+  box-shadow: 0 10px 22px rgba(255, 184, 0, 0.25);
 }
 
 .stat-text {

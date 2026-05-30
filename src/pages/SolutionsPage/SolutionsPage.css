@@ -1,1 +1,206 @@
-/* SolutionsPage styles */
+/* Solutions Main Page Styling */
+.solutions-page {
+  padding-top: 140px; /* Accounts for floating navbar */
+  background: #FAF8F6; /* Warm rich luxury background color matching the design system */
+  min-height: 100vh;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.solutions-hero {
+  padding: 60px 0 40px;
+}
+
+.solutions-hero .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+}
+
+.solutions-subtitle {
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #20C7B6; /* Vibrant Teal Accent */
+  margin-bottom: 16px;
+}
+
+.solutions-title {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 800;
+  color: #1A202C;
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+
+.solutions-title .text-teal {
+  color: #20C7B6;
+}
+
+.solutions-desc {
+  font-size: 17px;
+  color: #718096;
+  line-height: 1.6;
+}
+
+.solutions-section {
+  padding: 20px 0 100px;
+}
+
+.sol-page-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  justify-content: center;
+}
+
+.sol-page-card {
+  flex: 0 1 calc(33.333% - 24px); /* 3 cards in the first row */
+  min-width: 320px;
+  max-width: 380px;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  padding: 0; /* Make sure card itself has absolutely no padding */
+  margin: 0;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.sol-page-card:hover {
+  transform: scale(1.02);
+  border-color: rgba(32, 199, 182, 0.4);
+  box-shadow: 0 15px 35px rgba(32, 199, 182, 0.12);
+}
+
+/* 2/5 Height Image Wrapper - Decreased height for compact card */
+.sol-page-image-wrapper {
+  position: relative;
+  height: 160px; /* Highly compact height */
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.sol-page-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+  transition: opacity 0.4s ease;
+}
+
+.sol-page-card:hover .sol-page-image {
+  opacity: 0.95; /* Subtle premium fade instead of zoom */
+}
+
+/* 3/5 Height Content Wrapper - Tighter padding for compact height */
+.sol-page-content {
+  padding: 20px 24px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.sol-page-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1A202C;
+  margin-bottom: 8px;
+  height: 24px; /* Set height to align next line perfectly */
+}
+
+.sol-page-description {
+  font-size: 13.5px;
+  color: #718096;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  height: 80px; /* Aligns tags and buttons to the exact same straight line across all cards */
+  overflow: hidden;
+}
+
+/* Side-by-side Grid layout for 2 tags per line */
+.sol-page-tags {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+  margin-top: auto; /* Aligns tags and buttons beautifully to the bottom */
+}
+
+.sol-page-tag {
+  background: #F7FAFC;
+  color: #718096;
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  border: 1px solid #EDF2F7;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/* Rich CTA Dark Button matching first uploaded image */
+.sol-page-btn {
+  width: 100%;
+  height: 44px;
+  background: #0B132A; /* Bold luxury dark color */
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sol-page-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.sol-page-btn:hover {
+  background: #20C7B6; /* Accent color on hover */
+  box-shadow: 0 6px 20px rgba(32, 199, 182, 0.25);
+}
+
+/* Responsiveness adjustments */
+@media (max-width: 1100px) {
+  .sol-page-card {
+    flex: 0 1 calc(50% - 18px); /* 2 per row on smaller screens */
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .solutions-page {
+    padding-top: 100px;
+  }
+  .solutions-hero {
+    padding: 40px 0 20px;
+  }
+  .sol-page-card {
+    flex: 0 1 100%; /* 1 per row on mobile */
+    max-width: 100%;
+  }
+}
