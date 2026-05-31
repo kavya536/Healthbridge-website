@@ -14,8 +14,8 @@ const mockDoctors = [
     fee: 500,
     nextSlot: 'Today, 10:00 AM',
     type: 'Online',
-    image: '/d1',
-    fallbackImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300',
+    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'HealthBridge General Clinic'
   },
   {
@@ -29,8 +29,8 @@ const mockDoctors = [
     fee: 300,
     nextSlot: 'Tomorrow, 10:00 AM',
     type: 'Clinic',
-    image: '/d2',
-    fallbackImage: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300',
+    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'City Center Medical Plaza'
   },
   {
@@ -44,8 +44,8 @@ const mockDoctors = [
     fee: 400,
     nextSlot: 'Today, 02:30 PM',
     type: 'Online',
-    image: '/d3',
-    fallbackImage: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300',
+    image: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'HealthBridge Dental Care'
   },
   {
@@ -59,8 +59,8 @@ const mockDoctors = [
     fee: 850,
     nextSlot: 'Today, 11:30 AM',
     type: 'Online',
-    image: '/d4',
-    fallbackImage: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&q=80&w=300',
+    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'Heartcare Specialist Center'
   },
   {
@@ -74,8 +74,8 @@ const mockDoctors = [
     fee: 450,
     nextSlot: 'Tomorrow, 09:00 AM',
     type: 'Clinic',
-    image: '/d5',
-    fallbackImage: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300',
+    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'Kids & Family Health Clinic'
   },
   {
@@ -89,8 +89,8 @@ const mockDoctors = [
     fee: 400,
     nextSlot: 'Today, 04:00 PM',
     type: 'Online',
-    image: '/d6',
-    fallbackImage: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300',
+    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'HealthBridge Skin & Laser Center'
   },
   {
@@ -104,8 +104,8 @@ const mockDoctors = [
     fee: 700,
     nextSlot: 'Friday, 10:30 AM',
     type: 'Online',
-    image: '/d7',
-    fallbackImage: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300',
+    image: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'HealthBridge Maternity Hub'
   },
   {
@@ -119,8 +119,8 @@ const mockDoctors = [
     fee: 900,
     nextSlot: 'Monday, 11:00 AM',
     type: 'Clinic',
-    image: '/d8',
-    fallbackImage: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300',
+    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'Brain & Spine Institute'
   }
 ];
@@ -166,7 +166,6 @@ export default function DoctorsSolutionsPage() {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-content">
-              <span className="badge">For Medical Professionals</span>
               <h1>Empower Your Practice With <span className="text-teal">HealthBridge</span></h1>
               <p>
                 Join India's premium integrated healthcare network. Bring your practice online, handle bookings effortlessly, write safe digital e-prescriptions, and securely manage patients at the click of a button.
