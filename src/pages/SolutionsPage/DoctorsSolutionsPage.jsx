@@ -44,8 +44,8 @@ const mockDoctors = [
     fee: 400,
     nextSlot: 'Today, 02:30 PM',
     type: 'Online',
-    image: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300&h=300',
-    fallbackImage: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300&h=300',
+    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'HealthBridge Dental Care'
   },
   {
@@ -59,8 +59,8 @@ const mockDoctors = [
     fee: 850,
     nextSlot: 'Today, 11:30 AM',
     type: 'Online',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300',
-    fallbackImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300',
+    image: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'Heartcare Specialist Center'
   },
   {
@@ -83,45 +83,45 @@ const mockDoctors = [
     name: 'Dr. Amit Patel',
     specialty: 'Dermatologist',
     experience: 7,
-    rating: 4.6,
+    rating: 4.4,
     languages: ['English', 'Gujarati'],
     tags: ['Acne', 'Skin Rash', 'Hair Fall', 'Eczema', 'Allergy'],
-    fee: 400,
+    fee: 500,
     nextSlot: 'Today, 04:00 PM',
     type: 'Online',
-    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300&h=300',
-    fallbackImage: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300&h=300',
+    image: 'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'HealthBridge Skin & Laser Center'
   },
   {
     id: 7,
     name: 'Dr. Elena Rostova',
     specialty: 'Gynecologist',
-    experience: 14,
-    rating: 4.9,
+    experience: 11,
+    rating: 4.8,
     languages: ['English', 'Russian'],
     tags: ['Pregnancy', 'PCOS', 'Irregular Periods', 'Women Health'],
-    fee: 700,
-    nextSlot: 'Friday, 10:30 AM',
-    type: 'Online',
-    image: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300&h=300',
-    fallbackImage: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300&h=300',
+    fee: 600,
+    nextSlot: 'Today, 12:00 PM',
+    type: 'Clinic',
+    image: '/elena.jpg',
+    fallbackImage: '/elena.jpg',
     clinicName: 'HealthBridge Maternity Hub'
   },
   {
     id: 8,
-    name: 'Dr. Marcus Vance',
+    name: 'Dr. Michael Chang',
     specialty: 'Neurologist',
-    experience: 18,
-    rating: 4.8,
+    experience: 16,
+    rating: 4.9,
     languages: ['English'],
     tags: ['Migraine', 'Seizure', 'Dizziness', 'Nerve Pain', 'Stroke'],
-    fee: 900,
-    nextSlot: 'Monday, 11:00 AM',
+    fee: 1000,
+    nextSlot: 'Tomorrow, 02:00 PM',
     type: 'Clinic',
-    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300',
-    fallbackImage: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300',
-    clinicName: 'Brain & Spine Institute'
+    image: '/michael.jpg',
+    fallbackImage: '/michael.jpg',
+    clinicName: 'Advanced Neurological Center'
   }
 ];
 
@@ -176,7 +176,9 @@ export default function DoctorsSolutionsPage() {
               </div>
             </div>
             <div className="hero-image-box">
-              <img src="/doctors image.png" alt="Doctors Network" className="hero-promo-img" />
+              <div className="hero-zoom-container">
+                <img src="/doctors image.png" alt="Doctors Network" className="hero-promo-img" />
+              </div>
               <div className="glass-floating-card">
                 <div className="g-icon">🩺</div>
                 <div>
@@ -199,42 +201,87 @@ export default function DoctorsSolutionsPage() {
 
           <div className="perks-grid">
             <div className="perk-card">
-              <div className="perk-icon">🖥️</div>
+              <div className="perk-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="perk-svg-icon">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="9" y1="3" x2="9" y2="21"></line>
+                  <line x1="9" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="15" x2="21" y2="15"></line>
+                </svg>
+              </div>
               <h3>Dashboard Capabilities</h3>
               <p>A unified doctor dashboard displaying active consultations, revenue analytics, clinical queues, and profile optimization in real-time.</p>
               <span className="check-badge">✅ Integrated</span>
             </div>
 
             <div className="perk-card">
-              <div className="perk-icon">📅</div>
+              <div className="perk-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="perk-svg-icon">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                  <circle cx="9" cy="14" r="1.5"></circle>
+                  <circle cx="15" cy="14" r="1.5"></circle>
+                  <circle cx="9" cy="18" r="1.5"></circle>
+                  <circle cx="15" cy="18" r="1.5"></circle>
+                </svg>
+              </div>
               <h3>Appointment Handling</h3>
               <p>Seamlessly organize walk-ins, digital consultations, and emergency slots. Smart reminders reduce patient no-shows by 85%.</p>
               <span className="check-badge">✅ Smart Queue</span>
             </div>
 
             <div className="perk-card">
-              <div className="perk-icon">👥</div>
+              <div className="perk-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="perk-svg-icon">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </div>
               <h3>Patient Management</h3>
               <p>Access complete medical histories, past lab results, vitals tracking, and chronological EMR reports instantly inside a secure cloud vault.</p>
               <span className="check-badge">✅ PCI Compliant EMR</span>
             </div>
 
             <div className="perk-card">
-              <div className="perk-icon">💬</div>
+              <div className="perk-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="perk-svg-icon">
+                  <path d="M23 7l-7 5 7 5V7z"></path>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                  <circle cx="8" cy="12" r="2"></circle>
+                </svg>
+              </div>
               <h3>Consultations</h3>
               <p>Switch flawlessly between high-fidelity video consults, instant chats, and scheduled digital follow-ups on our specialized doctor client.</p>
               <span className="check-badge">✅ HD Telehealth</span>
             </div>
 
             <div className="perk-card">
-              <div className="perk-icon">📝</div>
+              <div className="perk-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="perk-svg-icon">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
               <h3>Prescriptions</h3>
               <p>Draft digitally signed e-prescriptions using an AI-guided drug database, auto-calculating drug interactions and dosages instantly.</p>
               <span className="check-badge">✅ Auto-Signature</span>
             </div>
 
             <div className="perk-card">
-              <div className="perk-icon">💰</div>
+              <div className="perk-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="perk-svg-icon">
+                  <path d="M20 12V8H6a2 2 0 0 1-2-2c0-1.1.9-2 2-2h12v4"></path>
+                  <path d="M4 6v12c0 1.1.9 2 2 2h14v-4"></path>
+                  <path d="M18 12a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h4v-6h-4z"></path>
+                </svg>
+              </div>
               <h3>Earnings & Scheduling</h3>
               <p>Full control over your clinic timings, fee scales, and instant payout wallets with detailed monthly earnings breakdown graphs.</p>
               <span className="check-badge">✅ Wallet Payouts</span>

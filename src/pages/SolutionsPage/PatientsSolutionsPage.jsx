@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './PatientsSolutionsPage.css';
 
 const ALL_SPECIALTIES = [
@@ -25,12 +26,12 @@ const mockDoctors = [
     experience: 10,
     rating: 4.8,
     languages: ['English'],
-    tags: ['Fever', 'Fatigue'],
+    tags: ['Fever', 'Fatigue', 'Cold', 'Flu', 'Headache'],
     fee: 500,
     nextSlot: 'Today, 10:00 AM',
-    type: 'Online',
-    image: '/d1',
-    fallbackImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300',
+    type: 'Video Consultation',
+    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'HealthBridge General Clinic'
   },
   {
@@ -40,12 +41,12 @@ const mockDoctors = [
     experience: 5,
     rating: 4.5,
     languages: ['English'],
-    tags: ['Fever', 'Fatigue'],
+    tags: ['Fever', 'Fatigue', 'Cough', 'Body Ache'],
     fee: 300,
     nextSlot: 'Tomorrow, 10:00 AM',
     type: 'Clinic',
-    image: '/d2',
-    fallbackImage: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300',
+    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'City Center Medical Plaza'
   },
   {
@@ -55,12 +56,12 @@ const mockDoctors = [
     experience: 8,
     rating: 4.7,
     languages: ['English', 'Hindi'],
-    tags: ['Cavity', 'Root Canal'],
+    tags: ['Cavity', 'Root Canal', 'Toothache', 'Bleeding Gums'],
     fee: 400,
     nextSlot: 'Today, 02:30 PM',
-    type: 'Online',
-    image: '/d3',
-    fallbackImage: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=300',
+    type: 'Teleconsultation',
+    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'HealthBridge Dental Care'
   },
   {
@@ -70,12 +71,12 @@ const mockDoctors = [
     experience: 15,
     rating: 4.9,
     languages: ['English'],
-    tags: ['Chest Pain', 'Hypertension'],
+    tags: ['Chest Pain', 'Hypertension', 'BP', 'Palpitations', 'Heart Attack'],
     fee: 850,
     nextSlot: 'Today, 11:30 AM',
-    type: 'Online',
-    image: '/d4',
-    fallbackImage: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&q=80&w=300',
+    type: 'Video Consultation',
+    image: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'Heartcare Specialist Center'
   },
   {
@@ -85,12 +86,12 @@ const mockDoctors = [
     experience: 12,
     rating: 4.6,
     languages: ['English', 'Mandarin'],
-    tags: ['Fever', 'Cough', 'Vaccination'],
+    tags: ['Fever', 'Cough', 'Vaccination', 'Childhood Infection'],
     fee: 450,
     nextSlot: 'Tomorrow, 09:00 AM',
     type: 'Clinic',
-    image: '/d5',
-    fallbackImage: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300',
+    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300&h=300',
     clinicName: 'Kids & Family Health Clinic'
   },
   {
@@ -100,13 +101,13 @@ const mockDoctors = [
     experience: 7,
     rating: 4.4,
     languages: ['English', 'Gujarati'],
-    tags: ['Acne', 'Rashes'],
+    tags: ['Acne', 'Skin Rash', 'Hair Fall', 'Eczema', 'Allergy'],
     fee: 500,
     nextSlot: 'Today, 04:00 PM',
-    type: 'Online',
-    image: '/d6',
-    fallbackImage: 'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?auto=format&fit=crop&q=80&w=300',
-    clinicName: 'HealthBridge Skin Clinic'
+    type: 'Teleconsultation',
+    image: 'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?auto=format&fit=crop&q=80&w=300&h=300',
+    fallbackImage: 'https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?auto=format&fit=crop&q=80&w=300&h=300',
+    clinicName: 'HealthBridge Skin & Laser Center'
   },
   {
     id: 7,
@@ -115,13 +116,13 @@ const mockDoctors = [
     experience: 11,
     rating: 4.8,
     languages: ['English', 'Russian'],
-    tags: ['Pregnancy', 'PCOS'],
+    tags: ['Pregnancy', 'PCOS', 'Irregular Periods', 'Women Health'],
     fee: 600,
     nextSlot: 'Today, 12:00 PM',
     type: 'Clinic',
-    image: '/d7',
-    fallbackImage: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300',
-    clinicName: 'Women & Maternity Specialist Clinic'
+    image: '/elena.jpg',
+    fallbackImage: '/elena.jpg',
+    clinicName: 'HealthBridge Maternity Hub'
   },
   {
     id: 8,
@@ -130,12 +131,12 @@ const mockDoctors = [
     experience: 16,
     rating: 4.9,
     languages: ['English'],
-    tags: ['Migraine', 'Seizure'],
+    tags: ['Migraine', 'Seizure', 'Dizziness', 'Nerve Pain', 'Stroke'],
     fee: 1000,
     nextSlot: 'Tomorrow, 02:00 PM',
     type: 'Clinic',
-    image: '/d8',
-    fallbackImage: 'https://images.unsplash.com/photo-1607990283143-e81e7a2c93ab?auto=format&fit=crop&q=80&w=300',
+    image: '/michael.jpg',
+    fallbackImage: '/michael.jpg',
     clinicName: 'Advanced Neurological Center'
   }
 ];
@@ -231,6 +232,7 @@ export default function PatientsSolutionsPage() {
   const [consultType, setConsultType] = useState('All');
   const [sortBy, setSortBy] = useState('Relevance');
   const [sidebarSpecialties, setSidebarSpecialties] = useState({});
+  const [showFiltersMobile, setShowFiltersMobile] = useState(false);
 
   // Booking Flow State
   const [bookingDoctor, setBookingDoctor] = useState(null);
@@ -238,7 +240,7 @@ export default function PatientsSolutionsPage() {
   const [selectedDate, setSelectedDate] = useState('Wed 27');
   const [selectedTimeTab, setSelectedTimeTab] = useState('Morning');
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('09:30 AM');
-  const [bookingConsultType, setBookingConsultType] = useState('Online');
+  const [bookingConsultType, setBookingConsultType] = useState('Clinic');
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('Google Pay');
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [profileDoctor, setProfileDoctor] = useState(null);
@@ -262,10 +264,10 @@ export default function PatientsSolutionsPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  // Scroll to top instantly when booking step or doctor changes to keep the active form visible and prevent viewport dropping below the footer
+  // Scroll to top instantly when booking step, doctor, or active profile changes to keep the active view visible
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [bookingStep, bookingDoctor]);
+  }, [bookingStep, bookingDoctor, profileDoctor]);
 
   // Set initial booking consult type when doctor changes
   useEffect(() => {
@@ -298,7 +300,8 @@ export default function PatientsSolutionsPage() {
     }
   };
 
-  const handleClearAll = () => {
+  const handleClearAll = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
     setSelectedSpecialty('All Specialists');
     setSidebarSpecialties({});
     setSearchQuery('');
@@ -410,12 +413,12 @@ export default function PatientsSolutionsPage() {
       return b.experience - a.experience;
     }
     if (sortBy === 'Fees') {
-      return a.fee - b.fee;
+      return b.fee - a.fee; // high to low fees
     }
     if (sortBy === 'Rating') {
       return b.rating - a.rating;
     }
-    return 0; // Relevance / default
+    return a.id - b.id; // Relevance / default index sorting
   });
 
   // Render Doctor Profile View
@@ -607,47 +610,6 @@ export default function PatientsSolutionsPage() {
                     <strong className="fee-val">₹{profileDoctor.fee}</strong>
                   </div>
 
-                  <div className="booking-widget-date-row">
-                    <div className="date-header">
-                      <span className="date-lbl">Select Date</span>
-                      <button className="view-calendar-btn">View Calendar</button>
-                    </div>
-                    <div className="widget-date-scroller">
-                      {BOOKING_DATES.slice(0, 4).map((d) => {
-                        const dateString = `${d.day} ${d.num}`;
-                        const isSelected = selectedDate === dateString;
-                        return (
-                          <button
-                            key={d.num}
-                            className={`widget-date-btn ${isSelected ? 'active' : ''}`}
-                            onClick={() => setSelectedDate(dateString)}
-                          >
-                            <span className="d-day">{d.day}</span>
-                            <span className="d-num">{d.num}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <div className="booking-widget-slots-row">
-                    <span className="slots-lbl">Available Slots</span>
-                    <div className="widget-slots-grid">
-                      {['09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM'].map((s) => {
-                        const isSelected = selectedTimeSlot === s;
-                        return (
-                          <button
-                            key={s}
-                            className={`widget-slot-btn ${isSelected ? 'active' : ''}`}
-                            onClick={() => setSelectedTimeSlot(s)}
-                          >
-                            {s}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
                   <button 
                     className="widget-book-btn"
                     onClick={() => {
@@ -660,7 +622,7 @@ export default function PatientsSolutionsPage() {
                   </button>
 
                   <button className="widget-cancel-btn" onClick={() => setProfileDoctor(null)}>
-                    Cancel
+                    Back to Search
                   </button>
 
                   <div className="booking-secure-notice">
@@ -676,7 +638,7 @@ export default function PatientsSolutionsPage() {
                 <div className="profile-card need-help-card">
                   <h5>Need Help?</h5>
                   <p>Our health advisors are here to assist you with your booking.</p>
-                  <a href="#" className="chat-link">CHAT WITH US</a>
+                  <Link to="/contact" className="chat-link">CONTACT WITH US</Link>
                 </div>
 
                 {/* Patient reviews card */}
@@ -880,26 +842,27 @@ export default function PatientsSolutionsPage() {
                     <p className="section-subtitle-sm">CHOOSE YOUR PREFERRED CONSULTATION MODE</p>
                     
                     <div className="consult-dropdown-wrapper">
-                      <div className="consult-dropdown-icon">
-                        {bookingConsultType === 'Online' ? (
-                          <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                          </svg>
-                        ) : (
-                          <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
-                          </svg>
-                        )}
+                      <div className="consult-dropdown-icon" style={{ left: '4px' }}>
+                        <img 
+                          src="/icon1.png" 
+                          alt="Consultation Mode" 
+                          style={{ 
+                            width: '42px', 
+                            height: '42px', 
+                            objectFit: 'contain',
+                            imageRendering: '-webkit-optimize-contrast',
+                            filter: 'drop-shadow(0 0 1.5px var(--primary)) brightness(0.95)'
+                          }} 
+                        />
                       </div>
                       <select
                         value={bookingConsultType}
                         onChange={(e) => setBookingConsultType(e.target.value)}
                         className="consult-selector"
                       >
-                        <option value="Online">Online Teleconsultation</option>
                         <option value="Clinic">Clinic Visit</option>
+                        <option value="Video Consultation">Video Consultation</option>
+                        <option value="Teleconsultation">Teleconsultation</option>
                       </select>
                     </div>
                   </div>
@@ -936,9 +899,9 @@ export default function PatientsSolutionsPage() {
                             <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
                             <circle cx="12" cy="10" r="3"></circle>
                           </svg>
-                          <span>{bookingConsultType === 'Online' ? 'Online Visit' : 'Clinic Visit'} :</span>
+                          <span>{bookingConsultType === 'Clinic' ? 'Clinic Visit' : bookingConsultType === 'Video Consultation' ? 'Video Consultation' : 'Teleconsultation'} :</span>
                         </div>
-                        <strong className="attr-value">{bookingConsultType === 'Online' ? 'HealthBridge Virtual Room' : `Ashok Pride, Kukatpally, Hyderabad, India (${bookingDoctor.clinicName})`}</strong>
+                        <strong className="attr-value">{bookingConsultType === 'Clinic' ? `Ashok Pride, Kukatpally, Hyderabad, India (${bookingDoctor.clinicName})` : 'HealthBridge Virtual Room'}</strong>
                       </div>
 
                       <div className="summary-attr-item">
@@ -1121,18 +1084,22 @@ export default function PatientsSolutionsPage() {
                         <span>{selectedTimeSlot}</span>
                       </div>
                       <div className="review-grid-item">
-                        {bookingConsultType === 'Online' ? (
+                        {bookingConsultType === 'Clinic' ? (
+                          <svg className="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                          </svg>
+                        ) : bookingConsultType === 'Video Consultation' ? (
                           <svg className="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <polygon points="23 7 16 12 23 17 23 7"></polygon>
                             <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
                           </svg>
                         ) : (
                           <svg className="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
-                            <circle cx="12" cy="10" r="3"></circle>
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                           </svg>
                         )}
-                        <span>{bookingConsultType === 'Online' ? 'Online Visit' : 'Clinic Visit'}</span>
+                        <span>{bookingConsultType === 'Clinic' ? 'Clinic Visit' : bookingConsultType === 'Video Consultation' ? 'Video Consultation' : 'Teleconsultation'}</span>
                       </div>
                       <div className="review-grid-item text-teal">
                         <svg className="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -1371,6 +1338,38 @@ export default function PatientsSolutionsPage() {
             <p className="patients-sol-subtitle">
               Discover top-rated doctors verified for quality care. Search doctors by speciality, symptoms, or location with ease.
             </p>
+            <div className="hero-trust-badges">
+              <div className="trust-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="badge-icon">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <span>Verified Doctors</span>
+              </div>
+              <div className="trust-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="badge-icon">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Instant Booking</span>
+              </div>
+              <div className="trust-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="badge-icon">
+                  <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                <span>Teleconsultation Available</span>
+              </div>
+              <div className="trust-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="badge-icon">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="12 8 8 12 12 16 16 12 12 8"></polygon>
+                </svg>
+                <span>Experienced Specialists</span>
+              </div>
+            </div>
           </div>
 
           {/* Premium Search Panel */}
@@ -1411,17 +1410,27 @@ export default function PatientsSolutionsPage() {
               <div className="search-field">
                 <label>Consultation Type</label>
                 <div className="input-with-icon">
-                  <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
-                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
-                  </svg>
+                  <img 
+                    src="/icon1.png" 
+                    alt="Consultation Type" 
+                    className="icon" 
+                    style={{ 
+                      width: '42px', 
+                      height: '42px', 
+                      left: '4px',
+                      objectFit: 'contain',
+                      imageRendering: '-webkit-optimize-contrast',
+                      filter: 'drop-shadow(0 0 1.5px var(--primary)) brightness(0.95)'
+                    }} 
+                  />
                   <select 
                     value={consultType} 
                     onChange={(e) => setConsultType(e.target.value)}
                   >
-                    <option value="All">Online & Clinic</option>
-                    <option value="Online">Online</option>
+                    <option value="All">Choose anyone</option>
                     <option value="Clinic">Clinic</option>
+                    <option value="Video Consultation">Video Consultation</option>
+                    <option value="Teleconsultation">Teleconsultation</option>
                   </select>
                 </div>
               </div>
@@ -1460,14 +1469,27 @@ export default function PatientsSolutionsPage() {
       {/* Main Results Section - Clear Background Differentiation */}
       <section className="patients-sol-results-section">
         <div className="container">
+          <div className="mobile-filter-bar">
+            <button 
+              type="button" 
+              className="mobile-filter-toggle-btn"
+              onClick={() => setShowFiltersMobile(!showFiltersMobile)}
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-sm" style={{ width: '16px', height: '16px' }}>
+                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+              </svg>
+              <span>{showFiltersMobile ? 'Hide Filters' : 'Filter Results'}</span>
+            </button>
+          </div>
+
           <div className="results-layout">
             
             {/* Sidebar Filters */}
-            <aside className="filters-sidebar">
+            <aside className={`filters-sidebar ${showFiltersMobile ? 'show-mobile' : ''}`}>
               <div className="filters-card">
                 <div className="filters-header">
                   <h3>Filters</h3>
-                  <button className="clear-all-btn" onClick={handleClearAll}>Clear All</button>
+                  <button type="button" className="clear-all-btn" onClick={(e) => handleClearAll(e)}>Clear All</button>
                 </div>
 
                 {/* Specialty Checkboxes */}
@@ -1518,18 +1540,7 @@ export default function PatientsSolutionsPage() {
                         onChange={() => setConsultType('All')}
                       />
                       <span className="radio-custom"></span>
-                      <span className="radio-label">All</span>
-                    </label>
-                    <label className="radio-item">
-                      <input 
-                        type="radio" 
-                        name="consultationType" 
-                        value="Online"
-                        checked={consultType === 'Online'}
-                        onChange={() => setConsultType('Online')}
-                      />
-                      <span className="radio-custom"></span>
-                      <span className="radio-label">Online</span>
+                      <span className="radio-label">Choose anyone</span>
                     </label>
                     <label className="radio-item">
                       <input 
@@ -1541,6 +1552,28 @@ export default function PatientsSolutionsPage() {
                       />
                       <span className="radio-custom"></span>
                       <span className="radio-label">Clinic</span>
+                    </label>
+                    <label className="radio-item">
+                      <input 
+                        type="radio" 
+                        name="consultationType" 
+                        value="Video Consultation"
+                        checked={consultType === 'Video Consultation'}
+                        onChange={() => setConsultType('Video Consultation')}
+                      />
+                      <span className="radio-custom"></span>
+                      <span className="radio-label">Video Consultation</span>
+                    </label>
+                    <label className="radio-item">
+                      <input 
+                        type="radio" 
+                        name="consultationType" 
+                        value="Teleconsultation"
+                        checked={consultType === 'Teleconsultation'}
+                        onChange={() => setConsultType('Teleconsultation')}
+                      />
+                      <span className="radio-custom"></span>
+                      <span className="radio-label">Teleconsultation</span>
                     </label>
                   </div>
                 </div>
@@ -1594,6 +1627,16 @@ export default function PatientsSolutionsPage() {
                           </div>
                           
                           <span className="doc-specialty-badge">{doc.specialty}</span>
+                          
+                          <div className="doc-clinic-location-line" style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: '10px 0', fontSize: '13.5px', color: '#4A5568', cursor: 'pointer' }} onClick={() => setProfileDoctor(doc)}>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ width: '15px', height: '15px', color: 'var(--primary)' }}>
+                              <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                              <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span style={{ fontWeight: 700, textDecoration: 'underline', color: 'var(--primary)' }}>
+                              {doc.clinicName} {doc.type === 'Clinic' ? '(Clinic Visit)' : `(${doc.type})`}
+                            </span>
+                          </div>
                           
                           <div className="doc-card-meta-line">
                             <span className="doc-card-experience-pill">

@@ -26,11 +26,11 @@
 .section-tag {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 800;
-  font-size: 14px; /* Scaled down from 16px */
+  font-size: 14px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #34C759;
-  margin-bottom: 10px; /* Reduced from 20px to 10px for senior-level visual grouping */
+  color: #2CCDB4;
+  margin-bottom: 10px;
   display: block;
 }
 

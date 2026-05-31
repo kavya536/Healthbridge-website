@@ -33,7 +33,7 @@ export default function Trust() {
         <div className="container eco-layout">
           <div className="eco-content">
             <h2 className="section-title" style={{ fontFamily: "'Nunito Sans', sans-serif", fontSize: '34px', fontWeight: 800, color: '#2d3748', marginBottom: '24px', lineHeight: 1.3, marginTop: 0 }}>
-              <span className="section-tag" style={{ color: '#34C759', marginBottom: '10px', display: 'block', fontWeight: 800, textTransform: 'none', fontSize: '14px', letterSpacing: '1px' }}>Ecosystem Control Portals</span>
+              <span className="section-tag" style={{ color: '#2CCDB4', marginBottom: '10px', display: 'block', fontWeight: 800, textTransform: 'uppercase', fontSize: '14px', letterSpacing: '1px' }}>Ecosystem Control Portals</span>
               Every Service We Provide,<br/>
               <span className="text-teal" style={{ color: '#20C7B6', textTransform: 'none', fontSize: 'inherit', fontWeight: 'inherit', lineHeight: 'inherit', fontFamily: 'inherit' }}>Connected</span>
             </h2>

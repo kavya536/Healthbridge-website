@@ -15,25 +15,39 @@ export default function PGStudentsSolutionsPage() {
   const [selectedDept, setSelectedDept] = useState('Cardiology Ward Observer-ship');
   const [isBooked, setIsBooked] = useState(false);
 
-  // Module 3 consultation states
-  const [chatInput, setChatInput] = useState('');
-  const [chatList, setChatList] = useState([
-    { sender: 'Dr. James', message: 'Remember, for STEMI patient checkups, always note down V1-V4 chest leads before PCI.' },
-    { sender: 'Kavya536', message: 'Got it Dr. James! Do we also review patient echocardiogram beforehand?' },
-    { sender: 'Dr. James', message: 'Yes, absolutely, if the patient is stable.' }
+  // Module 3 AI Discussion states
+  const [aiChatInput, setAiChatInput] = useState('');
+  const [aiChatList, setAiChatList] = useState([
+    { sender: 'AI Mentor', message: 'Hello! I am your HealthBridge Clinical Discussion Assistant. Ask me about diagnosis, treatment protocols, or specific clinical cases.' }
   ]);
+  const [isAiTyping, setIsAiTyping] = useState(false);
 
-  const handleSendChat = (e) => {
-    e.preventDefault();
-    if (!chatInput.trim()) return;
-    setChatList([...chatList, { sender: 'You', message: chatInput }]);
+  const handleSendAiChat = (e, customMessage = null) => {
+    if (e) e.preventDefault();
+    const query = customMessage || aiChatInput;
+    if (!query.trim()) return;
+
+    setAiChatList(prev => [...prev, { sender: 'You', message: query }]);
+    setAiChatInput('');
+    setIsAiTyping(true);
+
     setTimeout(() => {
-      setChatList(prev => [...prev, {
-        sender: 'Dr. James (Specialist)',
-        message: `Great question regarding that. In clinical consultations, we always combine ECG and echo for a full cardiovascular assessment. Let's discuss this in tomorrow's round!`
-      }]);
-    }, 1200);
-    setChatInput('');
+      let response = '';
+      const lowerQuery = query.toLowerCase();
+
+      if (lowerQuery.includes('stemi') && lowerQuery.includes('nstemi')) {
+        response = `STEMI involves complete coronary artery occlusion and typically presents with ST-segment elevation on ECG.\n\nNSTEMI involves partial coronary artery occlusion and usually presents without ST elevation but with elevated cardiac biomarkers.\n\nKey differences:\n• ECG findings\n• Coronary blockage severity\n• Immediate management approach`;
+      } else if (lowerQuery.includes('chest pain')) {
+        response = `Common causes include:\n\nCardiac:\n• Angina\n• Myocardial Infarction\n\nRespiratory:\n• Pulmonary Embolism\n• Pneumonia\n\nGastrointestinal:\n• GERD\n• Esophageal Spasm\n\nMusculoskeletal:\n• Costochondritis\n• Muscle Strain\n\nClinical evaluation should consider history, risk factors, ECG, and physical examination.`;
+      } else if (lowerQuery.includes('hypertension')) {
+        response = `According to current guidelines:\n\nNormal:\n<120 / <80 mmHg\n\nElevated:\n120-129 / <80 mmHg\n\nStage 1:\n130-139 / 80-89 mmHg\n\nStage 2:\n≥140 / ≥90 mmHg\n\nClassification may vary slightly between ACC/AHA and ESC guidelines.`;
+      } else {
+        response = `That's an excellent clinical question! While I don't have a specific pre-programmed answer for this, generally we approach such cases by evaluating the patient's history, vitals, and considering the most likely differential diagnoses based on standard medical guidelines.`;
+      }
+
+      setAiChatList(prev => [...prev, { sender: 'AI Mentor', message: response }]);
+      setIsAiTyping(false);
+    }, 800);
   };
 
   const handleAskExpert = (e) => {
@@ -81,11 +95,11 @@ export default function PGStudentsSolutionsPage() {
     {
       id: 3,
       tag: 'MODULE 03',
-      title: 'Online Specialty Consultations',
-      description: 'Observe real patient consultations and debriefing streams hosted live by medical directors.',
+      title: 'AI Clinical Discussion Assistant',
+      description: 'Ask clinical doubts and receive context-aware educational responses related to medicine, diagnosis, and treatment planning.',
       features: [
-        { title: 'Live Consultation Auditing', desc: 'Observe telehealth visits in real time to understand patient diagnosis and treatment formulation.' },
-        { title: 'Interactive Case Q&As', desc: 'Interact with senior consultants immediately after consultations to clarify case-specific doubts.' }
+        { title: 'Interactive AI Mentorship', desc: 'Discuss clinical reasoning, pathology, and medical guidelines instantly.' },
+        { title: 'Structured Clinical Insights', desc: 'Get structured answers based on medical guidelines and protocols.' }
       ]
     },
     {
@@ -198,7 +212,7 @@ export default function PGStudentsSolutionsPage() {
                   <span className="simulator-title-tag">
                     {activeModule === 1 && '🩺 Direct Doubt Box & Specialist Mentorship'}
                     {activeModule === 2 && '🏥 Hospital Rotation & Clinic Rotations Scheduler'}
-                    {activeModule === 3 && '📺 Live Online Telehealth Consult Stream'}
+                    {activeModule === 3 && '🤖 HealthBridge Clinical Discussion Assistant'}
                     {activeModule === 4 && '📜 Joint Hospital Validation Certificate'}
                   </span>
                 </div>
@@ -333,67 +347,75 @@ export default function PGStudentsSolutionsPage() {
                     </div>
                   )}
 
-                  {/* Module 3 Widget: Telehealth Consultation Auditing */}
+                  {/* Module 3 Widget: AI Clinical Discussion Assistant */}
                   {activeModule === 3 && (
                     <div className="sim-widget-live">
-                      <div className="mock-live-classroom-rebuilt">
-                        <div className="live-stream-box-rebuilt">
-                          <div className="stream-badge-rebuilt">TELEHEALTH CONSULT</div>
-                          <span className="stream-members-count">👥 Auditing: 142 PG Candidates</span>
-                          
-                          <div className="stream-info-overlay">
-                            <h5>Cardiovascular Patient Consult</h5>
-                            <p>Supervisor: Dr. James Wilson • Apollo Heart Wing</p>
+                      <div className="ai-discussion-panel-rebuilt">
+                        <div className="ai-panel-header">
+                          <div className="ai-header-title">
+                            <span className="icon-ai">🩺</span>
+                            <div>
+                              <h4>HealthBridge Clinical Discussion Assistant</h4>
+                              <p>Ask clinical doubts, discuss cases, and learn from AI-powered educational guidance.</p>
+                            </div>
+                          </div>
+                          <div className="ai-status-badges">
+                            <span className="ai-status-active"><span className="pulse-dot"></span> AI Mentor Active</span>
+                            <span className="ai-status-edu">Educational Purposes Only</span>
                           </div>
                         </div>
 
-                        <div className="live-mentors-row-rebuilt">
-                          <div className="mentor-bubble-rebuilt">
-                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=100" alt="Mentor" />
-                            <div>
-                              <span>Dr. James</span>
-                              <small>Cardiologist</small>
-                            </div>
-                          </div>
-                          <div className="mentor-bubble-rebuilt">
-                            <img src="https://images.unsplash.com/photo-1614608682850-e0d6ed316d47?auto=format&fit=crop&q=80&w=100" alt="Mentor" />
-                            <div>
-                              <span>Dr. Priya</span>
-                              <small>Pediatrician</small>
-                            </div>
-                          </div>
-                          <div className="mentor-bubble-rebuilt">
-                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=100" alt="Mentor" />
-                            <div>
-                              <span>Dr. David</span>
-                              <small>Surgeon</small>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="live-chat-panel">
-                          <div className="chat-messages-container">
-                            <span className="consult-session-notice">💡 Ask senior doctors clinical or treatment questions about this consult:</span>
-                            {chatList.map((msg, index) => (
-                              <div
-                                key={index}
-                                className={`chat-bubble-row ${msg.sender === 'You' ? 'user-sent' : ''}`}
-                              >
-                                <span className="chat-sender">{msg.sender}</span>
-                                <p className="chat-text">{msg.message}</p>
+                        <div className="ai-chat-area">
+                          {aiChatList.map((msg, index) => (
+                            <div key={index} className={`ai-chat-bubble ${msg.sender === 'You' ? 'user-message' : 'ai-message'}`}>
+                              <span className="ai-chat-sender">{msg.sender}</span>
+                              <div className="ai-chat-text">
+                                {msg.message.split('\n').map((line, i) => (
+                                  <span key={i}>
+                                    {line}
+                                    <br />
+                                  </span>
+                                ))}
                               </div>
+                            </div>
+                          ))}
+                          {isAiTyping && (
+                            <div className="ai-chat-bubble ai-message">
+                              <div className="ai-typing-indicator">
+                                <span></span><span></span><span></span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="ai-quick-questions">
+                          <span className="qq-title">Suggested Quick Questions:</span>
+                          <div className="qq-chips">
+                            {[
+                              'What is the difference between STEMI and NSTEMI?',
+                              'What are common causes of chest pain?',
+                              'How is hypertension classified?',
+                              'ECG Interpretation Basics',
+                              'Diabetes Management Protocol'
+                            ].map((q, idx) => (
+                              <button key={idx} className="qq-chip" onClick={() => handleSendAiChat(null, q)}>{q}</button>
                             ))}
                           </div>
+                        </div>
 
-                          <form className="chat-input-bar" onSubmit={handleSendChat}>
-                            <input
-                              type="text"
-                              placeholder="Ask Dr. James regarding this patient consult..."
-                              value={chatInput}
-                              onChange={(e) => setChatInput(e.target.value)}
-                            />
-                            <button type="submit">Submit Doubt</button>
-                          </form>
+                        <form className="ai-input-form" onSubmit={(e) => handleSendAiChat(e)}>
+                          <textarea
+                            placeholder="Ask about diagnosis, treatment protocols, ECG interpretation, case discussions, pharmacology, pathology, NEET PG concepts..."
+                            value={aiChatInput}
+                            onChange={(e) => setAiChatInput(e.target.value)}
+                            rows={2}
+                          />
+                          <button type="submit" disabled={!aiChatInput.trim() || isAiTyping}>Send</button>
+                        </form>
+
+                        <div className="ai-educational-disclaimer">
+                          <strong>⚠ Educational Learning Assistant</strong>
+                          <p>This module is designed for medical education, clinical discussions, and PG learning support. It does not replace professional medical judgment, hospital protocols, or licensed physician decisions.</p>
                         </div>
                       </div>
                     </div>

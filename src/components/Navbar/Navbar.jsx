@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -94,7 +96,7 @@ export default function Navbar() {
           </div>
 
           <div className="navbar__actions">
-            <button className="navbar-btn-primary">
+            <button className="navbar-btn-primary" onClick={() => setIsDownloadModalOpen(true)}>
               Download App
               <svg className="button-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -114,6 +116,49 @@ export default function Navbar() {
           </button>
         </nav>
       </div>
+
+      {isDownloadModalOpen && createPortal(
+        <div className="download-modal-overlay" onClick={() => setIsDownloadModalOpen(false)}>
+          <div className="download-modal-card" onClick={e => e.stopPropagation()}>
+            <button className="download-modal-close" onClick={() => setIsDownloadModalOpen(false)}>×</button>
+            <div className="download-modal-content">
+              <div className="download-modal-left">
+                <h2>Stay Connected<br/>With <span>Health Bridge</span></h2>
+                <p>Download The Health Bridge App On Android Or IOS And Access All Out Services At Your Fingertips. Explore A Seamless Management Experience And Discover A Place Of Health Supporting Through Digital Life. Live A Happy Life</p>
+                
+                <div className="download-app-buttons">
+                  <div className="store-btn google-play-btn">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.6 2.3c-.2.2-.4.6-.4 1.1v17.2c0 .5.2.9.4 1.1l.1.1 9.7-9.7v-.2L3.7 2.2l-.1.1z" fill="#3bccff"/>
+                      <path d="M13.4 12.1l3.1 3.1 3.7-2.1c1-.6 1-1.5 0-2.1l-3.7-2.1-3.1 3.2z" fill="#ffc22c"/>
+                      <path d="M13.4 12.1l-9.8 9.8c-.3.3-.8.2-1.3-.1L16.5 15l-3.1-2.9z" fill="#f8323f"/>
+                      <path d="M13.4 12.1L3.7 2.3c-.5-.3-1-.3-1.3 0L16.5 9l-3.1 3.1z" fill="#1bce7c"/>
+                    </svg>
+                    <div className="store-btn-text">
+                      <small>GET IT ON</small>
+                      <strong>Google Play</strong>
+                    </div>
+                  </div>
+                  
+                  <div className="store-btn app-store-btn">
+                    <svg viewBox="0 0 384 512" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+                    </svg>
+                    <div className="store-btn-text">
+                      <small>Download on the</small>
+                      <strong>App Store</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="download-modal-right">
+                <img src="/mobiles_img.png" alt="HealthBridge App on Mobiles" />
+              </div>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </header>
   );
 }

@@ -25,7 +25,8 @@ const mockPharmacies = [
     address: 'Plot 45, Ashok Pride, Kukatpally, Hyderabad, 500072',
     phone: '+91 98480 22338',
     hours: 'Open 24 Hours',
-    services: ['Home Delivery', '24/7 Service', 'Prescription Refills', 'Vaccinations']
+    services: ['Home Delivery', '24/7 Service', 'Prescription Refills', 'Vaccinations'],
+    stockedMedicines: ['Napa Extend Tablet', 'Xpa Pediatric Drop', 'Avolac Oral Solution', 'Napa Tablet 500mg', 'ZincoVit Immune Plus', 'Axim-CV 200mg', 'Paracetamol', 'Lactulose']
   },
   {
     id: 2,
@@ -39,7 +40,8 @@ const mockPharmacies = [
     address: 'Metro Station Pillar 24, Madhapur, Hyderabad, 500081',
     phone: '+91 99080 11223',
     hours: '10:00 AM - 10:00 PM',
-    services: ['Home Delivery', 'Generic Medicines', 'Diagnostic Dropoff']
+    services: ['Home Delivery', 'Generic Medicines', 'Diagnostic Dropoff'],
+    stockedMedicines: ['Napa Extend Tablet', 'Xpa Pediatric Drop', 'Napa Tablet 500mg', 'Paracetamol']
   },
   {
     id: 3,
@@ -53,7 +55,8 @@ const mockPharmacies = [
     address: 'Mindspace IT Park Road, Hitech City, Hyderabad, 500081',
     phone: '+91 91234 56789',
     hours: '08:00 AM - 11:00 PM',
-    services: ['Home Delivery', 'Organic Wellness', 'Online Consultation']
+    services: ['Home Delivery', 'Organic Wellness', 'Online Consultation'],
+    stockedMedicines: ['Avolac Oral Solution', 'ZincoVit Immune Plus', 'Lactulose', 'Multivitamin & Zinc']
   },
   {
     id: 4,
@@ -67,7 +70,8 @@ const mockPharmacies = [
     address: 'Financial District Junction, Gachibowli, Hyderabad, 500032',
     phone: '+91 98850 44556',
     hours: 'Open 24 Hours',
-    services: ['Home Delivery', '24/7 Service', 'Veterinary Drugs']
+    services: ['Home Delivery', '24/7 Service', 'Veterinary Drugs'],
+    stockedMedicines: ['Napa Extend Tablet', 'Napa Tablet 500mg', 'Axim-CV 200mg', 'Paracetamol']
   },
   {
     id: 5,
@@ -81,7 +85,8 @@ const mockPharmacies = [
     address: 'Road No. 12, Banjara Hills, Hyderabad, 500034',
     phone: '+91 90001 88990',
     hours: '09:00 AM - 10:00 PM',
-    services: ['Home Delivery', 'Premium Aesthetics', 'Compounding Lab']
+    services: ['Home Delivery', 'Premium Aesthetics', 'Compounding Lab'],
+    stockedMedicines: ['ZincoVit Immune Plus', 'Avolac Oral Solution', 'Lactulose', 'Multivitamin & Zinc']
   },
   {
     id: 6,
@@ -90,12 +95,13 @@ const mockPharmacies = [
     distance: '4.2 km',
     rating: 4.4,
     status: 'Open Now',
-    delivery: 'Delivery Available',
+    delivery: 'Store Pickup Only',
     image: '/phar_1',
     address: 'MG Road Near Clock Tower, Secunderabad, 500003',
     phone: '+91 97030 77665',
     hours: '10:00 AM - 09:30 PM',
-    services: ['Home Delivery', 'Surgical Equipment', 'Baby Care Depot']
+    services: ['Home Delivery', 'Surgical Equipment', 'Baby Care Depot'],
+    stockedMedicines: ['Napa Extend Tablet', 'Xpa Pediatric Drop', 'Paracetamol']
   }
 ];
 
@@ -218,11 +224,13 @@ export default function PharmaciesSolutionsPage() {
   const [searchLocation, setSearchLocation] = useState('Kukatpally, Hyderabad, India');
   const [searchMedicine, setSearchMedicine] = useState('');
   const [searchName, setSearchName] = useState('');
+  const [showAllCategories, setShowAllCategories] = useState(false);
   
   // Sidebar/Header Filters state
   const [deliveryFilter, setDeliveryFilter] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
-  const [ratingFilter, setRatingFilter] = useState('All');
+  const [twentyFourSevenFilter, setTwentyFourSevenFilter] = useState(false);
+  const [ratingFilter, setRatingFilter] = useState(false);
 
   // Checkout State Machine
   const [selectedPharmacy, setSelectedPharmacy] = useState(null);
@@ -309,26 +317,39 @@ export default function PharmaciesSolutionsPage() {
     // Area filtering
     if (selectedArea !== 'All Areas' && ph.area !== selectedArea) return false;
 
-    // Search queries
-    if (searchLocation) {
-      const loc = searchLocation.toLowerCase();
+    // 1. Search Location Filter: Match location name with address or area (case-insensitive)
+    if (searchLocation && searchLocation.trim() !== '') {
+      const loc = searchLocation.toLowerCase().split(',')[0].trim();
       if (!ph.address.toLowerCase().includes(loc) && !ph.area.toLowerCase().includes(loc)) {
-        // Soft match filter
+        return false;
       }
     }
-    if (searchName) {
+
+    // 2. Search Medicine Filter: Check if pharmacy stocks this medicine
+    if (searchMedicine && searchMedicine.trim() !== '') {
+      const medQuery = searchMedicine.toLowerCase();
+      const stocksMed = ph.stockedMedicines.some(m => m.toLowerCase().includes(medQuery));
+      if (!stocksMed) return false;
+    }
+
+    // 3. Search Pharmacy Name Filter
+    if (searchName && searchName.trim() !== '') {
       const n = searchName.toLowerCase();
       if (!ph.name.toLowerCase().includes(n)) return false;
     }
 
-    // Direct toggle checks
-    if (deliveryFilter && ph.delivery !== 'Free delivery') return false;
+    // 4. Delivery Filter: Show pharmacies that support delivery (i.e. not Store Pickup Only)
+    if (deliveryFilter && ph.delivery === 'Store Pickup Only') return false;
+
+    // 5. Open Now Filter
     if (openFilter && !ph.status.toLowerCase().includes('open')) return false;
 
-    // Ratings
-    if (ratingFilter !== 'All') {
-      const minRate = parseFloat(ratingFilter);
-      if (ph.rating < minRate) return false;
+    // 6. 24/7 Filter
+    if (twentyFourSevenFilter && !ph.status.toLowerCase().includes('24/7') && !ph.hours.toLowerCase().includes('24 hours')) return false;
+
+    // 7. Ratings Filter (UI selection)
+    if (ratingFilter && ph.rating < 4.5) {
+      return false;
     }
 
     return true;
@@ -341,22 +362,6 @@ export default function PharmaciesSolutionsPage() {
       {/* Banner & Categories (Step 1 Search View) */}
       {flowStep === 1 && (
         <>
-          {/* Top services promo banner */}
-          <section className="pharmacy-promo-banner-section">
-            <div className="container">
-              <div className="promo-banner-card">
-                <div className="promo-banner-text-col">
-                  <h2>Services Up To 30% OFF</h2>
-                  <p>Order fresh medicines online with verified pharmacists.</p>
-                  <button className="promo-view-more-btn">View More</button>
-                </div>
-                <div className="promo-banner-graphic-col">
-                  <img src="/doctor_clinic_treat.png" alt="Pharmacist Service Banner" className="promo-banner-image" />
-                </div>
-              </div>
-            </div>
-          </section>
-
           {/* Heading and Location Search Bar */}
           <section className="pharmacy-search-hero-section">
             <div className="container">
@@ -365,11 +370,11 @@ export default function PharmaciesSolutionsPage() {
                   Find Your <span className="text-teal">Pharmacies</span>
                 </h1>
                 <p className="pharmacy-hero-subtitle">
-                  Order from Kukatpally's 24/7 top-rated pharmacies with home delivery.
+                  Order medicines from verified pharmacies with fast delivery and real-time availability.
                 </p>
               </div>
 
-              {/* Advanced multi-search bar grid */}
+              {/* Advanced multi-search bar card */}
               <div className="pharmacy-search-bar-card">
                 <div className="p-search-grid">
                   <div className="p-search-field">
@@ -392,8 +397,8 @@ export default function PharmaciesSolutionsPage() {
                     <label>Search Medicines</label>
                     <div className="input-with-icon-p">
                       <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        <rect x="2" y="6" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M12 2v4M8 13h8M12 9v8"></path>
                       </svg>
                       <input 
                         type="text" 
@@ -408,8 +413,8 @@ export default function PharmaciesSolutionsPage() {
                     <label>Pharmacy Name</label>
                     <div className="input-with-icon-p">
                       <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
                       </svg>
                       <input 
                         type="text" 
@@ -425,40 +430,55 @@ export default function PharmaciesSolutionsPage() {
                   </button>
                 </div>
 
-                {/* Filter Row inside Search Panel */}
-                <div className="pharmacy-inline-filters-row">
-                  <div className="inline-checkbox-item">
-                    <label className="checkbox-item-row">
-                      <input 
-                        type="checkbox" 
-                        checked={deliveryFilter} 
-                        onChange={(e) => setDeliveryFilter(e.target.checked)} 
-                      />
-                      <span className="checkbox-custom"></span>
-                      <span className="checkbox-label-text">Delivery Available</span>
-                    </label>
-                  </div>
+                {/* Filter chips inside Search Panel */}
+                <div className="pharmacy-inline-chips-row">
+                  <button 
+                    type="button"
+                    className={`filter-chip ${deliveryFilter ? 'active' : ''}`}
+                    onClick={() => setDeliveryFilter(!deliveryFilter)}
+                  >
+                    <span>🚚 Delivery</span>
+                  </button>
+                  <button 
+                    type="button"
+                    className={`filter-chip ${openFilter ? 'active' : ''}`}
+                    onClick={() => setOpenFilter(!openFilter)}
+                  >
+                    <span>🕒 Open Now</span>
+                  </button>
+                  <button 
+                    type="button"
+                    className={`filter-chip ${twentyFourSevenFilter ? 'active' : ''}`}
+                    onClick={() => setTwentyFourSevenFilter(!twentyFourSevenFilter)}
+                  >
+                    <span>🏥 24/7</span>
+                  </button>
+                  <button 
+                    type="button"
+                    className={`filter-chip ${ratingFilter ? 'active' : ''}`}
+                    onClick={() => setRatingFilter(!ratingFilter)}
+                  >
+                    <span>⭐ 4.5+</span>
+                  </button>
+                </div>
 
-                  <div className="inline-checkbox-item">
-                    <label className="checkbox-item-row">
-                      <input 
-                        type="checkbox" 
-                        checked={openFilter} 
-                        onChange={(e) => setOpenFilter(e.target.checked)} 
-                      />
-                      <span className="checkbox-custom"></span>
-                      <span className="checkbox-label-text">Open Now / 24-7</span>
-                    </label>
+                {/* Trust Indicators inside Search Panel */}
+                <div className="pharmacy-search-trust-row">
+                  <div className="trust-item">
+                    <span className="check-mark">✓</span>
+                    <span>Verified Pharmacies</span>
                   </div>
-
-                  <div className="rating-select-wrapper">
-                    <span>Min Rating: </span>
-                    <select value={ratingFilter} onChange={(e) => setRatingFilter(e.target.value)}>
-                      <option value="All">All Ratings</option>
-                      <option value="4.8">4.8+ Stars</option>
-                      <option value="4.6">4.6+ Stars</option>
-                      <option value="4.4">4.4+ Stars</option>
-                    </select>
+                  <div className="trust-item">
+                    <span className="check-mark">✓</span>
+                    <span>Genuine Medicines</span>
+                  </div>
+                  <div className="trust-item">
+                    <span className="check-mark">✓</span>
+                    <span>Licensed Stores</span>
+                  </div>
+                  <div className="trust-item">
+                    <span className="check-mark">✓</span>
+                    <span>Prescription Support</span>
                   </div>
                 </div>
 
@@ -471,7 +491,12 @@ export default function PharmaciesSolutionsPage() {
             <div className="container">
               <div className="sec-header-row">
                 <h3>Categories</h3>
-                <button className="view-all-text-btn">View All</button>
+                <button 
+                  className="view-all-text-btn"
+                  onClick={() => setShowAllCategories(!showAllCategories)}
+                >
+                  {showAllCategories ? 'Show Less' : 'View All'}
+                </button>
               </div>
 
               <div className="categories-pills-row">
@@ -514,6 +539,43 @@ export default function PharmaciesSolutionsPage() {
                   </div>
                   <span>Pills Tablet</span>
                 </div>
+
+                {showAllCategories && (
+                  <>
+                    <div className="cat-pill-item item-blue">
+                      <div className="cat-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                      </div>
+                      <span>Ointments</span>
+                    </div>
+
+                    <div className="cat-pill-item item-orange">
+                      <div className="cat-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                          <line x1="16" y1="2" x2="16" y2="6"></line>
+                          <line x1="8" y1="2" x2="8" y2="6"></line>
+                          <line x1="3" y1="10" x2="21" y2="10"></line>
+                          <path d="M12 12v6M9 15h6"></path>
+                        </svg>
+                      </div>
+                      <span>First Aid</span>
+                    </div>
+
+                    <div className="cat-pill-item item-green">
+                      <div className="cat-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                      </div>
+                      <span>Vitamins</span>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </section>

@@ -8,22 +8,22 @@
   background-color: var(--bg-white);
 }
 
-/* Hero section styling */
+/* Hero section styling - Premium SaaS Look */
 .patients-sol-hero {
-  padding: 60px 0 40px;
-  background: radial-gradient(circle at 10% 20%, rgba(240, 253, 250, 0.5) 0%, rgba(255, 255, 255, 1) 90%);
+  padding: 40px 0 20px;
+  background: radial-gradient(circle at 10% 20%, rgba(240, 253, 250, 0.4) 0%, rgba(255, 255, 255, 1) 90%);
 }
 
 .patients-sol-hero-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .patients-sol-title {
   font-size: clamp(32px, 4vw, 48px);
   font-weight: 800;
   color: #2D3748;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   letter-spacing: -0.5px;
   text-transform: none !important;
 }
@@ -34,21 +34,63 @@
 }
 
 .patients-sol-subtitle {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--text-body);
   max-width: 680px;
   margin: 0 auto;
   line-height: 1.6;
 }
 
+/* Trust Badges Bar styling */
+.hero-trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(41, 195, 166, 0.05);
+  border: 1px solid rgba(41, 195, 166, 0.1);
+  padding: 6px 14px;
+  border-radius: var(--border-radius-pill);
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+}
+
+.trust-badge:hover {
+  background: rgba(41, 195, 166, 0.08);
+  transform: translateY(-1.5px);
+}
+
+.badge-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--primary);
+}
+
 /* Premium Search Panel */
 .search-panel-wrapper {
   background: #FFFFFF;
   border-radius: var(--border-radius-lg);
-  box-shadow: 0 10px 30px rgba(41, 195, 166, 0.08), 0 1px 8px rgba(0, 0, 0, 0.02);
-  padding: 32px;
-  border: 1px solid rgba(41, 195, 166, 0.1);
+  box-shadow: 0 12px 36px rgba(41, 195, 166, 0.06), 0 1px 3px rgba(0, 0, 0, 0.01);
+  padding: 28px 32px;
+  border: 1px solid rgba(41, 195, 166, 0.08);
   margin-bottom: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-panel-wrapper:hover {
+  box-shadow: 0 16px 44px rgba(41, 195, 166, 0.09);
+  border-color: rgba(41, 195, 166, 0.12);
 }
 
 .search-panel-grid {
@@ -79,15 +121,14 @@
 
 .input-with-icon .icon {
   position: absolute;
-  left: 14px;
-  width: 18px;
-  height: 18px;
+  left: 12px;
+  width: 22px;
+  height: 22px;
   color: var(--primary);
   pointer-events: none;
 }
 
-.input-with-icon input,
-.input-with-icon select {
+.input-with-icon input {
   width: 100%;
   height: 52px;
   padding: 0 16px 0 44px;
@@ -99,6 +140,28 @@
   outline: none;
   background-color: #F8FAFC;
   transition: all 0.3s ease;
+}
+
+.input-with-icon select {
+  width: 100%;
+  height: 52px;
+  padding: 0 38px 0 44px; /* Increased right padding to prevent text overlapping arrow */
+  border: 1.5px solid #E2E8F0;
+  border-radius: var(--border-radius-md);
+  font-size: 15px;
+  font-family: inherit;
+  color: #333333;
+  outline: none;
+  background-color: #F8FAFC;
+  transition: all 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234A5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center; /* Positioned slightly backwards so it's clearly visible */
+  background-size: 16px;
+  cursor: pointer;
 }
 
 .input-with-icon input:focus,
@@ -140,24 +203,28 @@
   border: 1px solid #E2E8F0;
   border-radius: var(--border-radius-pill);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: #4A5568;
   background-color: #FFFFFF;
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .specialist-pill:hover {
   border-color: var(--primary);
   color: var(--primary);
-  background-color: var(--bg-soft);
+  background-color: rgba(41, 195, 166, 0.04);
+  transform: translateY(-2px); /* Premium float micro-animation */
+  box-shadow: 0 4px 8px rgba(41, 195, 166, 0.08);
 }
 
 .specialist-pill.active {
   background-color: var(--primary);
   color: #FFFFFF;
   border-color: var(--primary);
-  box-shadow: 0 4px 10px rgba(41, 195, 166, 0.25);
+  box-shadow: 0 4px 12px rgba(41, 195, 166, 0.3);
 }
 
 /* Main Content Results Section - Clear Contrast backgrounds */
@@ -204,6 +271,11 @@
 }
 
 .clear-all-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
   font-size: 13px;
   font-weight: 700;
   color: var(--primary);
@@ -481,7 +553,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 5%;
   border: 3px solid #E6FFFA;
 }
 
@@ -1077,11 +1149,12 @@
   position: relative;
   display: flex;
   align-items: center;
+  max-width: 320px; /* Decreased width of the select box as requested */
 }
 
 .consult-dropdown-icon {
   position: absolute;
-  left: 16px;
+  left: 12px;
   display: flex;
   align-items: center;
   pointer-events: none;
@@ -1096,7 +1169,7 @@
 .consult-selector {
   width: 100%;
   height: 52px;
-  padding: 0 20px 0 48px;
+  padding: 0 44px 0 48px; /* Increased right padding to protect text from arrow overlap */
   border: 1.5px solid #E2E8F0;
   border-radius: var(--border-radius-pill); /* Pill shaped border as in Image 2 */
   font-size: 15px;
@@ -1108,7 +1181,7 @@
   appearance: none; /* Native arrow override */
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234A5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 20px center;
+  background-position: right 22px center; /* Shifted arrow backward (leftwards) so it is clearly visible inside the pill border */
   background-size: 16px;
   transition: all 0.25s ease;
   box-shadow: var(--shadow-sm);
@@ -2064,7 +2137,7 @@
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 5%;
   border: 3.5px solid #E6FFFA;
 }
 
@@ -2735,6 +2808,46 @@
   line-height: 1.5;
 }
 
+/* Mobile Filter Bar & Collapsible Drawer */
+.mobile-filter-bar {
+  display: none;
+  margin-bottom: 16px;
+}
+
+.mobile-filter-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 48px;
+  background-color: var(--primary);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(41, 195, 166, 0.25);
+  transition: all 0.3s ease;
+}
+
+.mobile-filter-toggle-btn:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Responsive adjustment codes */
 @media (max-width: 1024px) {
   .profile-grid-layout {
@@ -2742,6 +2855,23 @@
   }
   .profile-booking-col {
     position: relative;
+  }
+}
+
+@media (max-width: 900px) {
+  .mobile-filter-bar {
+    display: block;
+  }
+  
+  .filters-sidebar {
+    display: none;
+    width: 100%;
+    margin-bottom: 24px;
+    animation: slideDown 0.35s ease-out forwards;
+  }
+  
+  .filters-sidebar.show-mobile {
+    display: block !important;
   }
 }
 
@@ -2755,6 +2885,105 @@
   .profile-footer-features {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+  .search-panel-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .search-btn-primary {
+    width: 100% !important;
+    margin-top: 10px;
+  }
+  .specialist-pills-container {
+    justify-content: flex-start;
+    gap: 8px;
+  }
+  .specialist-pill {
+    padding: 0 14px;
+    font-size: 13px;
+  }
+  .results-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .sort-pills {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .sort-pill {
+    flex: 1;
+    text-align: center;
+    min-width: 80px;
+  }
+  .doctor-card {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .doc-main-info {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 16px !important;
+  }
+  .name-row {
+    flex-direction: column !important;
+    gap: 6px !important;
+    align-items: center !important;
+  }
+  .doc-card-meta-line {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 12px !important;
+  }
+  .symptoms-tags {
+    justify-content: center !important;
+  }
+  .doc-booking-info {
+    border-left: none !important;
+    border-top: 1px solid #EDF2F7 !important;
+    padding: 16px 12px 0 12px !important;
+    text-align: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .doc-booking-info .fee-box, 
+  .doc-booking-info .slot-box {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .filters-card {
+    padding: 16px !important;
+  }
+  .select-time-card .time-tabs-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .patients-sol-title {
+    font-size: 32px !important;
+  }
+  .patients-sol-subtitle {
+    font-size: 14px !important;
+  }
+  .specialist-pill {
+    padding: 0 12px !important;
+    font-size: 12px !important;
+  }
+  .widget-slots-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .profile-attrs-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 

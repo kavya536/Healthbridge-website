@@ -140,16 +140,17 @@
 
 .mv-card {
   flex: 1;
-  background-color: transparent;
-  border: none;
-  border-radius: 0;
-  padding: 0;
-  box-shadow: none;
-  transition: none;
+  background-color: #ffffff;
+  border: 1px solid #f1f5f9;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .mv-card:hover {
-  transform: none;
+  transform: translateY(-6px);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.1);
 }
 
 .mv-icon-wrapper {
@@ -273,6 +274,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease, background-color 0.4s ease;
+  perspective: 1000px;
+}
+
+.wwd-card:hover {
+  transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0 20px 40px rgba(32, 199, 182, 0.2);
+  background-color: #20C7B6;
 }
 
 .wwd-icon-wrapper {
@@ -285,6 +294,17 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 24px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease, color 0.4s ease;
+}
+
+.wwd-icon-wrapper svg {
+  transition: transform 0.3s ease;
+}
+
+.wwd-card:hover .wwd-icon-wrapper {
+  transform: rotateY(360deg);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
 }
 
 .wwd-title {
@@ -293,6 +313,11 @@
   font-size: 20px;
   color: #2d3748;
   margin-bottom: 12px;
+  transition: color 0.4s ease;
+}
+
+.wwd-card:hover .wwd-title {
+  color: #FFFFFF;
 }
 
 .wwd-desc {
@@ -303,6 +328,11 @@
   color: #808080;
   margin: 0;
   text-align: left;
+  transition: color 0.4s ease;
+}
+
+.wwd-card:hover .wwd-desc {
+  color: #F8FAFC;
 }
 
 /* --- Why HealthBridge Section --- */

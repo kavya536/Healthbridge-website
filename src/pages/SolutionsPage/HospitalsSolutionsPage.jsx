@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HospitalsSolutionsPage.css';
 
 const mockHospitals = [
@@ -114,6 +115,7 @@ function SafeHospitalImage({ src, fallbackSrc, alt, className }) {
 }
 
 export default function HospitalsSolutionsPage() {
+  const navigate = useNavigate();
   const [searchLocation, setSearchLocation] = useState('');
   const [selectedHospital, setSelectedHospital] = useState(null);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
@@ -252,44 +254,101 @@ export default function HospitalsSolutionsPage() {
         </div>
       </section>
 
-      {/* Booking Confirmation Dialog Popup */}
+      {/* Premium Hospital Visit Modal */}
       {bookingConfirmed && selectedHospital && (
-        <div className="booking-modal-overlay">
-          <div className="booking-success-modal-card">
-            <div className="success-icon-wrapper-large">
-              <svg viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" fill="#EEFAF8"></circle>
-                <path d="M8.5 12.5l2 2 5-5" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"></path>
-              </svg>
-            </div>
-
-            <h2>OPD Booking Successful!</h2>
-            <p>Your appointment queue has been reserved at</p>
-
-            <div className="modal-receipt-box">
-              <div className="m-receipt-row">
-                <span className="lbl">Hospital:</span>
-                <strong className="val">{selectedHospital.name}</strong>
-              </div>
-              <div className="m-receipt-row">
-                <span className="lbl">Location:</span>
-                <strong className="val">{selectedHospital.location}</strong>
-              </div>
-              <div className="m-receipt-row">
-                <span className="lbl">Priority Status:</span>
-                <strong className="val text-teal">Fast-Track OPD</strong>
-              </div>
-            </div>
-
+        <div className="hospital-modal-overlay">
+          <div className="hospital-visit-modal-card">
             <button 
-              className="modal-done-btn"
+              className="modal-close-btn"
               onClick={() => {
                 setBookingConfirmed(false);
                 setSelectedHospital(null);
               }}
             >
-              Done
+              ×
             </button>
+            
+            <div className="modal-header-section">
+              <span className="modal-pre-title">HealthBridge Verified Hospital</span>
+              <h2>{selectedHospital.name}</h2>
+              <p>Access trusted healthcare services through HealthBridge.</p>
+              
+              <div className="modal-header-badges">
+                <span className="m-badge">✓ Verified Partner Hospital</span>
+                <span className="m-badge">✓ HealthBridge Connected</span>
+                <span className="m-badge">✓ Trusted Healthcare Network</span>
+              </div>
+            </div>
+
+            <div className="modal-body-split">
+              <div className="modal-left-details">
+                <div className="detail-meta-row">
+                  <div className="meta-item">
+                    <span className="meta-lbl">Location</span>
+                    <span className="meta-val">📍 {selectedHospital.location}</span>
+                  </div>
+                  <div className="meta-item">
+                    <span className="meta-lbl">Hospital Type</span>
+                    <span className="meta-val">🏥 {selectedHospital.type}</span>
+                  </div>
+                  <div className="meta-item">
+                    <span className="meta-lbl">Rating</span>
+                    <span className="meta-val">⭐ {selectedHospital.rating} ({selectedHospital.ratingCount})</span>
+                  </div>
+                </div>
+
+                <div className="detail-about">
+                  <h4>About Hospital</h4>
+                  <p>A trusted multi-speciality healthcare institution offering advanced medical services, experienced doctors, modern facilities, and patient-centered care.</p>
+                </div>
+
+                <div className="detail-services">
+                  <h4>Services Available</h4>
+                  <ul>
+                    <li>• Cardiology</li>
+                    <li>• Neurology</li>
+                    <li>• Orthopedics</li>
+                    <li>• Emergency Care</li>
+                    <li>• General Medicine</li>
+                    <li>• Diagnostics</li>
+                  </ul>
+                </div>
+
+                <div className="status-badge-row">
+                  <span className="status-active-badge">🟢 Available for Consultation</span>
+                </div>
+              </div>
+
+              <div className="modal-right-image">
+                <div className="modal-image-wrapper">
+                  <SafeHospitalImage 
+                    src={selectedHospital.image} 
+                    fallbackSrc={selectedHospital.fallbackImage} 
+                    alt={selectedHospital.name} 
+                    className="modal-main-img" 
+                  />
+                  <div className="floating-verified-badge">
+                    🟢 HealthBridge Verified
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="modal-bottom-actions">
+              <button 
+                className="primary-cta-btn"
+                onClick={() => {
+                  setBookingConfirmed(false);
+                  setSelectedHospital(null);
+                }}
+              >
+                Register Now To Consult
+              </button>
+              <div className="secondary-actions-row">
+                <button className="sec-act-btn" onClick={() => navigate('/contact')}>📞 Contact Hospital</button>
+                <button className="sec-act-btn">📍 View Location</button>
+              </div>
+            </div>
           </div>
         </div>
       )}
