@@ -6,6 +6,7 @@ import './Navbar.css';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const closeMenu = () => {
     setMenuOpen(false);
@@ -28,10 +29,21 @@ export default function Navbar() {
           <div className={`navbar__links-wrapper ${menuOpen ? 'active' : ''}`}>
             <ul className="navbar__links">
               <li><NavLink to="/" onClick={closeMenu} className={({ isActive }) => (isActive ? "active" : "")}>Home</NavLink></li>
-              <li className="dropdown">
-                <NavLink to="/solutions" onClick={closeMenu} className={({ isActive }) => (isActive ? "active" : "")}>
+              <li className={`dropdown ${dropdownOpen ? 'mobile-open' : ''}`}>
+                <NavLink 
+                  to="/solutions" 
+                  onClick={(e) => {
+                    if (window.innerWidth <= 768) {
+                      e.preventDefault();
+                      setDropdownOpen(!dropdownOpen);
+                    } else {
+                      closeMenu();
+                    }
+                  }} 
+                  className={({ isActive }) => (isActive ? "active" : "")}
+                >
                   Solutions 
-                  <span className="chevron">
+                  <span className="chevron" style={{ transform: dropdownOpen && window.innerWidth <= 768 ? 'rotate(180deg)' : '' }}>
                     <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>

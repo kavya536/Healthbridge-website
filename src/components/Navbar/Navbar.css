@@ -228,7 +228,8 @@
   }
   
   /* Mobile dropdown styles logic */
-  .dropdown:hover .dropdown-menu {
+  .dropdown:hover .dropdown-menu,
+  .dropdown.mobile-open .dropdown-menu {
     opacity: 1;
     visibility: visible;
     position: static;
@@ -321,24 +322,29 @@
 }
 
 .dropdown-item-link:hover {
-  color: #20C7B6 !important;
-  background-color: rgba(32, 199, 182, 0.05);
+  color: #2CCDB4 !important;
+  background-color: transparent;
 }
 
 .menu-dropdown-icon {
-  width: 18px;
-  height: 18px;
+  width: 32px;
+  height: 32px;
+  padding: 6px;
+  border-radius: 8px;
+  background-color: transparent;
   color: #000000 !important;
   stroke: #000000 !important;
-  stroke-width: 2.5;
-  transition: stroke-width 0.2s ease, transform 0.2s ease;
+  stroke-width: 2.2;
+  transition: all 0.3s ease;
   flex-shrink: 0;
 }
 
 .dropdown-item-link:hover .menu-dropdown-icon,
 .dropdown-item-link.active .menu-dropdown-icon {
-  stroke-width: 2.8 !important; /* Bold highlight weight */
-  color: #000000 !important; /* Retains solid black color only */
+  background-color: #2CCDB4;
+  stroke: #ffffff !important;
+  color: #ffffff !important;
+  stroke-width: 2.2 !important;
 }
 
 /* Download App Modal */
