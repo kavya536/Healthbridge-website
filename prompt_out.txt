@@ -1,0 +1,136 @@
+<USER_REQUEST>
+Patient enters → 
+Search doctor → 
+Select doctor → 
+Book slot → 
+Consult → 
+Get prescription → 
+Order medicines → 
+Track delivery → 
+Store reports → Track recovery 
+…and every functionality inside each step. 
+THIS is the correct product flow thinking. 
+So here is the FULL PATIENT FLOW as per your documents.  
+ 	 
+COMPLETE PATIENT FLOW 
+(Website Solution Page UX Flow) 
+This is the exact healthcare ecosystem flow. 
+ 	 
+FLOW 1 — PATIENT ENTRY FLOW 
+User Entry Points 
+Option 1 
+Search symptoms 
+Example: 
+•	Fever  
+•	Skin allergy  
+•	Dental pain  
+ 	 
+Option 2 
+Search specialty 
+Example: 
+•	Dermatologist  
+•	ENT  
+•	Pediatrician  
+ 	 
+Option 3 
+Search doctor directly 
+ 	 
+Option 4 
+Nearby doctors 
+ 	 
+Option 5 
+Language-based search Example: 
+•	Telugu doctor  
+•	Hindi consultation  
+ 	 
+FLOW 2 — DOCTOR DISCOVERY FLOW 
+Patient selects: 
+•	specialty  
+•	consultation mode  
+•	location  
+•	fees  
+•	language  
+•	availability  
+ 	 
+Doctor Listing Page 
+Each Doctor Card Includes 
+•	profile image  
+•	doctor name  
+•	specialty  
+•	years of experience  
+•	languages  
+•	consultation fee  
+•	verified badge  
+•	ratings  
+•	available slots  
+•	online/in-clinic availability  
+ 	 
+Functionalities 
+Filters 
+•	specialty  
+•	city  
+•	language  
+•	gender  
+•	fee range  
+•	availability  
+•	online/in-clinic  
+ 	 
+Sorting 
+•	recommended  
+•	nearest  
+•	top rated  
+•	lowest fee  
+•	earliest availability  
+ 	 
+FLOW 3 — DOCTOR PROFILE FLOW 
+Patient opens doctor profile. 
+ 	 
+Profile Includes 
+Professional Info 
+•	qualifications  
+•	experience  
+•	clinic details  
+•	languages  
+•	specialization  
+ 	 
+Trust Layer 
+•	NMC verified badge  
+•	consultation count  
+•	verified reviews  
+ 	 
+Availability 
+•	today slots  
+•	upcoming dates  
+•	consultation modes  
+ 	 
+Content Section 
+•	doctor posts  
+•	health arti
+<truncated 45215 bytes>
+contract management.
+•	Procurement analytics — spend by category, supplier performance, stockout risk dashboard.
+•	Tender management — for hospitals running formal tender processes.
+•	Inventory sync — API integration with hospital information systems (HIS) when available.
+•	Credit terms — platform-mediated 30/60/90-day credit for verified hospitals (revenue line: float and credit fee).
+4.6 Admin
+The most underrated build. The Admin dashboard is what makes the platform survive its first year. Build this with the same care as the patient app.
+Admin controls
+•	Approvals — doctor licenses, supplier KYC, hospital onboarding queue with SLA tracking.
+•	Disputes — patient complaints, refund requests, doctor-pharmacy substitution conflicts, evidence-based resolution workflow.
+•	Verification — NMC scrape, Drug License Form 20/21 verification, GST verification, bank account penny-drop.
+•	Payouts — doctor and supplier settlement, hold-and-release based on dispute status, TDS deduction.
+•	Moderation — content flags, reported reviews, advisory board case queue.
+•	Analytics — funnel by city, specialty, role; cohort retention; LTV by acquisition channel.
+•	Commissions — dynamic commission rules by city, specialty, and role tier.
+•	Compliance — audit logs (7-year retention for prescriptions, 3-year for everything else), DPDP Act consent ledger, breach notification workflow.
+ 
+5. Trust & Compliance System
+Healthcare runs on trust. One scandal, one fake doctor, one counterfeit medicine, and the platform is dead. Trust is not a marketing line — it is engineered into the product.
+5.1 Verification Layers
+Actor	What is verified	How
+Doctor	NMC / State Medical Council registration, qualification, clinic address	NMC online registry scrape + manual review + video KYC
+Supplier / Pharmacy	Drug License Form 20/21,
+<truncated 11525 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.
+

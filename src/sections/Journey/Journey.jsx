@@ -32,7 +32,7 @@ export default function Journey() {
             </li>
           </ul>
 
-          <button className="btn-primary" style={{marginTop: '20px'}}>
+          <button className="btn-primary" style={{marginTop: '20px'}} onClick={() => window.dispatchEvent(new Event('openDownloadModal'))}>
             Download App <span className="mobile-icon">📱</span>
           </button>
         </div>

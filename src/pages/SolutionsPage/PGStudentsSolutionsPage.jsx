@@ -117,40 +117,32 @@ export default function PGStudentsSolutionsPage() {
   return (
     <div className="pg-students-page">
       {/* 1. Sleek Hero Section */}
-      <section className="pg-hero">
+      <section className="doctors-hero">
         <div className="container">
-          <div className="pg-hero-grid">
-            <div className="pg-hero-content">
+          <div className="hero-grid">
+            <div className="hero-content">
               <h1>Supercharge Your Medical <span className="text-teal">PG Journey</span></h1>
               <p>
                 Get access to India's most comprehensive medical postgraduate learning network. Designed by top-rated specialists and verification boards to help you crack PG exams and enhance clinical knowledge.
               </p>
-              <div className="pg-hero-actions">
+              <div className="hero-actions">
                 <a href="#curriculum" className="btn-primary">Explore Curriculum</a>
                 <Link to="/solutions/doctors" className="btn-secondary">Doctor Profiles</Link>
               </div>
             </div>
-            <div className="pg-hero-visual">
-              <div className="glass-learning-card">
-                <img src="/pg student.jpg" alt="PG Learning Dashboard" className="pg-main-img" />
-                <div className="live-classes-overlay">
-                  <span className="live-dot"></span>
-                  <span>LIVE: Physiology Revision Call</span>
+            <div className="hero-image-box">
+              <div className="hero-zoom-container">
+                <img src="/pg student.jpg" alt="PG Learning Dashboard" className="hero-promo-img" />
+              </div>
+              <div className="glass-floating-card">
+                <div className="g-icon" style={{ background: 'rgba(255, 59, 48, 0.1)', color: '#FF3B30' }}>
+                  <span className="live-dot" style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#FF3B30', display: 'inline-block', animation: 'pulse 1.5s infinite' }}></span>
+                </div>
+                <div>
+                  <h4>LIVE: Physiology</h4>
+                  <p>Revision Call in Progress</p>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Navigation Quick Links bar */}
-      <section className="academy-nav-strip">
-        <div className="container">
-          <div className="nav-strip-inner">
-            <span>Looking for regular consultation or support?</span>
-            <div className="strip-buttons">
-              <Link to="/about" className="strip-btn">About Academy</Link>
-              <Link to="/contact" className="strip-btn active-btn">Join Live Batch</Link>
             </div>
           </div>
         </div>

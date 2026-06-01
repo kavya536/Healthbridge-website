@@ -39,7 +39,7 @@ const solutionsData = [
     title: "Pharmacies",
     description: "Empower your pharmacy business with real-time inventory synchronization, instant digital prescription validation, automated order dispatch matchers, and secure logistics trackers.",
     path: "/solutions/pharmacies",
-    image: "/e7363611f40fffb1f27ed4e92418331f4f7c299a.jpg",
+    image: "/pharmacy_interior.png",
     tags: ["INVENTORY SYNC", "E-RX VALIDATION", "LOGISTICS MATCHING", "EASY BILLING"],
     btnText: "Pharmacy Network"
   }

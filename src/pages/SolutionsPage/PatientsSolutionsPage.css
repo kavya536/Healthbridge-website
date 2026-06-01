@@ -723,6 +723,26 @@
   text-decoration: underline;
 }
 
+.doc-clinic-location-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 10px 0;
+  font-size: 13.5px;
+  color: #4A5568;
+  cursor: pointer;
+}
+.doc-clinic-location-line svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.doc-clinic-location-text {
+  font-weight: 700;
+  text-decoration: underline;
+  color: var(--primary);
+  text-align: left;
+}
+
 /* No Doctors state card */
 .no-doctors-card {
   background-color: #FFFFFF;
@@ -783,6 +803,13 @@
     position: relative;
     top: 0;
   }
+  .booking-grid-layout {
+    grid-template-columns: 1fr;
+  }
+  .booking-stepper {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 600px) {
@@ -800,6 +827,10 @@
     text-align: center;
     gap: 16px;
   }
+  .doc-clinic-location-line {
+    justify-content: center;
+    align-items: flex-start;
+  }
   .name-row {
     flex-direction: column;
     gap: 6px;
@@ -809,6 +840,9 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 12px;
+  }
+  .doc-clinic-location-text {
+    text-align: center;
   }
   .doc-card-experience-pill,
   .doc-card-rating-pill {
@@ -846,6 +880,7 @@
   .time-period-tabs {
     width: 100%;
     box-sizing: border-box;
+    flex-wrap: wrap;
   }
   .time-tab-btn {
     flex: 1;
@@ -921,6 +956,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .step-item {
@@ -977,6 +1013,8 @@
   grid-template-columns: 1fr 380px;
   gap: 30px;
   align-items: start;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .booking-card {
@@ -986,6 +1024,9 @@
   box-shadow: var(--shadow-sm);
   border: 1px solid rgba(41, 195, 166, 0.06);
   margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .section-subtitle-sm {
@@ -1023,13 +1064,10 @@
 .date-scroll-row {
   display: flex;
   gap: 12px;
-  overflow-x: auto;
+  flex-wrap: wrap; /* Requested by user: 'go to another line' */
   padding-bottom: 8px;
-  scrollbar-width: none;
-}
-
-.date-scroll-row::-webkit-scrollbar {
-  display: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .date-pill-btn {
@@ -1092,6 +1130,7 @@
   padding: 4px;
   border-radius: 8px;
   border: 1px solid #E2E8F0;
+  flex-wrap: wrap;
 }
 
 .time-tab-btn {
@@ -1112,8 +1151,10 @@
 
 .time-slots-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Reduce to 100px so it fits 3 or 4 easily */
   gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .time-slot-btn {
@@ -1197,6 +1238,9 @@
   border: 1px solid rgba(41, 195, 166, 0.12);
   position: sticky;
   top: 190px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .summary-doc-profile {
@@ -1328,6 +1372,7 @@
 
 .continue-booking-btn {
   width: 100%;
+  box-sizing: border-box;
   height: 48px;
   background: linear-gradient(135deg, var(--primary), #36DCD0);
   color: #FFFFFF;

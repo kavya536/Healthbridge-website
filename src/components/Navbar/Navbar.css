@@ -312,13 +312,17 @@
   gap: 12px !important;
   color: #333333 !important;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 500 !important;
   letter-spacing: 0.2px;
   font-family: 'Nunito Sans', sans-serif;
   text-decoration: none;
   padding: 4px 16px !important; /* Tight padding to minimize spacing between items */
   border-radius: 8px;
   transition: all 0.25s ease;
+}
+
+.dropdown-item-link.active {
+  color: #333333 !important;
 }
 
 .dropdown-item-link:hover {
@@ -331,16 +335,21 @@
   height: 32px;
   padding: 6px;
   border-radius: 8px;
-  background-color: transparent;
-  color: #000000 !important;
-  stroke: #000000 !important;
+  background-color: rgba(44, 205, 180, 0.08);
+  color: #2CCDB4 !important;
+  stroke: #2CCDB4 !important;
   stroke-width: 2.2;
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
 
-.dropdown-item-link:hover .menu-dropdown-icon,
 .dropdown-item-link.active .menu-dropdown-icon {
+  background-color: rgba(44, 205, 180, 0.08);
+  color: #2CCDB4 !important;
+  stroke: #2CCDB4 !important;
+}
+
+.dropdown-item-link:hover .menu-dropdown-icon {
   background-color: #2CCDB4;
   stroke: #ffffff !important;
   color: #ffffff !important;

@@ -222,28 +222,41 @@
   transition: all 0.25s ease;
 }
 
-.entity-item:hover {
-  background-color: rgba(41, 195, 166, 0.05); /* Premium soft highlight on hover */
-  color: #29C3A6; 
-}
-
 .entity-item.active {
   background-color: transparent !important;
-  color: #000000 !important; /* Keep default black text color only */
-  font-weight: 500 !important; /* Normal font weight instead of bold */
+  color: #000000 !important; 
+  font-weight: 500 !important;
   box-shadow: none !important;
 }
 
+.entity-item:hover {
+  background-color: transparent !important;
+  color: #2CCDB4 !important; 
+}
+
 .entity-icon {
-  width: 32px;
-  height: 32px;
-  color: #000000; /* Default black icon color */
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border-radius: 12px;
+  background-color: rgba(44, 205, 180, 0.08);
+  color: #2CCDB4; 
+  stroke: #2CCDB4;
+  stroke-width: 2;
   flex-shrink: 0;
-  transition: color 0.25s ease;
+  transition: all 0.3s ease;
 }
 
 .entity-item.active .entity-icon {
-  color: #29C3A6; /* Active logo color changes to teal when clicked */
+  background-color: rgba(44, 205, 180, 0.08);
+  color: #2CCDB4 !important;
+  stroke: #2CCDB4 !important;
+}
+
+.entity-item:hover .entity-icon {
+  background-color: #2CCDB4;
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 
 /* Dashboard Container */
@@ -270,7 +283,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
-  margin-bottom: 44px;
+  margin-bottom: 20px;
 }
 
 .dashboard-card {
@@ -293,17 +306,30 @@
 .card-icon-wrapper {
   width: 48px;
   height: 48px;
-  background-color: transparent; /* Removed soft red background circle */
+  background-color: #F0F5FA; /* Light blue background matching thermometer image */
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  color: #FF4B3A; /* Red color matching thermometer alert */
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-custom-icon {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
+  width: 24px;
+  height: 24px;
+  stroke: #FF4B3A;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dashboard-card:hover .card-icon-wrapper {
+  background-color: #FF4B3A;
+  transform: rotateY(360deg);
+}
+
+.dashboard-card:hover .card-custom-icon {
+  stroke: #ffffff;
 }
 
 .card-info {
@@ -332,7 +358,7 @@
   display: flex;
   justify-content: space-between;
   border-top: none; /* Removed the top horizontal line inside the container */
-  padding-top: 36px;
+  padding-top: 16px;
 }
 
 .stat-item {
@@ -349,22 +375,25 @@
 .stat-number {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 800;
-  font-size: 32px;
+  font-size: 26px; /* Reduced font size to match reference image */
   color: #2d3748;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
+  line-height: 1;
 }
 
 .stat-label {
   font-family: 'Nunito Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   color: #808080;
+  margin-top: 2px;
 }
 
 /* --- Real-Time Healthcare Data Exchange Section --- */
 .data-exchange-section {
-  padding: 100px 0 180px 0; /* Expanded bottom padding for skyline silhouette overlay */
-  background: #008080; /* Rich exact teal color #008080 requested by user */
+  padding: 90px 0 140px 0;
+  background: url('/bg.png') center center no-repeat;
+  background-size: 100% 100%;
   position: relative;
   overflow: hidden;
   z-index: 1;
@@ -373,17 +402,17 @@
 .exchange-section-title {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 800;
-  font-size: 38px;
+  font-size: 34px;
   text-align: center;
   color: #ffffff;
   margin-top: 0;
-  margin-bottom: 64px;
+  margin-bottom: 80px;
 }
 
 .exchange-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px 60px;
+  gap: 70px 40px; /* Increased row gap to match image */
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 40px;
@@ -398,23 +427,23 @@
 }
 
 .node-icon-wrapper {
-  width: 64px; /* Perfectly sized circular container as shown in the image */
-  height: 64px;
-  background-color: rgba(0, 102, 95, 0.45); /* Exact translucent dark teal background */
+  width: 86px;
+  height: 86px;
+  background-color: rgba(0, 0, 0, 0.12); 
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
 }
 
 .node-icon {
-  width: 28px;
-  height: 28px;
-  color: #F5A27D; /* Beautiful orange/peach clock color matching the image exactly */
-  stroke-width: 2;
+  width: 32px;
+  height: 32px;
+  color: #F8B48B; 
+  stroke-width: 1.5;
 }
 
 .node-info {
@@ -423,32 +452,23 @@
 
 .node-info h3 {
   font-family: 'Nunito Sans', sans-serif;
-  font-weight: 700;
-  font-size: 19px; /* Highly visible text size */
+  font-weight: 600;
+  font-size: 21px; 
   color: #ffffff;
   margin-top: 0;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  letter-spacing: 0.2px;
 }
 
 .node-info p {
   font-family: 'Nunito Sans', sans-serif;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.7); /* Translucent soft white/gray color for premium visibility */
-  font-weight: 600;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.9); 
+  font-weight: 400;
   margin: 0;
 }
 
-/* Skyline silhouette SVG background at bottom */
-.skyline-decor {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 140px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 120' preserveAspectRatio='none'%3E%3Cpath d='M0 120 V 100 H 20 V 90 H 30 V 100 H 50 V 85 H 65 V 100 H 80 V 70 H 100 V 85 H 110 V 100 H 130 V 60 H 155 V 80 H 165 V 100 H 180 V 85 H 195 V 100 H 210 V 50 H 240 V 75 H 255 V 100 H 270 V 90 H 280 V 100 H 300 V 70 H 325 V 85 H 340 V 100 H 360 V 60 H 385 V 80 H 395 V 100 H 410 V 85 H 425 V 100 H 440 V 40 H 475 V 70 H 490 V 100 H 510 V 85 H 525 V 100 H 540 V 65 H 565 V 80 H 580 V 100 H 600 V 50 H 630 V 75 H 645 V 100 H 660 V 90 H 670 V 100 H 690 V 70 H 715 V 85 H 730 V 100 H 750 V 60 H 775 V 80 H 785 V 100 H 800 V 85 H 815 V 100 H 830 V 55 H 860 V 75 H 875 V 100 H 890 V 90 H 900 V 100 H 920 V 70 H 945 V 85 H 960 V 100 H 980 V 60 H 1000 V 120 Z' fill='%23006a63' opacity='0.25'/%3E%3C/svg%3E") repeat-x bottom / cover;
-  z-index: 0;
-  pointer-events: none;
-}
+
 
 /* --- Spacing Adaptability for Responsive Screens --- */
 @media (max-width: 1024px) {
@@ -539,12 +559,12 @@
 
 /* Precise alignment using explicit heights so mini-cards never stretch */
 .op-card-patient {
-  height: 250px; /* Decreased height to eliminate excess empty space for a tight, premium look */
+  height: 270px; /* Increased height to prevent text clipping */
   box-sizing: border-box;
 }
 
 .op-card-hospital {
-  height: 250px; /* Made exactly identical to Patient Management card size for perfect symmetry */
+  height: 270px; /* Made exactly identical to Patient Management card size for perfect symmetry */
   box-sizing: border-box;
 }
 
@@ -573,12 +593,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.3s ease;
 }
 
 .op-icon {
   width: 26px;
   height: 26px;
   color: #29C3A6; /* Clean premium teal stethoscope icon */
+  transition: all 0.3s ease;
 }
 
 .op-card-body {
@@ -606,30 +628,65 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  height: 70px; /* Aligned height with max bar height */
-  padding-top: 10px;
-  border-top: 1px solid #f1f5f9;
+  height: 105px; /* Increased height to accommodate taller bars */
   gap: 10px;
 }
 
-.op-bar {
+.op-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
   flex: 1;
-  max-width: 44px;
-  border-radius: 4px 4px 0 0;
-  transition: transform 0.3s ease;
+  height: 100%;
 }
 
-.op-bar:hover {
+.op-bar {
+  width: 100%;
+  max-width: 40px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  background-color: #E2E8F0; /* Light gray default */
+}
+
+.op-bar.active {
+  background-color: #20C7B6; /* Logo color active */
+  box-shadow: 0 0 15px rgba(32, 199, 182, 0.3);
   transform: scaleY(1.05);
 }
 
-.op-patient-graph .op-bar {
-  background: linear-gradient(91.36deg, #2563EB 44.91%, #2EB8A1 108.22%);
+.op-bar-label {
+  font-size: 11px;
+  color: #718096;
+  margin-top: 8px;
+  font-weight: 600;
 }
 
-.op-hospital-graph .op-bar {
-  background: linear-gradient(90deg, #601CC7 0%, #B834C7 100%);
+/* Animations */
+@keyframes barSlideUp {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
+
+.op-graph-container.in-view .op-bar {
+  animation: barSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: bottom;
+}
+
+.op-graph-container.in-view .op-bar-wrapper:nth-child(1) .op-bar { animation-delay: 0.15s; }
+.op-graph-container.in-view .op-bar-wrapper:nth-child(2) .op-bar { animation-delay: 0.30s; }
+.op-graph-container.in-view .op-bar-wrapper:nth-child(3) .op-bar { animation-delay: 0.45s; }
+.op-graph-container.in-view .op-bar-wrapper:nth-child(4) .op-bar { animation-delay: 0.60s; }
+.op-graph-container.in-view .op-bar-wrapper:nth-child(5) .op-bar { animation-delay: 0.75s; }
+.op-graph-container.in-view .op-bar-wrapper:nth-child(6) .op-bar { animation-delay: 0.90s; }
+.op-graph-container.in-view .op-bar-wrapper:nth-child(7) .op-bar { animation-delay: 1.05s; }
+
 
 /* Right Column: Mini Cards */
 .operations-side-cards {
@@ -654,6 +711,15 @@
 .op-mini-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.03);
+}
+
+.op-mini-card:hover .op-icon-square {
+  background-color: #29C3A6;
+}
+
+.op-mini-card:hover .op-icon {
+  color: #ffffff;
+  stroke: #ffffff;
 }
 
 .op-mini-info {

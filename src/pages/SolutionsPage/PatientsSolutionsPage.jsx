@@ -1628,12 +1628,12 @@ export default function PatientsSolutionsPage() {
                           
                           <span className="doc-specialty-badge">{doc.specialty}</span>
                           
-                          <div className="doc-clinic-location-line" style={{ display: 'flex', alignItems: 'center', gap: '6px', margin: '10px 0', fontSize: '13.5px', color: '#4A5568', cursor: 'pointer' }} onClick={() => setProfileDoctor(doc)}>
+                          <div className="doc-clinic-location-line" onClick={() => setProfileDoctor(doc)}>
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{ width: '15px', height: '15px', color: 'var(--primary)' }}>
                               <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
                               <circle cx="12" cy="10" r="3"></circle>
                             </svg>
-                            <span style={{ fontWeight: 700, textDecoration: 'underline', color: 'var(--primary)' }}>
+                            <span className="doc-clinic-location-text">
                               {doc.clinicName} {doc.type === 'Clinic' ? '(Clinic Visit)' : `(${doc.type})`}
                             </span>
                           </div>

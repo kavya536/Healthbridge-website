@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, NavLink } from 'react-router-dom';
 import './Navbar.css';
@@ -7,6 +7,12 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDownloadModalOpen, setIsDownloadModalOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    const handleOpenModal = () => setIsDownloadModalOpen(true);
+    window.addEventListener('openDownloadModal', handleOpenModal);
+    return () => window.removeEventListener('openDownloadModal', handleOpenModal);
+  }, []);
 
   const closeMenu = () => {
     setMenuOpen(false);

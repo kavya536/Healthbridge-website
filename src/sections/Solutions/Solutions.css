@@ -58,6 +58,14 @@
   box-shadow: 0 15px 35px rgba(0,0,0,0.06);
 }
 
+.solution-card:hover .icon-box {
+  background-color: #20C7B6;
+}
+
+.solution-card:hover .icon-box svg {
+  stroke: #ffffff;
+}
+
 .icon-box {
   width: 58px; /* Scaled down from 64px */
   height: 58px; /* Scaled down from 64px */
@@ -67,6 +75,11 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 22px; /* Scaled down from 24px */
+  transition: all 0.3s ease;
+}
+
+.icon-box svg {
+  transition: all 0.3s ease;
 }
 
 .solution-card h3 {

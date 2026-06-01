@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Tesseract from 'tesseract.js';
 import './PharmaciesSolutionsPage.css';
 
 // Rich Mock Pharmacy Database
@@ -21,12 +23,15 @@ const mockPharmacies = [
     rating: 4.8,
     status: 'Open 24/7',
     delivery: 'Free delivery',
+    deliveryTime: 15,
+    priceLevel: 2,
     image: '/phar_1',
     address: 'Plot 45, Ashok Pride, Kukatpally, Hyderabad, 500072',
     phone: '+91 98480 22338',
     hours: 'Open 24 Hours',
     services: ['Home Delivery', '24/7 Service', 'Prescription Refills', 'Vaccinations'],
-    stockedMedicines: ['Napa Extend Tablet', 'Xpa Pediatric Drop', 'Avolac Oral Solution', 'Napa Tablet 500mg', 'ZincoVit Immune Plus', 'Axim-CV 200mg', 'Paracetamol', 'Lactulose']
+    stockedMedicines: ['Napa Extend Tablet', 'Xpa Pediatric Drop', 'Avolac Oral Solution', 'Napa Tablet 500mg', 'ZincoVit Immune Plus', 'Axim-CV 200mg', 'Paracetamol', 'Lactulose'],
+    categories: ['Pills', 'Syrup', 'Tablets']
   },
   {
     id: 2,
@@ -36,12 +41,15 @@ const mockPharmacies = [
     rating: 4.5,
     status: 'Open Now',
     delivery: 'Free delivery',
+    deliveryTime: 25,
+    priceLevel: 1,
     image: '/phar_3',
     address: 'Metro Station Pillar 24, Madhapur, Hyderabad, 500081',
     phone: '+91 99080 11223',
     hours: '10:00 AM - 10:00 PM',
     services: ['Home Delivery', 'Generic Medicines', 'Diagnostic Dropoff'],
-    stockedMedicines: ['Napa Extend Tablet', 'Xpa Pediatric Drop', 'Napa Tablet 500mg', 'Paracetamol']
+    stockedMedicines: ['Napa Extend Tablet', 'Xpa Pediatric Drop', 'Napa Tablet 500mg', 'Paracetamol', 'Synthroid 50mg'],
+    categories: ['Tablets', 'Injection', 'Syrup']
   },
   {
     id: 3,
@@ -51,12 +59,15 @@ const mockPharmacies = [
     rating: 4.7,
     status: 'Open Now',
     delivery: 'Free delivery',
-    image: '/phar_3',
+    deliveryTime: 35,
+    priceLevel: 3,
+    image: '/e7363611f40fffb1f27ed4e92418331f4f7c299a.jpg',
     address: 'Mindspace IT Park Road, Hitech City, Hyderabad, 500081',
     phone: '+91 91234 56789',
     hours: '08:00 AM - 11:00 PM',
     services: ['Home Delivery', 'Organic Wellness', 'Online Consultation'],
-    stockedMedicines: ['Avolac Oral Solution', 'ZincoVit Immune Plus', 'Lactulose', 'Multivitamin & Zinc']
+    stockedMedicines: ['Avolac Oral Solution', 'ZincoVit Immune Plus', 'Lactulose', 'Multivitamin & Zinc', 'Synthroid 50mg'],
+    categories: ['Ointments', 'Vitamins', 'Syrup']
   },
   {
     id: 4,
@@ -66,12 +77,15 @@ const mockPharmacies = [
     rating: 4.6,
     status: 'Open 24/7',
     delivery: 'Free delivery',
+    deliveryTime: 40,
+    priceLevel: 2,
     image: '/phar_5',
     address: 'Financial District Junction, Gachibowli, Hyderabad, 500032',
     phone: '+91 98850 44556',
     hours: 'Open 24 Hours',
     services: ['Home Delivery', '24/7 Service', 'Veterinary Drugs'],
-    stockedMedicines: ['Napa Extend Tablet', 'Napa Tablet 500mg', 'Axim-CV 200mg', 'Paracetamol']
+    stockedMedicines: ['Napa Extend Tablet', 'Napa Tablet 500mg', 'Axim-CV 200mg', 'Paracetamol'],
+    categories: ['Pills', 'Tablets', 'Vaccines']
   },
   {
     id: 5,
@@ -81,12 +95,15 @@ const mockPharmacies = [
     rating: 4.9,
     status: 'Open Now',
     delivery: 'Delivery Available',
+    deliveryTime: 20,
+    priceLevel: 4,
     image: '/phar_6',
     address: 'Road No. 12, Banjara Hills, Hyderabad, 500034',
     phone: '+91 90001 88990',
     hours: '09:00 AM - 10:00 PM',
     services: ['Home Delivery', 'Premium Aesthetics', 'Compounding Lab'],
-    stockedMedicines: ['ZincoVit Immune Plus', 'Avolac Oral Solution', 'Lactulose', 'Multivitamin & Zinc']
+    stockedMedicines: ['ZincoVit Immune Plus', 'Avolac Oral Solution', 'Lactulose', 'Multivitamin & Zinc'],
+    categories: ['Vitamins', 'Syrup', 'First Aid', 'Bandages']
   },
   {
     id: 6,
@@ -96,12 +113,15 @@ const mockPharmacies = [
     rating: 4.4,
     status: 'Open Now',
     delivery: 'Store Pickup Only',
-    image: '/phar_1',
+    deliveryTime: 60,
+    priceLevel: 1,
+    image: '/pharmacy_store.jpg',
     address: 'MG Road Near Clock Tower, Secunderabad, 500003',
     phone: '+91 97030 77665',
     hours: '10:00 AM - 09:30 PM',
     services: ['Home Delivery', 'Surgical Equipment', 'Baby Care Depot'],
-    stockedMedicines: ['Napa Extend Tablet', 'Xpa Pediatric Drop', 'Paracetamol']
+    stockedMedicines: ['Napa Extend Tablet', 'Xpa Pediatric Drop', 'Paracetamol'],
+    categories: ['First Aid', 'Bandages', 'Ointments']
   }
 ];
 
@@ -172,6 +192,17 @@ const MEDICINE_CATALOG = [
     pack: '6 Tablets',
     instock: false, // For Availability page test case
     alternative: 'Taxim-O 200mg (Price: ₹190 - In Stock)'
+  },
+  {
+    id: 107,
+    name: 'Synthroid 50mg',
+    generic: 'Levothyroxine',
+    price: 350,
+    oldPrice: 400,
+    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=200',
+    fallbackImage: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&q=80&w=200',
+    pack: '30 Tablets',
+    instock: true
   }
 ];
 
@@ -220,23 +251,91 @@ function SafePharmacyImage({ src, fallbackSrc, alt, className }) {
 }
 
 export default function PharmaciesSolutionsPage() {
+  const navigate = useNavigate();
   const [selectedArea, setSelectedArea] = useState('All Areas');
-  const [searchLocation, setSearchLocation] = useState('Kukatpally, Hyderabad, India');
+  const [searchLocation, setSearchLocation] = useState('');
   const [searchMedicine, setSearchMedicine] = useState('');
   const [searchName, setSearchName] = useState('');
   const [showAllCategories, setShowAllCategories] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   
   // Sidebar/Header Filters state
+  const [showOrderSummary, setShowOrderSummary] = useState(false);
+  const [orderPlaced, setOrderPlaced] = useState(false);
+  const [prescriptionUploaded, setPrescriptionUploaded] = useState(false);
+  const [isScanning, setIsScanning] = useState(false);
+  const [prescriptionItems, setPrescriptionItems] = useState([]);
+  const [orderStatus, setOrderStatus] = useState('none'); // 'none', 'confirmed', 'packed', 'delivered'
+
+  // Advanced Prescription Flow States
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [uploadFile, setUploadFile] = useState(null);
+  const [uploadError, setUploadError] = useState('');
+  const [sortFilter, setSortFilter] = useState('bestMatch'); // bestMatch, fastest, lowestPrice, nearest, rating
+  const [showSecondaryPharmacies, setShowSecondaryPharmacies] = useState(false);
+  const [missingItemsForSearch, setMissingItemsForSearch] = useState([]);
+  const [secondaryOptions, setSecondaryOptions] = useState([]);
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setUploadFile(e.target.files[0]);
+      setUploadError('');
+    }
+  };
+
+  const validateAndScanPrescription = async () => {
+    setUploadError("");
+    setIsScanning(true);
+    
+    try {
+      // Mock generation of random names after a short delay
+      setTimeout(() => {
+        const shuffled = [...MEDICINE_CATALOG].sort(() => 0.5 - Math.random());
+        const matchedItems = shuffled.slice(0, 3).map(med => ({
+          name: med.name,
+          generic: med.generic,
+          qty: 1
+        }));
+        
+        setIsScanning(false);
+        setShowUploadModal(false);
+        setPrescriptionUploaded(true);
+        setPrescriptionItems(matchedItems);
+      }, 1000);
+      
+    } catch (error) {
+      console.error("OCR Error:", error);
+      setIsScanning(false);
+      setUploadError("Failed to process the request. Please try again.");
+    }
+  };
+
+  const handleUploadClick = () => {
+    setShowUploadModal(true);
+    setUploadError('');
+    setUploadFile(null);
+  };
+
   const [deliveryFilter, setDeliveryFilter] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
   const [twentyFourSevenFilter, setTwentyFourSevenFilter] = useState(false);
   const [ratingFilter, setRatingFilter] = useState(false);
 
   // Checkout State Machine
-  const [selectedPharmacy, setSelectedPharmacy] = useState(null);
-  const [flowStep, setFlowStep] = useState(1); // 1: Search, 2: Profile, 3: Upload, 4: Cart/Availability, 5: Order Summary, 6: Payment, 7: Success
+  const [selectedPharmacies, setSelectedPharmacies] = useState([]); // Support multi-pharmacy
+  const [flowStep, setFlowStep] = useState(1); // 1: Search, 2: Profile, 3: Upload, 4: Cart/Availability, 5: Order Summary, 6: Payment, 7: Success, 8: Final Prescription Summary
   const [activeProfileTab, setActiveProfileTab] = useState('Medicine'); // Medicine, About Us, Open and Closed, Rating
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState([]); // Cart items will now include pharmacyId and pharmacyName
+  
+  // Backwards compatibility for single selected pharmacy view
+  const selectedPharmacy = selectedPharmacies.length > 0 ? selectedPharmacies[0] : null;
+  const setSelectedPharmacy = (ph) => {
+    if (ph) {
+      setSelectedPharmacies([ph]);
+    } else {
+      setSelectedPharmacies([]);
+    }
+  };
   
   // Prescription upload state
   const [prescriptionImage, setPrescriptionImage] = useState(null);
@@ -246,6 +345,8 @@ export default function PharmaciesSolutionsPage() {
   // Shipping details state
   const [shippingName, setShippingName] = useState('Shaidul Islam');
   const [shippingAddress, setShippingAddress] = useState('Plot 45, Ashok Pride, Kukatpally, Hyderabad, 500072');
+  const [isEditingAddress, setIsEditingAddress] = useState(false);
+  const [tempAddress, setTempAddress] = useState('Plot 45, Ashok Pride, Kukatpally, Hyderabad, 500072');
   const [shippingPhone, setShippingPhone] = useState('+91 98765 43210');
   const [selectedPayment, setSelectedPayment] = useState('');
   const [orderId, setOrderId] = useState('');
@@ -272,7 +373,7 @@ export default function PharmaciesSolutionsPage() {
     setCart(cart.map(item => {
       if (item.id === id) {
         const newQty = item.qty + amount;
-        return newQty > 0 ? { ...item, qty: newQty } : item;
+        return { ...item, qty: newQty };
       }
       return item;
     }).filter(item => item.qty > 0));
@@ -302,6 +403,16 @@ export default function PharmaciesSolutionsPage() {
     const generatedId = 'HB-PH-' + Math.floor(100000 + Math.random() * 900000);
     setOrderId(generatedId);
     setFlowStep(7);
+    setOrderStatus('confirmed');
+    
+    // Simulate order tracking progression
+    setTimeout(() => {
+      setOrderStatus('packed');
+    }, 3000);
+    
+    setTimeout(() => {
+      setOrderStatus('delivered');
+    }, 7000);
   };
 
   const handleResetFlow = () => {
@@ -332,10 +443,14 @@ export default function PharmaciesSolutionsPage() {
       if (!stocksMed) return false;
     }
 
-    // 3. Search Pharmacy Name Filter
+    // 3. Universal Search Filter (from single search bar)
     if (searchName && searchName.trim() !== '') {
-      const n = searchName.toLowerCase();
-      if (!ph.name.toLowerCase().includes(n)) return false;
+      const query = searchName.toLowerCase();
+      const matchesName = ph.name.toLowerCase().includes(query);
+      const matchesLocation = ph.address.toLowerCase().includes(query) || ph.area.toLowerCase().includes(query);
+      const matchesMed = ph.stockedMedicines.some(m => m.toLowerCase().includes(query));
+      
+      if (!matchesName && !matchesLocation && !matchesMed) return false;
     }
 
     // 4. Delivery Filter: Show pharmacies that support delivery (i.e. not Store Pickup Only)
@@ -352,8 +467,68 @@ export default function PharmaciesSolutionsPage() {
       return false;
     }
 
+    // 8. Prescription Upload Filter
+    if (prescriptionUploaded && prescriptionItems.length > 0) {
+      const hasAnyPrescriptionMed = prescriptionItems.some(item => 
+        ph.stockedMedicines.some(m => m.toLowerCase().includes(item.name.toLowerCase().split(' ')[0]))
+      );
+      if (!hasAnyPrescriptionMed) return false;
+    }
+
+    // 9. Category Selection Filter
+    if (selectedCategory) {
+      if (!ph.categories || !ph.categories.includes(selectedCategory)) return false;
+    }
+
     return true;
   });
+
+  // Calculate prescription matching and sort if prescription is uploaded
+  const rankedPharmacies = filteredPharmacies.map(ph => {
+    if (!prescriptionUploaded || prescriptionItems.length === 0) {
+      return { ...ph, matchCount: 0, matchStatus: null };
+    }
+
+    let matchCount = 0;
+    prescriptionItems.forEach(item => {
+      // Find generic or exact match
+      const isMatch = ph.stockedMedicines.some(m => 
+        m.toLowerCase().includes(item.name.toLowerCase().split(' ')[0]) || 
+        (item.generic && m.toLowerCase().includes(item.generic.toLowerCase().split(' ')[0]))
+      );
+      if (isMatch) matchCount++;
+    });
+
+    const totalItems = prescriptionItems.length;
+    const matchRatio = matchCount / totalItems;
+    
+    let matchStatus = 'Low Availability';
+    if (matchCount === totalItems) {
+      matchStatus = 'Complete Match';
+    } else if (matchRatio >= 0.5) {
+      matchStatus = 'Partial Match';
+    }
+
+    return { ...ph, matchCount, matchStatus, totalPrescriptionItems: totalItems };
+  });
+
+  // Sort rankedPharmacies based on sortFilter
+  // Always apply sortFilter, then prescription match as tiebreaker
+  if (sortFilter === 'rating') {
+    rankedPharmacies.sort((a, b) => b.rating - a.rating);
+  } else if (sortFilter === 'nearest') {
+    rankedPharmacies.sort((a, b) => parseFloat(a.distance) - parseFloat(b.distance));
+  } else if (sortFilter === 'fastest') {
+    rankedPharmacies.sort((a, b) => (a.deliveryTime || 999) - (b.deliveryTime || 999));
+  } else if (sortFilter === 'lowestPrice') {
+    rankedPharmacies.sort((a, b) => (a.priceLevel || 5) - (b.priceLevel || 5));
+  } else if (sortFilter === 'bestMatch') {
+    if (prescriptionUploaded) {
+      rankedPharmacies.sort((a, b) => b.matchCount - a.matchCount);
+    } else {
+      rankedPharmacies.sort((a, b) => b.rating - a.rating || parseFloat(a.distance) - parseFloat(b.distance));
+    }
+  }
 
   // Render Step Content
   return (
@@ -376,63 +551,58 @@ export default function PharmaciesSolutionsPage() {
 
               {/* Advanced multi-search bar card */}
               <div className="pharmacy-search-bar-card">
-                <div className="p-search-grid">
-                  <div className="p-search-field">
-                    <label>Enter Location</label>
-                    <div className="input-with-icon-p">
-                      <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                      </svg>
-                      <input 
-                        type="text" 
-                        value={searchLocation} 
-                        onChange={(e) => setSearchLocation(e.target.value)} 
-                        placeholder="E.g. Kukatpally, Ashok Pride, Hyderabad" 
-                      />
-                    </div>
+                {/* Upload Prescription Banner/Button */}
+                <div className="upload-prescription-banner">
+                  <div className="upload-prescription-info">
+                    <h4>Have a <br/>Prescription?</h4>
+                    <p>Upload it and we'll automatically find pharmacies with your medicines in stock.</p>
                   </div>
-
-                  <div className="p-search-field">
-                    <label>Search Medicines</label>
-                    <div className="input-with-icon-p">
-                      <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="2" y="6" width="20" height="14" rx="2" ry="2"></rect>
-                        <path d="M12 2v4M8 13h8M12 9v8"></path>
-                      </svg>
-                      <input 
-                        type="text" 
-                        value={searchMedicine} 
-                        onChange={(e) => setSearchMedicine(e.target.value)} 
-                        placeholder="Paracetamol, Lactulose..." 
-                      />
-                    </div>
-                  </div>
-
-                  <div className="p-search-field">
-                    <label>Pharmacy Name</label>
-                    <div className="input-with-icon-p">
-                      <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                      </svg>
-                      <input 
-                        type="text" 
-                        value={searchName} 
-                        onChange={(e) => setSearchName(e.target.value)} 
-                        placeholder="Apollo, Maan Pharmacy..." 
-                      />
-                    </div>
-                  </div>
-
-                  <button className="p-search-primary-btn">
-                    Search
+                  <button 
+                    className="btn-upload-prescription-main"
+                    onClick={handleUploadClick}
+                  >
+                    {prescriptionUploaded ? (
+                      <span className="success-text">✓ Change</span>
+                    ) : (
+                      <>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-sm" style={{ marginBottom: '4px' }}>
+                          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                          <polyline points="17 8 12 3 7 8"></polyline>
+                          <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <span>Upload Prescription</span>
+                      </>
+                    )}
                   </button>
                 </div>
 
-                {/* Filter chips inside Search Panel */}
-                <div className="pharmacy-inline-chips-row">
-                  <button 
+                <div className="p-search-single-wrapper">
+                  <div className="input-with-icon-p">
+                    <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input 
+                      type="text" 
+                      value={searchName} 
+                      onChange={(e) => setSearchName(e.target.value)} 
+                      placeholder="Search medicines or pharmacies..." 
+                    />
+                    <button className="search-btn" type="button">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{width: '14px', height: '14px'}}>
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                      </svg>
+                      Search
+                    </button>
+                  </div>
+                </div>
+
+
+                {/* Filter & Sorting chips inside Search Panel */}
+                <div className="pharmacy-inline-chips-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px' }}>
+                  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                    <button 
                     type="button"
                     className={`filter-chip ${deliveryFilter ? 'active' : ''}`}
                     onClick={() => setDeliveryFilter(!deliveryFilter)}
@@ -460,27 +630,26 @@ export default function PharmaciesSolutionsPage() {
                   >
                     <span>⭐ 4.5+</span>
                   </button>
+                  </div>
+                  
+                  {/* Sort Dropdown */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontSize: '14px', color: '#718096', fontWeight: 600 }}>Sort by:</span>
+                    <select 
+                      value={sortFilter}
+                      onChange={(e) => setSortFilter(e.target.value)}
+                      style={{ padding: '8px 36px 8px 12px', minWidth: '185px', borderRadius: '8px', border: '1px solid #E2E8F0', outline: 'none', background: `white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%232D3748' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 14px center`, color: '#2D3748', fontSize: '14px', fontWeight: 600, cursor: 'pointer', WebkitAppearance: 'none', MozAppearance: 'none', appearance: 'none' }}
+                    >
+                      <option value="bestMatch">Best Match</option>
+                      <option value="fastest">Fastest Delivery</option>
+                      <option value="lowestPrice">Lowest Price</option>
+                      <option value="nearest">Nearest Pharmacy</option>
+                      <option value="rating">Highest Rating</option>
+                    </select>
+                  </div>
                 </div>
 
-                {/* Trust Indicators inside Search Panel */}
-                <div className="pharmacy-search-trust-row">
-                  <div className="trust-item">
-                    <span className="check-mark">✓</span>
-                    <span>Verified Pharmacies</span>
-                  </div>
-                  <div className="trust-item">
-                    <span className="check-mark">✓</span>
-                    <span>Genuine Medicines</span>
-                  </div>
-                  <div className="trust-item">
-                    <span className="check-mark">✓</span>
-                    <span>Licensed Stores</span>
-                  </div>
-                  <div className="trust-item">
-                    <span className="check-mark">✓</span>
-                    <span>Prescription Support</span>
-                  </div>
-                </div>
+
 
               </div>
             </div>
@@ -500,79 +669,120 @@ export default function PharmaciesSolutionsPage() {
               </div>
 
               <div className="categories-pills-row">
-                <div className="cat-pill-item item-blue">
+                <div 
+                  className={`cat-pill-item ${selectedCategory === 'Injection' ? 'active-cat' : ''}`}
+                  onClick={() => setSelectedCategory(selectedCategory === 'Injection' ? null : 'Injection')}
+                >
                   <div className="cat-icon-wrapper">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M18 2h4v12h-4zM2 14h16v8H2zM6 14v-4a6 6 0 0 1 12 0v4"></path>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ width: '32px', height: '32px' }}>
+                      <path d="m18 2 4 4"></path>
+                      <path d="m17 7 3-3"></path>
+                      <path d="M19 9 8.7 19.3c-1 1-2.5 1-3.4 0l-.6-.6c-1-1-1-2.5 0-3.4L15 5"></path>
+                      <path d="m9 11 4 4"></path>
+                      <path d="m5 19-3 3"></path>
+                      <path d="m14 4 6 6"></path>
                     </svg>
                   </div>
                   <span>Injection</span>
                 </div>
 
-                <div className="cat-pill-item item-orange">
+                <div 
+                  className={`cat-pill-item ${selectedCategory === 'Bandages' ? 'active-cat' : ''}`}
+                  onClick={() => setSelectedCategory(selectedCategory === 'Bandages' ? null : 'Bandages')}
+                >
                   <div className="cat-icon-wrapper">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                      <line x1="9" y1="3" x2="9" y2="21"></line>
-                      <line x1="15" y1="3" x2="15" y2="21"></line>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ width: '32px', height: '32px' }}>
+                      <rect x="2" y="6" width="20" height="14" rx="2" ry="2"></rect>
+                      <path d="M8 6V4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2v2"></path>
+                      <path d="M12 10v6"></path>
+                      <path d="M9 13h6"></path>
                     </svg>
                   </div>
                   <span>Bandages</span>
                 </div>
 
-                <div className="cat-pill-item item-blue">
+                <div 
+                  className={`cat-pill-item ${selectedCategory === 'Syrup' ? 'active-cat' : ''}`}
+                  onClick={() => setSelectedCategory(selectedCategory === 'Syrup' ? null : 'Syrup')}
+                >
                   <div className="cat-icon-wrapper">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ width: '32px', height: '32px' }}>
+                      <path d="M15 9V4c0-1.1-.9-2-2-2h-2c-1.1 0-2 .9-2 2v5l-3 4v7h12v-7l-3-4z"></path>
+                      <path d="M9 9h6"></path>
+                      <path d="M9 14h6"></path>
+                      <path d="M6 5h2"></path>
+                      <path d="M16 5h2"></path>
                     </svg>
                   </div>
                   <span>Syrup</span>
                 </div>
 
-                <div className="cat-pill-item item-green">
+                <div 
+                  className={`cat-pill-item ${selectedCategory === 'Pills' ? 'active-cat' : ''}`}
+                  onClick={() => setSelectedCategory(selectedCategory === 'Pills' ? null : 'Pills')}
+                >
                   <div className="cat-icon-wrapper">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="12" y1="8" x2="12" y2="16"></line>
-                      <line x1="8" y1="12" x2="16" y2="12"></line>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ width: '32px', height: '32px' }}>
+                      <rect x="7" y="7" width="10" height="14" rx="2" ry="2"></rect>
+                      <path d="M5 3h14v4H5z"></path>
+                      <path d="M12 11v6"></path>
+                      <path d="M9 14h6"></path>
                     </svg>
                   </div>
-                  <span>Pills Tablet</span>
+                  <span>Pills</span>
                 </div>
 
+                <div 
+                  className={`cat-pill-item ${selectedCategory === 'Vaccines' ? 'active-cat' : ''}`}
+                  onClick={() => setSelectedCategory(selectedCategory === 'Vaccines' ? null : 'Vaccines')}
+                >
+                  <div className="cat-icon-wrapper">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ width: '32px', height: '32px' }}>
+                      <path d="M18 2v8"></path>
+                      <path d="M15 10h6"></path>
+                      <path d="M15 14h6"></path>
+                      <rect x="14" y="10" width="8" height="12" rx="1"></rect>
+                      <path d="M7 2v20"></path>
+                      <path d="M4 8h6"></path>
+                      <path d="M4 14h6"></path>
+                      <rect x="3" y="2" width="8" height="6" rx="1"></rect>
+                    </svg>
+                  </div>
+                  <span>Vaccines</span>
+                </div>
                 {showAllCategories && (
                   <>
-                    <div className="cat-pill-item item-blue">
+                    <div 
+                      className={`cat-pill-item ${selectedCategory === 'Ointments' ? 'active-cat' : ''}`}
+                      onClick={() => setSelectedCategory(selectedCategory === 'Ointments' ? null : 'Ointments')}
+                    >
                       <div className="cat-icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ width: '32px', height: '32px' }}>
+                          <path d="M18 6v14"></path>
+                          <path d="M6 6v14"></path>
+                          <path d="M6 22h12"></path>
+                          <path d="M6 6h12"></path>
+                          <path d="M9 2h6"></path>
+                          <path d="M10 6V2"></path>
+                          <path d="M14 6V2"></path>
                         </svg>
                       </div>
                       <span>Ointments</span>
                     </div>
 
-                    <div className="cat-pill-item item-orange">
+                    <div 
+                      className={`cat-pill-item ${selectedCategory === 'Tablets' ? 'active-cat' : ''}`}
+                      onClick={() => setSelectedCategory(selectedCategory === 'Tablets' ? null : 'Tablets')}
+                    >
                       <div className="cat-icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                          <line x1="16" y1="2" x2="16" y2="6"></line>
-                          <line x1="8" y1="2" x2="8" y2="6"></line>
-                          <line x1="3" y1="10" x2="21" y2="10"></line>
-                          <path d="M12 12v6M9 15h6"></path>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" style={{ width: '32px', height: '32px' }}>
+                          <circle cx="7" cy="12" r="3"></circle>
+                          <circle cx="17" cy="12" r="3"></circle>
+                          <path d="M7 15h10"></path>
+                          <path d="M7 9h10"></path>
                         </svg>
                       </div>
-                      <span>First Aid</span>
-                    </div>
-
-                    <div className="cat-pill-item item-green">
-                      <div className="cat-icon-wrapper">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                        </svg>
-                      </div>
-                      <span>Vitamins</span>
+                      <span>Tablets</span>
                     </div>
                   </>
                 )}
@@ -599,8 +809,8 @@ export default function PharmaciesSolutionsPage() {
               </div>
 
               <div className="pharmacies-cards-grid">
-                {filteredPharmacies.length > 0 ? (
-                  filteredPharmacies.map(ph => (
+                {rankedPharmacies.length > 0 ? (
+                  rankedPharmacies.map(ph => (
                     <div className="pharmacy-card-item" key={ph.id}>
                       <div className="ph-card-banner">
                         <SafePharmacyImage 
@@ -609,47 +819,83 @@ export default function PharmaciesSolutionsPage() {
                           alt={ph.name} 
                           className="ph-banner-img" 
                         />
-                        <span className={`ph-status-badge ${ph.status.includes('24/7') ? 'badge-red' : 'badge-green'}`}>
-                          {ph.status}
+                        <span className="ph-rating-badge-new">
+                          <svg viewBox="0 0 24 24" fill="#F6AD55" stroke="#F6AD55" strokeWidth="2" className="icon-xs">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                          </svg>
+                          {ph.rating || '4.5'}
                         </span>
                       </div>
 
                       <div className="ph-card-content">
-                        <h4>{ph.name}</h4>
-                        <p className="ph-card-address">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-sm pin-icon">
+                                   <div className="ph-card-header-new">
+                          <h4>{ph.name}</h4>
+                          <span className="badge-open-new">OPEN</span>
+                        </div>
+                        <p className="ph-card-address-new">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-xs pin-icon">
                             <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"></path>
                             <circle cx="12" cy="10" r="3"></circle>
                           </svg>
-                          <span>{ph.address}</span>
+                          {ph.distance} • {ph.address.includes('Kukatpally') || ph.address.includes('Ameerpet') ? 'Hyderabad' : 'New Delhi'}
                         </p>
 
-                        <div className="ph-card-footer-metrics">
-                          <span className="metric-delivery">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="icon-sm delivery-icon">
-                              <polyline points="21 8 21 21 3 21 3 8"></polyline>
-                              <rect x="1" y="3" width="22" height="5" rx="1"></rect>
-                              <line x1="10" y1="12" x2="14" y2="12"></line>
+                        <div className="ph-card-divider"></div>
+
+                        <div className="ph-card-footer-new">
+                          <div className="ph-delivery-time-new">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-xs">
+                              <rect x="1" y="3" width="15" height="13"></rect>
+                              <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                              <circle cx="18.5" cy="18.5" r="2.5"></circle>
                             </svg>
-                            {ph.delivery}
-                          </span>
-                          <span className="metric-rating">
-                            <svg viewBox="0 0 24 24" fill="currentColor" className="star-icon">
-                              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <strong>{ph.rating}</strong> (70+)
-                          </span>
+                            <span>15-20 mins delivery</span>
+                          </div>
+                          
+                          {/* We still need the original button to trigger handleViewPharmacy but we style it as Visit Store */}
+                          <button 
+                            className="btn-visit-store-new"
+                            onClick={() => {
+                              setSelectedPharmacy(ph);
+                              if (prescriptionUploaded && prescriptionItems.length > 0) {
+                                // Identify missing items right away for state
+                                const missing = [];
+                                prescriptionItems.forEach(pItem => {
+                                  const isMatch = ph.stockedMedicines.some(m => 
+                                    m.toLowerCase().includes(pItem.name.toLowerCase().split(' ')[0]) || 
+                                    (pItem.generic && m.toLowerCase().includes(pItem.generic.toLowerCase().split(' ')[0]))
+                                  );
+                                  if (!isMatch) missing.push(pItem);
+                                });
+                                setMissingItemsForSearch(missing);
+                                setSecondaryOptions([]);
+                                setShowSecondaryPharmacies(false);
+                                setFlowStep(4); // New Match Review Step
+                              } else {
+                                setFlowStep(2); // Normal profile view
+                              }
+                            }}
+                          >
+                            Visit Store
+                          </button>
                         </div>
 
-                        <button 
-                          className="ph-view-profile-btn"
-                          onClick={() => {
-                            setSelectedPharmacy(ph);
-                            setFlowStep(2);
-                          }}
-                        >
-                          View Pharmacy
-                        </button>
+                        {/* Kept match status box for prescription matching flow */}
+
+                        {prescriptionUploaded && ph.matchStatus && (
+                          <div className={`ph-match-status-box ${ph.matchStatus === 'Complete Match' ? 'match-complete' : ph.matchStatus === 'Partial Match' ? 'match-partial' : 'match-low'}`}>
+                            <span className="match-status-label">{ph.matchStatus}</span>
+                            <span className="match-status-subtext">
+                              {ph.matchStatus === 'Complete Match' 
+                                ? 'All medicines available' 
+                                : `${ph.matchCount} of ${ph.totalPrescriptionItems} medicines available`
+                              }
+                            </span>
+                          </div>
+                        )}
+
+
                       </div>
                     </div>
                   ))
@@ -668,9 +914,9 @@ export default function PharmaciesSolutionsPage() {
 
       {/* Step 2: Pharmacy Profile */}
       {flowStep === 2 && selectedPharmacy && (
-        <section className="pharmacy-profile-section bg-light-tint">
-          <div className="container">
-            <div className="profile-header-actions">
+        <section className="pharmacy-profile-section bg-light-tint" style={{ paddingBottom: '80px' }}>
+          <div className="page-container">
+            <div className="profile-header-actions" style={{ paddingTop: '20px' }}>
               <button className="profile-back-search-btn" onClick={() => setFlowStep(1)}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="icon-sm">
                   <polyline points="15 18 9 12 15 6"></polyline>
@@ -679,46 +925,40 @@ export default function PharmaciesSolutionsPage() {
               </button>
             </div>
 
-            <div className="profile-doc-main-header-card">
-              <div className="profile-main-doc-info">
-                <div className="profile-avatar-wrapper">
-                  <SafePharmacyImage 
-                    src={selectedPharmacy.image} 
-                    fallbackSrc="https://images.unsplash.com/photo-1586015555751-63bb77f4322a?auto=format&fit=crop&q=80&w=400" 
-                    alt={selectedPharmacy.name} 
-                    className="profile-doc-avatar" 
-                  />
-                  <span className="status-indicator online"></span>
-                </div>
-                <div className="profile-doc-details">
-                  <h3>{selectedPharmacy.name}</h3>
-                  <span className="profile-doc-specialty">{selectedPharmacy.area} Area Pharmacy</span>
-                  <div className="profile-stars-row">
-                    <span className="rating-score">{selectedPharmacy.rating}</span>
-                    <span className="rating-count">(70+ Verified Ratings)</span>
+            {/* New Full-Width Premium Hero Banner */}
+            <div className="ph-premium-hero">
+              <div className="ph-hero-bg-image" style={{ backgroundImage: `url('/pharmacy_hero_clear.png')` }}></div>
+              <div className="ph-premium-overlay">
+                <div className="ph-hero-content">
+                  <h3 className="ph-hero-title">{selectedPharmacy.name}</h3>
+                  
+                  <div className="ph-hero-address">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <span>{selectedPharmacy.address || 'Metro Station Pillar 24, Madhapur, Hyderabad, 500081'}</span>
                   </div>
-                  <p className="ph-full-address-label">
-                    <strong>Address: </strong> {selectedPharmacy.address}
-                  </p>
-                  <p className="ph-delivery-timing">
-                    <strong>Delivery: </strong> 25 - 30 mins | <strong>Map Direction: </strong> Ashok Pride Main Rd
-                  </p>
-                </div>
-              </div>
 
-              {/* Upload Prescription FAB inside Header */}
-              <div className="upload-prescription-fab-box">
-                <button 
-                  className="upload-prescription-fab-btn"
-                  onClick={() => setFlowStep(3)}
-                >
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-sm">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="17 8 12 3 7 8"></polyline>
-                    <line x1="12" y1="3" x2="12" y2="15"></line>
-                  </svg>
-                  <span>Upload Prescription</span>
-                </button>
+                  <div className="ph-hero-badges" style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', marginTop: '12px', marginBottom: '24px' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', color: '#E2E8F0', fontSize: '15px', fontWeight: '500' }}>Open 24/7</span>
+                    <span style={{ display: 'flex', alignItems: 'center', color: '#E2E8F0', fontSize: '15px', fontWeight: '500' }}>⭐ {selectedPharmacy.rating} (1.2k Reviews)</span>
+                    <span style={{ display: 'flex', alignItems: 'center', color: '#E2E8F0', fontSize: '15px', fontWeight: '500' }}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{width: 16, height: 16, marginRight: 6}}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                      Verified Partner
+                    </span>
+                    <span style={{ display: 'flex', alignItems: 'center', color: '#E2E8F0', fontSize: '15px', fontWeight: '500' }}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" style={{width: 16, height: 16, marginRight: 6}}><rect x="3" y="8" width="18" height="12" rx="2" ry="2"></rect><line x1="8" y1="6" x2="8" y2="8"></line><line x1="16" y1="6" x2="16" y2="8"></line></svg>
+                      Home Delivery
+                    </span>
+                  </div>
+
+                  <div className="ph-hero-actions">
+                    <button className="btn-premium-primary" onClick={() => navigate('/contact')}>
+                      Contact Pharmacy
+                    </button>
+                    <button className="btn-premium-secondary">
+                      Get Directions
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -742,58 +982,65 @@ export default function PharmaciesSolutionsPage() {
                 {activeProfileTab === 'Medicine' && (
                   <div className="medicine-catalog-grid-view">
                     
-                    {/* Search Medicines inside Tab */}
-                    <div className="medicines-filter-search-box">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-search-sm">
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                      </svg>
-                      <input 
-                        type="text" 
-                        value={searchMedicine} 
-                        onChange={(e) => setSearchMedicine(e.target.value)} 
-                        placeholder="Search medicines in stock..." 
-                      />
+                    <div className="medicines-filter-search-container-desktop">
+                      {/* Medicines Filter Tabs */}
+                      <div className="medicines-category-filter-row">
+                        <span className="filter-label">Filter by:</span>
+                        <button className="pill-filter-btn">Tablet</button>
+                        <button className="pill-filter-btn">Syrup</button>
+                        <button className="pill-filter-btn">Inhaler</button>
+                        <button className="pill-filter-btn">Capsule</button>
+                        <button className="pill-filter-btn">Injection</button>
+                      </div>
+
+                      {/* Search Medicines inside Tab */}
+                      <div className="medicines-filter-search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-search-sm">
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input 
+                          type="text" 
+                          value={searchMedicine} 
+                          onChange={(e) => setSearchMedicine(e.target.value)} 
+                          placeholder="Search medicines in stock..." 
+                        />
+                      </div>
                     </div>
 
                     <div className="medicines-cards-grid">
                       {MEDICINE_CATALOG.filter(med => med.name.toLowerCase().includes(searchMedicine.toLowerCase())).map(med => (
                         <div className="medicine-card-item-box" key={med.id}>
                           <div className="med-image-wrapper">
-                            <SafePharmacyImage 
-                              src={med.image} 
-                              fallbackSrc={med.fallbackImage} 
-                              alt={med.name} 
-                              className="medicine-img" 
-                            />
-                            {med.oldPrice && (
-                              <span className="med-discount-badge">Get 10% OFF</span>
+                            {med.name.toLowerCase().includes('paracetamol') && (
+                              <span className="med-prescription-badge">Prescription Required</span>
                             )}
+                            <div className="med-img-inner-bg">
+                              <SafePharmacyImage 
+                                src={med.image} 
+                                fallbackSrc={med.fallbackImage} 
+                                alt={med.name} 
+                                className="medicine-img" 
+                              />
+                            </div>
                           </div>
 
                           <div className="med-details-wrapper">
                             <h4>{med.name}</h4>
-                            <span className="med-generic-label">({med.generic})</span>
-                            <span className="med-pack-label">Per Pack: {med.pack}</span>
+                            <span className="med-generic-label">{med.generic || med.pack}</span>
                             
                             <div className="med-price-line">
                               <span className="med-price">₹{med.price}</span>
-                              {med.oldPrice && <span className="med-old-price">₹{med.oldPrice}</span>}
                             </div>
 
-                            {med.instock ? (
-                              <button 
-                                className="med-add-to-cart-btn"
-                                onClick={() => handleAddToCart(med)}
-                              >
-                                Add to Cart
-                              </button>
-                            ) : (
-                              <div className="out-of-stock-label-box">
-                                <span className="out-of-stock-tag">Out Of Stock</span>
-                                <span className="alt-suggest">Alt: {med.alternative}</span>
-                              </div>
-                            )}
+                            <button className="med-add-to-cart-btn" onClick={() => handleAddToCart(med)}>
+                              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-sm">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                              </svg>
+                              Add to Cart
+                            </button>
                           </div>
                         </div>
                       ))}
@@ -868,9 +1115,9 @@ export default function PharmaciesSolutionsPage() {
                 </div>
                 <button 
                   className="cart-checkout-proceed-btn"
-                  onClick={() => setFlowStep(4)}
+                  onClick={() => setFlowStep(prescriptionUploaded ? 4 : 5)}
                 >
-                  Proceed to Cart / Check Availability
+                  {prescriptionUploaded ? "Proceed to Cart / Check Availability" : "Proceed to Checkout"}
                 </button>
               </div>
             )}
@@ -950,149 +1197,194 @@ export default function PharmaciesSolutionsPage() {
         </section>
       )}
 
-      {/* Step 4: Medicine Availability Check Page (Generic alternative suggestion) */}
-      {flowStep === 4 && (
+      {/* Step 4: Prescription Match Review & Availability Check */}
+      {flowStep === 4 && selectedPharmacy && (
         <section className="cart-availability-section bg-light-tint">
           <div className="container cart-layout-wider-container">
-            <div className="profile-header-actions">
-              <button className="profile-back-search-btn" onClick={() => setFlowStep(2)}>
+            <div className="profile-header-actions" style={{ marginBottom: '24px' }}>
+              <button className="profile-back-search-btn" onClick={() => setFlowStep(1)}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="icon-sm">
                   <polyline points="15 18 9 12 15 6"></polyline>
                 </svg>
-                <span>Back to Catalog</span>
+                <span>Back to Pharmacies</span>
               </button>
             </div>
 
-            <div className="profile-card availability-check-card">
-              <h3>My Cart & Availability</h3>
-              <p className="subtitle-sm">CHECK MEDICINE AVAILABILITY IN STORE</p>
+            <div className="profile-card availability-check-card" style={{ padding: '32px' }}>
+              <h3 style={{ fontSize: '22px', fontWeight: 800, marginBottom: '8px' }}>Prescription Match Review</h3>
+              <p style={{ color: '#718096', marginBottom: '24px' }}>Review available items from <strong>{selectedPharmacy.name}</strong></p>
 
-              {cart.length === 0 ? (
-                <div className="cart-medicines-list-ph">
-                  {prescriptionImage && (
-                    <div className="uploaded-prescrip-indicator-box">
-                      <div className="prescrip-mini-icon">✓</div>
-                      <div className="prescrip-details">
-                        <strong>Prescription Attached Successfully</strong>
-                        <span>Doctor Prescription Note included in order.</span>
+              <div className="match-review-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px' }}>
+                
+                {/* Available Items */}
+                <div className="match-available-col" style={{ background: '#F0FFF4', border: '1px solid #C6F6D5', borderRadius: '12px', padding: '24px' }}>
+                  <h4 style={{ color: '#276749', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+                    <span>✓</span> Available Medicines
+                  </h4>
+                  {cart.filter(c => c.pharmacyId === selectedPharmacy.id || !c.pharmacyId).map(item => (
+                    <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '12px', background: 'white', borderRadius: '8px', marginBottom: '8px' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <strong style={{ color: '#2D3748', fontSize: '14.5px' }}>{item.name}</strong>
+                        <span style={{ color: '#718096', fontSize: '12px' }}>{item.pack}</span>
                       </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                        <span style={{ fontWeight: 700 }}>Qty: {item.qty}</span>
+                        <strong style={{ color: '#20C7B6' }}>₹{item.price * item.qty}</strong>
+                      </div>
+                    </div>
+                  ))}
+                  {cart.length === 0 && <p>No items matched exactly.</p>}
+                </div>
+
+                {/* Missing Items */}
+                <div className="match-missing-col" style={{ background: '#FFF5F5', border: '1px solid #FED7D7', borderRadius: '12px', padding: '24px' }}>
+                  <h4 style={{ color: '#C53030', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+                    <span>⚠️</span> Missing Medicines
+                  </h4>
+                  
+                  {missingItemsForSearch.length > 0 ? (
+                    <>
+                      {missingItemsForSearch.map((item, idx) => (
+                        <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', padding: '12px', background: 'white', borderRadius: '8px', marginBottom: '8px', borderLeft: '3px solid #F56565' }}>
+                          <strong style={{ color: '#4A5568', fontSize: '14.5px' }}>{item.name}</strong>
+                          <span style={{ color: '#718096', fontSize: '13px' }}>Need: {item.qty}</span>
+                        </div>
+                      ))}
+                      
+                      {!showSecondaryPharmacies ? (
+                        <button 
+                          style={{ width: '100%', marginTop: '16px', background: '#2B6CB0', color: 'white', border: 'none', padding: '12px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer' }}
+                          onClick={() => {
+                            // Find alternative pharmacies that have these items
+                            const options = mockPharmacies.filter(ph => 
+                              ph.id !== selectedPharmacy.id && 
+                              missingItemsForSearch.some(mItem => ph.stockedMedicines.some(m => m.toLowerCase().includes(mItem.name.toLowerCase().split(' ')[0])))
+                            );
+                            setSecondaryOptions(options);
+                            setShowSecondaryPharmacies(true);
+                          }}
+                        >
+                          Auto Search Remaining Medicines
+                        </button>
+                      ) : (
+                        <div style={{ marginTop: '20px' }}>
+                          <h5 style={{ color: '#2D3748', marginBottom: '12px' }}>Choose Secondary Pharmacy:</h5>
+                          {secondaryOptions.map(opt => (
+                            <div key={opt.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px', background: 'white', borderRadius: '8px', marginBottom: '12px', border: '1px solid #E2E8F0', cursor: 'pointer' }}
+                              onClick={() => {
+                                // Add to selectedPharmacies
+                                setSelectedPharmacies(prev => [...prev, opt]);
+                                
+                                // Add missing items to cart from this pharmacy
+                                const newCartAdditions = [];
+                                missingItemsForSearch.forEach(mItem => {
+                                  const med = MEDICINE_CATALOG.find(m => m.name.toLowerCase().includes(mItem.name.toLowerCase().split(' ')[0]));
+                                  if (med && opt.stockedMedicines.some(m => m.toLowerCase().includes(med.name.toLowerCase()))) {
+                                    newCartAdditions.push({ ...med, qty: mItem.qty, pharmacyId: opt.id, pharmacyName: opt.name });
+                                  }
+                                });
+                                setCart(prev => [...prev, ...newCartAdditions]);
+                                
+                                // Remove found items from missing
+                                setMissingItemsForSearch(prev => prev.filter(p => !newCartAdditions.some(n => n.name.toLowerCase().includes(p.name.toLowerCase().split(' ')[0]))));
+                                setShowSecondaryPharmacies(false);
+                              }}
+                            >
+                              <div>
+                                <strong style={{ display: 'block', color: '#2D3748' }}>{opt.name}</strong>
+                                <span style={{ fontSize: '12px', color: '#718096' }}>{opt.delivery} • {opt.distance}</span>
+                              </div>
+                              <button style={{ background: '#EDF2F7', border: 'none', padding: '6px 12px', borderRadius: '50px', fontWeight: 600, fontSize: '12px', color: '#2B6CB0', cursor: 'pointer' }}>Select</button>
+                            </div>
+                          ))}
+                          {secondaryOptions.length === 0 && <p style={{ fontSize: '13px', color: '#E53E3E' }}>No other pharmacies carry these items.</p>}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div style={{ textAlign: 'center', padding: '24px', background: 'white', borderRadius: '8px' }}>
+                      <span style={{ fontSize: '24px' }}>🎉</span>
+                      <p style={{ margin: '8px 0 0 0', color: '#38A169', fontWeight: 600 }}>All items sourced successfully!</p>
                     </div>
                   )}
-                  <div className="empty-cart-suggest-prescrip">
-                    <p className="no-items-warning">No items manually selected in cart yet.</p>
-                    <p style={{ fontSize: '13.5px', color: '#718096', marginBottom: '16px' }}>We have pre-filled the standard general checkup medicines pack for you based on the prescription upload:</p>
-                    <button 
-                      className="prefill-pack-btn"
-                      onClick={() => setCart([
-                        { id: 101, name: 'Napa Extend Tablet', generic: 'Paracetamol', price: 90, pack: '10 Tablets', qty: 1, instock: true, image: '/b43102d33fa401fd9568f3dd85e848da52c9305e.png' },
-                        { id: 102, name: 'Xpa Pediatric Drop', generic: 'Paracetamol Drop', price: 60, pack: '01 Bottle', qty: 1, instock: true, image: '/a79f36a6dcf867db049c833662bc00724f5131c8.png' }
-                      ])}
-                    >
-                      Pre-Fill Cart from Prescription Note
-                    </button>
+                </div>
+
+              </div>
+
+              <div style={{ marginTop: '32px', display: 'flex', justifyContent: 'flex-end', borderTop: '1px solid #E2E8F0', paddingTop: '24px' }}>
+                <button 
+                  className="cart-checkout-proceed-btn"
+                  style={{ width: 'auto', padding: '14px 40px', background: missingItemsForSearch.length > 0 ? '#CBD5E0' : '#20C7B6', cursor: missingItemsForSearch.length > 0 ? 'not-allowed' : 'pointer' }}
+                  disabled={missingItemsForSearch.length > 0}
+                  onClick={() => setFlowStep(8)}
+                >
+                  Proceed to Final Order Summary
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      )}
+      {/* Step 8: Final Prescription Summary (Multi-Pharmacy) */}
+      {flowStep === 8 && selectedPharmacies.length > 0 && (
+        <section className="order-summary-section bg-light-tint">
+          <div className="container max-width-md">
+            <div className="profile-card order-summary-card">
+              <h3 style={{ fontSize: '24px', fontWeight: 800, marginBottom: '8px' }}>Prescription Summary</h3>
+              <p className="card-subtitle-text" style={{ marginBottom: '24px' }}>Review your merged order from multiple pharmacies.</p>
+
+              <div style={{ background: '#F7FAFC', border: '1px solid #E2E8F0', borderRadius: '12px', padding: '24px', marginBottom: '24px' }}>
+                <h4 style={{ marginBottom: '16px', color: '#2D3748', borderBottom: '2px solid #E2E8F0', paddingBottom: '12px' }}>
+                  Prescription Medicines: {cart.reduce((sum, item) => sum + item.qty, 0)} Items
+                </h4>
+
+                {selectedPharmacies.map(ph => {
+                  const phItems = cart.filter(c => c.pharmacyId === ph.id || (!c.pharmacyId && ph.id === selectedPharmacy.id));
+                  if (phItems.length === 0) return null;
+                  
+                  return (
+                    <div key={ph.id} style={{ marginBottom: '20px' }}>
+                      <h5 style={{ color: '#2B6CB0', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span>🏪</span> {ph.name} ({phItems.length} medicines)
+                      </h5>
+                      {phItems.map(item => (
+                        <div key={item.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 12px', background: 'white', borderRadius: '6px', marginBottom: '6px' }}>
+                          <span>{item.name} x {item.qty}</span>
+                          <strong>₹{item.price * item.qty}</strong>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="summary-section-box">
+                <div className="summary-details-lines">
+                  <div className="summary-row-line">
+                    <span>Subtotal</span>
+                    <strong>₹{cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)}</strong>
+                  </div>
+                  <div className="summary-row-line">
+                    <span>Delivery Charges ({selectedPharmacies.length} Pharmacies)</span>
+                    <strong className="text-teal">₹{selectedPharmacies.length * 20}</strong>
+                  </div>
+                  <div className="summary-row-line">
+                    <span>Taxes & Service fee</span>
+                    <strong>₹15</strong>
+                  </div>
+                  <div className="summary-divider-line"></div>
+                  <div className="summary-row-line total-highlight">
+                    <span>Grand Total</span>
+                    <strong className="text-teal">₹{cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0) + (selectedPharmacies.length * 20) + 15}</strong>
                   </div>
                 </div>
-              ) : (
-                <div className="cart-two-column-layout">
-                  {/* Left Column: Cart List */}
-                  <div className="cart-left-column">
-                    {prescriptionImage && (
-                      <div className="uploaded-prescrip-indicator-box">
-                        <div className="prescrip-mini-icon">✓</div>
-                        <div className="prescrip-details">
-                          <strong>Prescription Attached</strong>
-                          <span>Doctor Prescription Note included in order.</span>
-                        </div>
-                      </div>
-                    )}
+              </div>
 
-                    <div className="cart-medicines-list-ph">
-                      {cart.map(item => {
-                        const subtotal = item.price * item.qty;
-                        return (
-                          <div className="cart-med-item-row" key={item.id}>
-                            <div className="cart-item-left-block">
-                              <div className="cart-item-thumb-box">
-                                <SafePharmacyImage 
-                                  src={item.image} 
-                                  fallbackSrc={item.fallbackImage} 
-                                  alt={item.name} 
-                                  className="cart-item-thumb-img" 
-                                />
-                              </div>
-                              <div className="med-info-col">
-                                <strong>{item.name}</strong>
-                                <span>{item.pack} | {item.generic}</span>
-                              </div>
-                            </div>
-
-                            <div className="med-actions-qty-col">
-                              <div className="qty-selectors-wrapper">
-                                <button className="qty-btn" onClick={() => handleQtyChange(item.id, -1)}>-</button>
-                                <span className="qty-num">{item.qty}</span>
-                                <button className="qty-btn" onClick={() => handleQtyChange(item.id, 1)}>+</button>
-                              </div>
-                              <span className="item-subtotal">₹{subtotal}</span>
-                              <button className="item-remove-btn" onClick={() => handleRemoveFromCart(item.id)}>✕</button>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Right Column: Checkout Summary Sidebar */}
-                  <div className="cart-right-sidebar">
-                    <div className="summary-sidebar-box">
-                      <h4>Summary Details</h4>
-                      <div className="summary-details-lines">
-                        <div className="summary-row-line">
-                          <span>Items Subtotal</span>
-                          <strong>₹{cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)}</strong>
-                        </div>
-                        <div className="summary-row-line">
-                          <span>Estimated Delivery Cost</span>
-                          <strong className="text-teal">₹20</strong>
-                        </div>
-                        <div className="summary-row-line">
-                          <span>Taxes & Service fee</span>
-                          <strong>₹15</strong>
-                        </div>
-                        <div className="summary-divider-line"></div>
-                        <div className="summary-row-line total-highlight">
-                          <span>Estimated Total</span>
-                          <strong className="text-teal">₹{cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0) + 20 + 15}</strong>
-                        </div>
-                      </div>
-
-                      <button 
-                        className="cart-checkout-proceed-btn-full"
-                        onClick={() => setFlowStep(5)}
-                      >
-                        Proceed to Order Summary
-                      </button>
-
-                      <div className="cart-trust-badges">
-                        <div className="badge-item-tr">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="badge-icon">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                          </svg>
-                          <span>Secure & Safe Checkout</span>
-                        </div>
-                        <div className="badge-item-tr">
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="badge-icon">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                          </svg>
-                          <span>100% Genuine Medicines</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
+              <div className="action-buttons-row" style={{ marginTop: '32px' }}>
+                <button className="btn-secondary" onClick={() => setFlowStep(4)}>Back to Review</button>
+                <button className="btn-primary" onClick={() => setFlowStep(5)}>Proceed to Checkout</button>
+              </div>
             </div>
           </div>
         </section>
@@ -1100,97 +1392,206 @@ export default function PharmaciesSolutionsPage() {
 
       {/* Step 5: Order Summary */}
       {flowStep === 5 && selectedPharmacy && (
-        <section className="order-summary-section bg-light-tint">
-          <div className="container max-width-sm">
-            <div className="profile-card order-summary-card">
-              <h3>Review Your Order</h3>
-              <p className="card-subtitle-text">Check everything is correct before proceeding to payment.</p>
-              
-              <div className="review-appointment-summary-box">
-                <div className="store-appointment-header">
-                  <div className="store-avatar-thumb">
-                    <SafePharmacyImage 
-                      src={selectedPharmacy.image} 
-                      fallbackSrc="https://images.unsplash.com/photo-1586015555751-63bb77f4322a?auto=format&fit=crop&q=80&w=200" 
-                      alt={selectedPharmacy.name} 
-                      className="store-thumb-avatar-img" 
-                    />
-                  </div>
-                  <div className="store-appointment-details">
-                    <h4>{selectedPharmacy.name}</h4>
-                    <span className="store-location-info">{selectedPharmacy.area} | Kukatpally</span>
-                    <span className="store-timing-info">✓ Free delivery available</span>
-                  </div>
-                </div>
-              </div>
+        <section className="ro-review-section">
+          <div className="profile-header-actions" style={{ marginBottom: '16px' }}>
+            <button className="profile-back-search-btn" onClick={() => setFlowStep(1)}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="icon-sm">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+              <span>Back</span>
+            </button>
+          </div>
+          <div className="ro-stepper-container">
+            <div className="ro-step completed">1</div>
+            <div className="ro-step-line completed"></div>
+            <div className="ro-step completed">2</div>
+            <div className="ro-step-line completed"></div>
+            <div className="ro-step active">3</div>
+            <span className="ro-step-label">Review</span>
+          </div>
 
-              <div className="summary-section-box">
-                <span className="section-title-lbl">Delivery Shipping Address</span>
-                <div className="shipping-fields-card">
-                  <div className="shipping-field-row">
-                    <span>Deliver to:</span>
-                    <strong>{shippingName}</strong>
-                  </div>
-                  <div className="shipping-field-row">
-                    <span>Address:</span>
-                    <strong className="shipping-address-val">{shippingAddress}</strong>
-                  </div>
-                  <div className="shipping-field-row">
-                    <span>Phone:</span>
-                    <strong>{shippingPhone}</strong>
-                  </div>
-                </div>
-              </div>
+          <h2 className="ro-page-title">Review Your Order</h2>
 
-              <div className="summary-section-box">
-                <span className="section-title-lbl">Bill Items</span>
-                <div className="bill-items-list">
-                  {cart.map(item => (
-                    <div className="bill-row" key={item.id}>
-                      <span>{item.name} (x{item.qty})</span>
-                      <strong>₹{item.price * item.qty}</strong>
-                    </div>
-                  ))}
-                  <div className="bill-divider"></div>
-                  <div className="bill-row">
-                    <span>Subtotal</span>
-                    <strong>₹{cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)}</strong>
-                  </div>
-                  <div className="bill-row">
-                    <span>Home Delivery Fee</span>
-                    <strong className="text-teal-small">₹20 (Kukatpally Area Special)</strong>
-                  </div>
-                  <div className="bill-row">
-                    <span>VAT & Service Tax</span>
-                    <strong>₹15</strong>
-                  </div>
-                  <div className="bill-divider"></div>
-                  <div className="bill-row total-bill-line">
-                    <span>Total Amount</span>
-                    <strong className="text-teal-total">
-                      ₹{cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0) + 20 + 15}
-                    </strong>
-                  </div>
+          <div className="ro-desktop-2col">
+            <div className="ro-left-col">
+              {/* Card 1: Pharmacy Info */}
+              <div className="ro-card">
+            <div className="ro-pharmacy-header">
+              <SafePharmacyImage src={selectedPharmacy.image} fallbackSrc="/pharmacy_store.jpg" alt={selectedPharmacy.name} className="ro-pharmacy-img" />
+              <div className="ro-pharmacy-details">
+                <div className="ro-pharmacy-name-row">
+                  <h4>{selectedPharmacy.name}</h4>
                 </div>
-              </div>
-
-              {/* Back button on left, Proceed to Payment button on right */}
-              <div className="summary-footer-actions-row">
-                <button 
-                  className="summary-back-btn"
-                  onClick={() => setFlowStep(4)}
-                >
-                  Back to Cart
-                </button>
-                <button 
-                  className="summary-proceed-btn"
-                  onClick={() => setFlowStep(6)}
-                >
-                  Proceed to Payment
-                </button>
+                <div className="ro-pharmacy-address">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-xs">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <p>{selectedPharmacy.address}</p>
+                </div>
+                <div className="ro-pharmacy-verified">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-xs">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  Verified Healthcare Partner
+                </div>
               </div>
             </div>
           </div>
+
+          {/* Card 2: Delivery Address */}
+          <div className="ro-card">
+            <div className="ro-card-header">
+              <span className="ro-card-subtitle">DELIVERY TO</span>
+              {isEditingAddress ? (
+                 <button onClick={() => { setShippingAddress(tempAddress); setIsEditingAddress(false); }} style={{background: 'none', border: 'none', color: '#1A73E8', fontWeight: 'bold', cursor: 'pointer', fontSize: '14px'}}>Save</button>
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-sm ro-edit-icon" onClick={() => { setTempAddress(shippingAddress); setIsEditingAddress(true); }}>
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+              )}
+            </div>
+            <h4 className="ro-delivery-name">{shippingName || 'Shaidul Islam'}</h4>
+            {isEditingAddress ? (
+               <textarea value={tempAddress} onChange={(e) => setTempAddress(e.target.value)} style={{width: '100%', padding: '8px', border: '1px solid #CBD5E0', borderRadius: '4px', marginTop: '8px', fontSize: '13px', fontFamily: 'inherit'}} rows={3} />
+            ) : (
+               <p className="ro-delivery-address" style={{ whiteSpace: 'pre-wrap' }}>{shippingAddress}</p>
+            )}
+            {!isEditingAddress && <p className="ro-delivery-phone">{shippingPhone || '+880 1712-345678'}</p>}
+          </div>
+
+          {/* Card 3: Items in Order */}
+          <div className="ro-card">
+            <div className="ro-card-header">
+              <span className="ro-card-subtitle">ITEMS IN ORDER</span>
+              <span className="ro-items-badge">{cart.reduce((acc, c) => acc + c.qty, 0)} Items</span>
+            </div>
+            <div className="ro-items-list">
+              {cart.length === 0 ? (
+                <div style={{ textAlign: 'center', padding: '24px 0', color: '#718096' }}>
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{width: '40px', height: '40px', margin: '0 auto 12px', opacity: 0.5}}>
+                     <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                     <line x1="3" y1="6" x2="21" y2="6"></line>
+                     <path d="M16 10a4 4 0 0 1-8 0"></path>
+                   </svg>
+                   <p style={{ fontWeight: 600, color: '#4A5568', margin: '0 0 4px 0' }}>Your cart is empty</p>
+                   <p style={{ fontSize: '13px', margin: 0 }}>Try to select medicines to proceed.</p>
+                </div>
+              ) : (
+                cart.map(item => (
+                  <div className="ro-item-row" key={item.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+                      <span className="ro-item-name" style={{ fontWeight: '600', color: '#2D3748', fontSize: '14px' }}>{item.name}</span>
+                      <span style={{ fontSize: '12px', color: '#718096', marginTop: '2px' }}>{item.pack || 'Strips'}</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                      <span style={{ fontWeight: '600', color: '#2D3748', fontSize: '15px' }}>₹ {(item.price * item.qty).toFixed(2)}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#F8FAFC', padding: '4px 8px', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+                        <button 
+                          onClick={() => handleQtyChange(item.id, -1)}
+                          style={{ width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', background: 'white', borderRadius: '6px', cursor: 'pointer', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', color: '#4A5568', fontSize: '16px', fontWeight: 'bold' }}
+                        >
+                          -
+                        </button>
+                        <span style={{ fontSize: '15px', fontWeight: '700', minWidth: '24px', textAlign: 'center', color: '#1A202C' }}>{item.qty}</span>
+                        <button 
+                          onClick={() => handleQtyChange(item.id, 1)}
+                          style={{ width: '28px', height: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: 'none', background: 'white', borderRadius: '6px', cursor: 'pointer', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', color: '#4A5568', fontSize: '16px', fontWeight: 'bold' }}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+
+          {/* Card 4: Attached Prescription */}
+          {prescriptionUploaded && (
+            <div className="ro-card ro-prescription-card" style={{ padding: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <div className="ro-doc-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                  </svg>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span style={{ fontWeight: '700', color: '#1A202C', fontSize: '14px', marginBottom: '4px' }}>Prescription Uploaded</span>
+                  <span style={{ color: '#1A73E8', fontSize: '13px', cursor: 'pointer', fontWeight: '600', textDecoration: 'underline' }} onClick={() => setFlowStep(4)}>View Matches & Availability</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+            </div>{/* End ro-left-col */}
+
+            <div className="ro-right-col">
+              {/* Card 5: Payment Summary */}
+              <div className="ro-card ro-sticky-payment">
+            <h4 className="ro-card-title-dark">Payment Summary</h4>
+            
+            <div className="ro-summary-row">
+              <span>Subtotal</span>
+              <span>₹ {cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0).toFixed(2)}</span>
+            </div>
+            <div className="ro-summary-row">
+              <span>Delivery Fee</span>
+              <span>₹ {cart.length > 0 ? '45.00' : '0.00'}</span>
+            </div>
+            <div className="ro-summary-row">
+              <span>VAT (5%)</span>
+              <span>₹ {((cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)) * 0.05).toFixed(2)}</span>
+            </div>
+            
+            <div className="ro-summary-divider"></div>
+            
+            <div className="ro-summary-row ro-total-row">
+              <span>Total Amount</span>
+              <span className="ro-total-price">₹ {(cart.length > 0 ? (cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0) + 45 + ((cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)) * 0.05)) : 0).toFixed(2)}</span>
+            </div>
+
+            <div className="ro-info-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <p>Final price may vary slightly after the pharmacist reviews the physical prescription if substitutes are required.</p>
+            </div>
+
+            {cart.length > 0 && (
+              <button className="ro-proceed-btn" onClick={() => setFlowStep(6)}>
+                Proceed to Payment <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            )}
+            <button className="ro-cancel-btn" onClick={() => setFlowStep(1)} style={{ marginTop: cart.length > 0 ? 0 : '12px' }}>Cancel Order</button>
+            
+            {/* Trust & Security Section */}
+            <div className="ro-trust-section">
+              <div className="ro-trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                <span>Secure Payment</span>
+              </div>
+              <div className="ro-trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Data Protection</span>
+              </div>
+              <div className="ro-trust-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                <span>Verified Healthcare Partner</span>
+              </div>
+            </div>
+          </div>
+            </div>{/* End ro-right-col */}
+          </div>{/* End ro-desktop-2col */}
         </section>
       )}
 
@@ -1349,45 +1750,355 @@ export default function PharmaciesSolutionsPage() {
         </section>
       )}
 
-      {/* Step 7: Order Success Backdrop Screen */}
+      {/* Step 7: Order Success Full Screen */}
       {flowStep === 7 && selectedPharmacy && (
-        <div className="order-success-modal-overlay">
-          <div className="success-modal-card">
-            <div className="success-icon-badge-large">
-              <svg viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" fill="#EEFAF8"></circle>
-                <path d="M8.5 12.5l2 2 5-5" stroke="var(--primary)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" fill="none"></path>
-              </svg>
+        <section className="ro-review-section bg-light-tint page-container" style={{ paddingTop: '20px' }}>
+          {/* Order Confirmed Header */}
+          <div className="order-confirmed-header-desktop" style={{ position: 'relative', marginTop: 0 }}>
+             <button className="ro-back-btn" onClick={() => setFlowStep(6)} style={{ position: 'absolute', top: 0, left: 0 }}>
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+             </button>
+             <div className="ro-success-icon-large">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+             </div>
+             <h2 className="ro-success-title">Order Confirmed!</h2>
+             <p className="ro-success-subtitle">We've received your request and the pharmacy has started preparing your medication.</p>
+          </div>
+
+          <div className="order-confirmed-dashboard-grid">
+            <div className="oc-left-col">
+              <div className="ro-card">
+                 <div className="ro-card-header" style={{ marginBottom: '8px' }}>
+                    <span className="ro-card-subtitle ro-flex-center">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-sm" style={{marginRight: '6px'}}><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg> 
+                      Order Tracking
+                    </span>
+                 </div>
+                 <div className="ro-delivery-name" style={{fontSize: '11px', color: '#718096', textTransform: 'uppercase', marginBottom: '2px'}}>ORDER ID</div>
+                 <p className="ro-delivery-name" style={{marginBottom: '12px'}}>HB-PH-{orderId}</p>
+
+                 <div className="ro-delivery-name" style={{fontSize: '11px', color: '#718096', textTransform: 'uppercase', marginBottom: '2px'}}>ESTIMATED DELIVERY</div>
+                 <p className="ro-delivery-name" style={{color: 'var(--primary)'}}>25-30 minutes</p>
+              </div>
+
+              <div className="ro-card">
+                 <h4 className="ro-card-title-dark">Order Summary</h4>
+                 
+                 <div className="ro-summary-row">
+                    <span>{cart.reduce((acc, c) => acc + c.qty, 0)} Prescription Meds</span>
+                    <span className="ro-total-row">₹{(cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)).toFixed(2)}</span>
+                 </div>
+                 <div className="ro-summary-row">
+                    <span>Delivery Fee</span>
+                    <span style={{color: 'var(--primary)', fontWeight: '600'}}>FREE</span>
+                 </div>
+                 
+                 <div className="ro-summary-divider"></div>
+                 
+                 <div className="ro-summary-row ro-total-row" style={{marginBottom: '20px'}}>
+                    <span>Total</span>
+                    <span className="ro-total-price">₹{(cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)).toFixed(2)}</span>
+                 </div>
+
+                 <button className="ro-proceed-btn" style={{background: '#0F6555'}} onClick={() => setFlowStep(9)}>
+                    Track Order <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{marginLeft: '8px', width: '20px', height: '20px'}}><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                 </button>
+                 <button className="ro-cancel-btn" style={{border: '1px solid #CBD5E0', borderRadius: '8px', padding: '12px', marginTop: '12px', width: '100%', background: '#fff'}} onClick={() => setFlowStep(1)}>Back to Home</button>
+              </div>
             </div>
 
-            <h2>Payment Successful!</h2>
-            <p className="order-number-tag">Your order has been confirmed successfully.</p>
+            <div className="oc-right-col">
+              <div className="ro-card">
+                 <div className="ro-pharmacy-header" style={{marginBottom: '16px'}}>
+                    <SafePharmacyImage src={selectedPharmacy.image} fallbackSrc="/pharmacy_store.jpg" alt={selectedPharmacy.name} className="ro-pharmacy-img" style={{width: '40px', height: '40px'}} />
+                    <div className="ro-pharmacy-details">
+                       <h4 className="ro-delivery-name" style={{marginBottom: '4px'}}>{selectedPharmacy.name}</h4>
+                       <p className="ro-delivery-address">{selectedPharmacy.address}</p>
+                       <div className="ro-pharmacy-verified" style={{display: 'inline-flex', padding: '4px 8px', background: '#E6FFFA', borderRadius: '4px', marginTop: '4px'}}>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-xs">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                          </svg>
+                          Verified Provider
+                       </div>
+                    </div>
+                 </div>
+                 <div className="ro-map-placeholder desktop-map" style={{ position: 'relative', overflow: 'hidden' }}>
+                    <img src="/map1.png" alt="Delivery Map" style={{width: '100%', height: '100%', objectFit: 'cover', borderRadius: '8px'}} />
+                    
+                     {/* SVG Line Connecting Pins */}
+                     <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 5 }}>
+                       <line x1="12%" y1="40%" x2="55%" y2="30%" stroke="#4A5568" strokeWidth="3" strokeDasharray="6, 8" strokeLinecap="round" />
+                     </svg>
+                     
+                     {/* Blue Hospital Pin & Card */}
+                     <div style={{ position: 'absolute', top: '35%', left: '8%', display: 'flex', alignItems: 'center', gap: '8px', zIndex: 10 }}>
+                       <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                          <div style={{ width: '36px', height: '36px', background: '#1A73E8', borderRadius: '50% 50% 50% 0', transform: 'rotate(-45deg)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 3px 6px rgba(0,0,0,0.3)' }}>
+                             <div style={{ transform: 'rotate(45deg)', color: 'white', fontWeight: 'bold', fontSize: '20px', marginTop: '-2px' }}>+</div>
+                          </div>
+                          <div style={{ width: '12px', height: '12px', background: 'white', border: '3px solid #1A73E8', borderRadius: '50%', marginTop: '-4px', zIndex: 2 }}></div>
+                       </div>
+                       <div style={{ background: 'white', padding: '10px 14px', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.15)', minWidth: '160px' }}>
+                          <div style={{ color: '#1A73E8', fontSize: '13px', fontWeight: '700', marginBottom: '2px' }}>Landmark</div>
+                          <div style={{ color: '#1A202C', fontSize: '15px', fontWeight: '700', marginBottom: '2px', lineHeight: '1.2' }}>{selectedPharmacy.name}</div>
+                          <div style={{ color: '#718096', fontSize: '12px', lineHeight: '1.3' }}>{selectedPharmacy.area || 'Hyderabad'}</div>
+                       </div>
+                     </div>
 
-            <div className="modal-receipt-box">
-              <div className="m-receipt-row">
-                <span className="lbl">Order ID:</span>
-                <strong className="val order-id-highlight">{orderId}</strong>
-              </div>
-              <div className="m-receipt-row">
-                <span className="lbl">Store:</span>
-                <strong className="val">{selectedPharmacy.name}</strong>
-              </div>
-              <div className="m-receipt-row">
-                <span className="lbl">Estimated Delivery Time:</span>
-                <strong className="val text-teal">25 - 30 minutes</strong>
-              </div>
-              <div className="m-receipt-row">
-                <span className="lbl">Shipping Address:</span>
-                <strong className="val">{shippingAddress}</strong>
+                     {/* Red Delivery Pin & Card */}
+                     <div style={{ position: 'absolute', top: '25%', left: '55%', display: 'flex', alignItems: 'center', gap: '8px', zIndex: 10 }}>
+                       <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                          <div style={{ width: '36px', height: '36px', background: '#E53E3E', borderRadius: '50% 50% 50% 0', transform: 'rotate(-45deg)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 3px 6px rgba(0,0,0,0.3)' }}>
+                             <div style={{ width: '12px', height: '12px', background: 'white', borderRadius: '50%', transform: 'rotate(45deg)' }}></div>
+                          </div>
+                          <div style={{ width: '12px', height: '12px', background: 'white', border: '3px solid #E53E3E', borderRadius: '50%', marginTop: '-4px', zIndex: 2 }}></div>
+                       </div>
+                       <div style={{ background: 'white', padding: '10px 14px', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.15)', minWidth: '160px' }}>
+                          <div style={{ color: '#E53E3E', fontSize: '13px', fontWeight: '700', marginBottom: '2px' }}>Delivery Point</div>
+                          <div style={{ color: '#1A202C', fontSize: '15px', fontWeight: '700', marginBottom: '4px', lineHeight: '1.2' }}>Your Location</div>
+                          <div style={{ color: '#718096', fontSize: '11px', lineHeight: '1.4', maxWidth: '160px', wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>{shippingAddress}</div>
+                       </div>
+                     </div>
+                  </div>
               </div>
             </div>
+          </div>
 
-            <button 
-              className="modal-done-btn-ph"
-              onClick={handleResetFlow}
+
+        </section>
+      )}
+
+      {/* Step 9: Order Tracking Full Screen */}
+      {flowStep === 9 && selectedPharmacy && (
+        <section className="ro-tracking-section" style={{ padding: 0, margin: 0, minHeight: '100vh', background: '#F8FAFC' }}>
+          {/* Header */}
+          <div className="ro-success-header" style={{position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10, background: 'rgba(255,255,255,0.9)', padding: '16px 24px'}}>
+             <button className="ro-back-btn" onClick={() => setFlowStep(7)}>
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+             </button>
+             <div className="ro-tracking-header-title">
+                <h3 className="ro-brand-title" style={{margin: 0}}>Track Your Order</h3>
+                <span className="ro-tracking-badge">#HB-PH-{orderId}</span>
+             </div>
+             <button className="ro-help-btn">
+               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+             </button>
+          </div>
+
+          <div className="ro-tracking-map-hero" style={{ position: 'relative', overflow: 'hidden', height: '400px' }}>
+             <img src="/map1.png" alt="Delivery Map" className="ro-tracking-bg-img" style={{ filter: 'none', objectFit: 'cover' }} />
+             
+             {/* SVG Line Connecting Pins */}
+             <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 5 }}>
+               <line x1="12%" y1="50%" x2="52%" y2="25%" stroke="#4A5568" strokeWidth="3" strokeDasharray="6, 8" strokeLinecap="round" />
+             </svg>
+
+             {/* Small Black Rider Badge */}
+             <div className="ro-rider-floating-badge" style={{ zIndex: 20, padding: '8px 16px', borderRadius: '20px', fontSize: '12px', top: '25%', left: '35%' }}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-sm" style={{width: '16px', height: '16px'}}><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+                <span>Rider is 1.2km away</span>
+             </div>
+             
+             {/* Blue Hospital Pin & Card */}
+             <div style={{ position: 'absolute', top: '45%', left: '8%', display: 'flex', alignItems: 'center', gap: '8px', zIndex: 10 }}>
+               <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div style={{ width: '36px', height: '36px', background: '#1A73E8', borderRadius: '50% 50% 50% 0', transform: 'rotate(-45deg)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 3px 6px rgba(0,0,0,0.3)' }}>
+                     <div style={{ transform: 'rotate(45deg)', color: 'white', fontWeight: 'bold', fontSize: '20px', marginTop: '-2px' }}>+</div>
+                  </div>
+                  <div style={{ width: '12px', height: '12px', background: 'white', border: '3px solid #1A73E8', borderRadius: '50%', marginTop: '-4px', zIndex: 2 }}></div>
+               </div>
+               <div style={{ background: 'white', padding: '10px 14px', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.15)', minWidth: '160px' }}>
+                  <div style={{ color: '#1A73E8', fontSize: '13px', fontWeight: '700', marginBottom: '2px' }}>Landmark</div>
+                  <div style={{ color: '#1A202C', fontSize: '15px', fontWeight: '700', marginBottom: '2px', lineHeight: '1.2' }}>{selectedPharmacy.name}</div>
+                  <div style={{ color: '#718096', fontSize: '12px', lineHeight: '1.3' }}>{selectedPharmacy.area || 'Hyderabad'}</div>
+               </div>
+             </div>
+
+             {/* Red Delivery Pin & Card */}
+             <div style={{ position: 'absolute', top: '15%', left: '55%', display: 'flex', alignItems: 'center', gap: '8px', zIndex: 10 }}>
+               <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  <div style={{ width: '36px', height: '36px', background: '#E53E3E', borderRadius: '50% 50% 50% 0', transform: 'rotate(-45deg)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 3px 6px rgba(0,0,0,0.3)' }}>
+                     <div style={{ width: '12px', height: '12px', background: 'white', borderRadius: '50%', transform: 'rotate(45deg)' }}></div>
+                  </div>
+                  <div style={{ width: '12px', height: '12px', background: 'white', border: '3px solid #E53E3E', borderRadius: '50%', marginTop: '-4px', zIndex: 2 }}></div>
+               </div>
+                       <div style={{ background: 'white', padding: '10px 14px', borderRadius: '12px', boxShadow: '0 4px 15px rgba(0,0,0,0.15)', minWidth: '160px' }}>
+                          <div style={{ color: '#E53E3E', fontSize: '13px', fontWeight: '700', marginBottom: '2px' }}>Delivery Point</div>
+                          <div style={{ color: '#1A202C', fontSize: '15px', fontWeight: '700', marginBottom: '4px', lineHeight: '1.2' }}>Your Location</div>
+                          <div style={{ color: '#718096', fontSize: '11px', lineHeight: '1.4', maxWidth: '160px', wordWrap: 'break-word', whiteSpace: 'pre-wrap' }}>{shippingAddress}</div>
+               </div>
+             </div>
+          </div>
+
+          <div className="ro-tracking-content-wrapper">
+             <div className="ro-card ro-tracking-status-card">
+                <span className="ro-card-subtitle">ESTIMATED DELIVERY</span>
+                <h2 className="ro-success-title" style={{color: '#1A5351', marginTop: '4px', marginBottom: '4px', fontSize: '24px'}}>15-20 mins</h2>
+                <p className="ro-delivery-name" style={{margin: 0}}>Arriving by <strong>4:45 PM</strong></p>
+                <div className="ro-tracking-progress-bars">
+                   <div className="ro-t-bar active"></div>
+                   <div className="ro-t-bar active-light"></div>
+                   <div className="ro-t-bar inactive"></div>
+                </div>
+             </div>
+
+             <div className="ro-card">
+                <h4 className="ro-card-title-dark" style={{marginBottom: '20px'}}>Delivery Progress</h4>
+                
+                <div className="ro-timeline">
+                   <div className="ro-t-item completed">
+                      <div className="ro-t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                      <div className="ro-t-content">
+                         <h5>Order Confirmed</h5>
+                         <p>4:10 PM</p>
+                      </div>
+                   </div>
+                   <div className="ro-t-line completed"></div>
+                   
+                   <div className="ro-t-item completed">
+                      <div className="ro-t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+                      <div className="ro-t-content">
+                         <h5>Packed</h5>
+                         <p>4:25 PM</p>
+                      </div>
+                   </div>
+                   <div className="ro-t-line completed"></div>
+                   
+                   <div className="ro-t-item current">
+                      <div className="ro-t-icon-pulse"><div className="pulse-dot"></div></div>
+                      <div className="ro-t-content">
+                         <h5 style={{color: '#1A5351'}}>Out for Delivery</h5>
+                         <p>4:32 PM - Current</p>
+                      </div>
+                   </div>
+                   <div className="ro-t-line"></div>
+                   
+                   <div className="ro-t-item pending">
+                      <div className="ro-t-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                      <div className="ro-t-content">
+                         <h5>Delivered</h5>
+                         <p>Expected 4:45 PM</p>
+                      </div>
+                   </div>
+                </div>
+             </div>
+
+             <div className="ro-card">
+                <div className="ro-rider-card-inner">
+                   <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100&h=100" alt="Rider" className="ro-rider-img" />
+                   <div className="ro-rider-info">
+                      <h4>John Anderson</h4>
+                      <p>⭐ 4.9 Rider</p>
+                   </div>
+                   <button className="ro-call-btn" style={{background: '#0F6555', color: 'white'}}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                      Call Rider
+                   </button>
+                </div>
+             </div>
+
+             <div className="ro-card">
+                <div className="ro-rider-card-inner">
+                   <div className="ro-pharmacy-icon-box">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2" className="icon-md" style={{width: '24px', height: '24px'}}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                   </div>
+                   <div className="ro-rider-info">
+                      <h4 style={{fontSize: '14px'}}>{selectedPharmacy.name}</h4>
+                      <p style={{fontSize: '12px'}}>{selectedPharmacy.area} • Verified</p>
+                   </div>
+                </div>
+                <button className="ro-call-btn" onClick={() => navigate('/contact')} style={{border: '1px solid #CBD5E0', color: '#1A5351', width: '100%', marginTop: '16px'}}>
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="icon-sm"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                   Call Pharmacy
+                </button>
+             </div>
+
+             <div className="ro-info-box" style={{background: '#E6FFFA', borderRadius: '12px', padding: '16px', marginBottom: '80px', display: 'flex', gap: '12px', alignItems: 'center'}}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#1A5351" strokeWidth="2" style={{width: '24px', height: '24px', flexShrink: 0}}><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <p style={{margin: 0, fontSize: '13px', color: '#2D3748', lineHeight: 1.4}}>Need help with your order? Our support team is available 24/7.</p>
+             </div>
+          </div>
+        </section>
+      )}
+
+      {/* Upload Prescription Modal */}
+      {showUploadModal && (
+        <div className="order-success-modal-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.6)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+          <div className="success-modal-card" style={{ background: '#ffffff', borderRadius: '16px', maxWidth: '450px', width: '90%', textAlign: 'left', padding: '32px', boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+              <h3 style={{ margin: 0, fontSize: '20px', color: '#1A365D', fontWeight: 800 }}>Upload Prescription</h3>
+              <button 
+                onClick={() => setShowUploadModal(false)}
+                style={{ background: 'none', border: 'none', fontSize: '24px', cursor: 'pointer', color: '#A0AEC0', padding: '0 8px' }}
+              >
+                &times;
+              </button>
+            </div>
+            
+            <p style={{ color: '#4A5568', marginBottom: '24px', fontSize: '14px', lineHeight: '1.5' }}>
+              Upload your prescription and we'll automatically identify the medicines and find pharmacies that have them in stock.
+            </p>
+
+            {uploadError && (
+              <div className="error-message" style={{ color: '#E53E3E', marginBottom: '16px', padding: '12px', backgroundColor: '#FFF5F5', borderRadius: '8px', fontSize: '13px', fontWeight: 500 }}>
+                {uploadError}
+              </div>
+            )}
+
+            <div 
+              className={`upload-dropzone ${isScanning ? 'scanning' : ''}`}
+              style={{ border: '2px dashed #CBD5E0', borderRadius: '12px', padding: '40px 20px', textAlign: 'center', cursor: 'pointer', marginBottom: '24px', position: 'relative', backgroundColor: '#F8FAFC' }}
             >
-              Done
-            </button>
+              <input 
+                type="file" 
+                id="modal-prescrip-upload" 
+                accept="image/*" 
+                className="hidden-file-input" 
+                onChange={handleFileChange}
+                style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0, cursor: 'pointer' }}
+              />
+              
+              {isScanning ? (
+                <div className="scanning-animation" style={{ color: 'var(--primary)', fontWeight: 600 }}>
+                  <div className="scan-line" style={{ width: '100%', height: '3px', background: 'var(--primary)', marginBottom: '16px', animation: 'scan 1.5s infinite linear' }}></div>
+                  <p>Analyzing prescription...</p>
+                </div>
+              ) : uploadFile ? (
+                <div className="file-selected">
+                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#E6F6F5', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: '20px' }}>✓</div>
+                  <p style={{ fontWeight: 600, color: '#2D3748', margin: '0 0 4px 0' }}>{uploadFile.name}</p>
+                  <span style={{ fontSize: '13px', color: '#718096', textDecoration: 'underline' }}>Click to change file</span>
+                </div>
+              ) : (
+                <div className="upload-prompt">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="1.5" style={{ width: '40px', height: '40px', margin: '0 auto 16px' }}>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                  <p style={{ color: '#2D3748', fontWeight: 700, margin: '0 0 8px 0' }}>Click or drag to upload</p>
+                  <p style={{ color: '#A0AEC0', fontSize: '13px', margin: 0 }}>Supports JPG, PNG, PDF</p>
+                </div>
+              )}
+            </div>
+            
+            <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
+              <button 
+                onClick={() => setShowUploadModal(false)}
+                style={{ flex: 1, padding: '14px', borderRadius: '8px', background: '#E2E8F0', color: '#4A5568', border: 'none', fontWeight: '700', fontSize: '15px', cursor: 'pointer' }}
+              >
+                Cancel
+              </button>
+              <button 
+                className="btn-upload-prescription-main"
+                onClick={validateAndScanPrescription}
+                disabled={isScanning}
+                style={{ flex: 1, padding: '14px', borderRadius: '8px', background: 'var(--primary)', color: 'white', border: 'none', fontWeight: '700', fontSize: '15px', cursor: 'pointer', opacity: isScanning ? 0.6 : 1, transition: 'all 0.2s' }}
+              >
+                {isScanning ? 'Processing...' : 'Submit Options'}
+              </button>
+            </div>
           </div>
         </div>
       )}

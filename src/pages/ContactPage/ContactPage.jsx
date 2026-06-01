@@ -44,7 +44,7 @@ export default function ContactPage() {
             <span className="contact-tag">CONTACT US</span>
             <h1 className="contact-title" style={{ marginTop: 0 }}>
               Let's Connect And&nbsp;Transform<br/>
-              <span className="text-teal" style={{ color: '#353535', textTransform: 'none', fontSize: 'inherit', fontWeight: 'inherit', lineHeight: 'inherit', fontFamily: 'inherit' }}>Healthcare Together</span>
+              <span className="text-teal" style={{ color: '#20C7B6', textTransform: 'none', fontSize: 'inherit', fontWeight: 'inherit', lineHeight: 'inherit', fontFamily: 'inherit' }}>Healthcare Together</span>
             </h1>
             <p className="contact-desc">
               HealthBridge helps hospitals, doctors, pharmacies,<br />
