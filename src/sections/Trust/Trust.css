@@ -22,6 +22,10 @@
   padding-top: 24px; /* Text starts exactly a bit below the top of the right-side image */
 }
 
+.eco-content .section-title {
+  font-size: 34px;
+}
+
 .eco-desc {
   font-family: 'Nunito Sans', sans-serif;
   font-size: 17px; /* Increased from 16px to 17px to match About Us paragraph style */
@@ -54,8 +58,9 @@
 @media (max-width: 1024px) {
   .eco-layout {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     gap: 40px;
+    padding: 0 24px; /* Ensure mobile has safe padding from edges */
   }
   
   .eco-content {
@@ -64,6 +69,14 @@
     padding-top: 0; /* Reset top padding when stacked */
   }
   
+  .eco-desc {
+    text-align: left;
+  }
+  
+  .eco-desc br {
+    display: none; /* Hides manual line breaks to allow natural paragraph flow on mobile */
+  }
+
   .eco-image-wrapper {
     max-width: 100%;
     flex: 1 1 auto;
@@ -75,6 +88,10 @@
 .faq-section {
   padding: 80px 0; /* Standardized top and bottom spacing across all sections */
   background-color: #F4FBFA; /* Soft mint background from image */
+}
+
+.faq-title {
+  font-size: 42px;
 }
 
 .faq-list {
@@ -137,5 +154,14 @@
 @media (min-width: 1025px) {
   .eco-nowrap {
     white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .faq-title {
+    font-size: clamp(22px, 7vw, 30px); /* Increased by 1px */
+  }
+  .eco-content .section-title {
+    font-size: clamp(21px, 6.7vw, 29px); /* Increased by 1px */
   }
 }

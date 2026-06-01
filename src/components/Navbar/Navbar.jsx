@@ -141,7 +141,7 @@ export default function Navbar() {
             <button className="download-modal-close" onClick={() => setIsDownloadModalOpen(false)}>×</button>
             <div className="download-modal-content">
               <div className="download-modal-left">
-                <h2>Stay Connected<br/>With <span>Health Bridge</span></h2>
+                <h2><span className="mobile-nowrap">Stay Connected</span><br/><span className="mobile-nowrap">With <span>Health&nbsp;Bridge</span></span></h2>
                 <p>Download The Health Bridge App On Android Or IOS And Access All Out Services At Your Fingertips. Explore A Seamless Management Experience And Discover A Place Of Health Supporting Through Digital Life. Live A Happy Life</p>
                 
                 <div className="download-app-buttons">

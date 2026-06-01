@@ -153,9 +153,9 @@
     width: 90vw;
     height: 56px;
     padding-left: 20px;
-    padding-right: 8px;
+    padding-right: 18px; /* Increased from 8px to ensure the 3 lines sit cleanly inside the white pill */
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px; /* Slight adjustment to gap for better spacing */
     border-radius: 28px;
   }
 
@@ -523,7 +523,11 @@
     align-items: center;
   }
   .download-modal-left h2 {
-    font-size: 36px;
+    font-size: clamp(10px, 3.5vw, 18px); /* Decreased by 4px */
+    white-space: normal; /* allow natural wrap if strictly necessary on super small devices */
+  }
+  .mobile-nowrap {
+    white-space: nowrap !important;
   }
   .download-app-buttons {
     flex-wrap: wrap;

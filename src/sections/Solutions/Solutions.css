@@ -52,17 +52,19 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.solution-card:hover {
+.mobile-break { display: none; }
+
+.solution-card:hover, .solution-card:active {
   transform: translateY(-5px);
   border: none; /* Guarantee no border on hover */
   box-shadow: 0 15px 35px rgba(0,0,0,0.06);
 }
 
-.solution-card:hover .icon-box {
+.solution-card:hover .icon-box, .solution-card:active .icon-box {
   background-color: #20C7B6;
 }
 
-.solution-card:hover .icon-box svg {
+.solution-card:hover .icon-box svg, .solution-card:active .icon-box svg {
   stroke: #ffffff;
 }
 
@@ -124,5 +126,14 @@
   }
   .solutions-section {
     padding: 70px 0;
+  }
+  .solutions-title {
+    font-size: clamp(16px, 5vw, 24px); /* Fluid sizing small enough to prevent breaking */
+  }
+  .mobile-nowrap {
+    white-space: nowrap !important;
+  }
+  .mobile-break {
+    display: block;
   }
 }

@@ -178,18 +178,33 @@
   }
 }
 
+.mobile-break-hero {
+  display: none;
+}
+.desktop-break-hero {
+  display: block;
+}
+
 @media (max-width: 768px) {
   .hero {
     aspect-ratio: auto !important;
-    min-height: 100vh;
     padding: 140px 0 80px 0; /* Clear space below the floating capsule header on mobile */
     box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+  .hero__background img {
+    object-position: center top; /* Show better framing of the doctors on mobile */
+  }
   .hero__title {
-    font-size: 34px;
+    font-size: clamp(22px, 6.5vw, 32px); /* Fluid typography ensures fits on all mobile widths */
+  }
+  .mobile-break-hero {
+    display: block !important;
+  }
+  .desktop-break-hero {
+    display: none !important;
   }
   .hero__heading-container {
     width: 90%;

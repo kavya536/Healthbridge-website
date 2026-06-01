@@ -122,7 +122,7 @@
 @media (max-width: 1024px) {
   .patients-container {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     gap: 40px;
     align-items: center; /* Center the layout vertically on mobile devices */
     padding: 0 24px;
@@ -137,18 +137,36 @@
   .patients-content {
     flex: 1 1 auto;
     width: 100%;
+    text-align: left;
   }
 
   .patients-features li {
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: flex-start; /* Ensures the icon and text align properly if wrapping */
+  }
+  
+  .patients-features li svg {
+    flex-shrink: 0; /* Prevents icon from shrinking on narrow screens */
+    margin-top: 2px; /* Aligns circle with the first line of text */
   }
 }
+
+.mobile-break { display: none; }
 
 @media (max-width: 768px) {
   .nowrap-line {
     white-space: normal !important;
   }
+  .mobile-nowrap {
+    white-space: nowrap !important;
+  }
   .section-title {
-    font-size: 30px;
+    font-size: clamp(19px, 5.8vw, 27px); /* Increased by 2px */
+  }
+  .patients-desc {
+    text-align: left; /* Reverted to left alignment to fix large spaces between words */
+  }
+  .mobile-break {
+    display: block;
   }
 }

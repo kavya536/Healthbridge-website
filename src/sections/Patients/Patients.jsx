@@ -14,8 +14,8 @@ export default function Patients() {
         <div className="patients-content">
           <span className="section-tag">For Patients</span>
           <h2 className="section-title">
-            <span className="nowrap-line">Designed To Support Every Step</span><br />
-            <span className="text-teal nowrap-line" style={{ color: '#20C7B6', textTransform: 'none', fontSize: 'inherit', fontWeight: 'inherit', lineHeight: 'inherit', fontFamily: 'inherit' }}>Of Your Healthcare Journey</span>
+            <span className="mobile-nowrap">Designed To Support Every Step</span><br />
+            <span className="text-teal mobile-nowrap" style={{ color: '#20C7B6', textTransform: 'none', fontSize: 'inherit', fontWeight: 'inherit', lineHeight: 'inherit', fontFamily: 'inherit' }}>Of Your Healthcare <br className="mobile-break" />Journey</span>
           </h2>
           <p className="patients-desc">
             Access quality healthcare, anytime, anywhere. Everything you need, in one simple app. Connect with verified specialists, consult instantly, and keep all your reports in one secure place.

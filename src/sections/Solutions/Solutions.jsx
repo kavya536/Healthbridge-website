@@ -76,7 +76,7 @@ export default function Solutions() {
         <div className="solutions-header">
           <h2 className="solutions-title">
             <span className="solutions-tag">Connected Care</span>
-            Solutions For Everyone In <span className="text-teal" style={{ textTransform: 'none' }}>Healthcare</span>
+            <span className="mobile-nowrap">Solutions For Everyone In</span> <br className="mobile-break" /><span className="text-teal mobile-nowrap" style={{ textTransform: 'none' }}>Healthcare</span>
           </h2>
         </div>
 

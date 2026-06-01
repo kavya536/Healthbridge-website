@@ -146,7 +146,7 @@
 @media (max-width: 1024px) {
   .about-layout {
     flex-direction: column;
-    text-align: center;
+    text-align: left;
     gap: 36px;
   }
   .about-content {
@@ -155,21 +155,35 @@
   .about-image-wrapper {
     margin-top: 18px;
     max-width: 450px;
+    align-self: center; /* keep image centered if needed, but the layout is left */
   }
   .about-highlight {
     max-width: 100%;
     margin-top: 20px;
-    text-align: center; /* Center align when stacked on tablet */
+    text-align: left;
   }
   .experience-badge {
-    left: 20%;
-    transform: translate(-50%, -50%);
-    width: 135px;
+    bottom: -40px;
+    left: 0;
+    transform: translateX(-15px);
+    width: 110px;
+  }
+  .about-desc {
+    text-align: left;
+  }
+  .about-desc br {
+    display: none;
   }
 }
 
 @media (max-width: 768px) {
   .about-section {
     padding: 70px 0;
+  }
+  .section-title {
+    font-size: clamp(26px, 7.8vw, 34px); /* Increased by 3px */
+  }
+  .heading-small {
+    font-size: clamp(24px, 7.3vw, 30px); /* Increased by 3px */
   }
 }

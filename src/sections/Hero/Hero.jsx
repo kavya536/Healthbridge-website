@@ -12,7 +12,8 @@ export default function Hero() {
       <div className="hero__content">
         <div className="hero__heading-container">
           <h1 className="hero__title">
-            ONE PLATFORM FOR <span className="text-teal">MODERN</span><br />
+            ONE PLATFORM FOR <br className="mobile-break-hero" />
+            <span className="text-teal">MODERN</span><br className="desktop-break-hero" /><br className="mobile-break-hero" />
             <span className="text-teal">HEALTHCARE</span>
           </h1>
         </div>
