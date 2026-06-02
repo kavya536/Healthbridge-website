@@ -79,9 +79,9 @@
 .patients-features li {
   display: flex;
   align-items: center;
-  gap: 14px; /* Slightly wider spacing between checkmark icon and text */
+  gap: 10px; /* Reduced gap to fit the smaller 18px icons perfectly */
   font-family: 'Nunito Sans', sans-serif;
-  font-size: 16.5px; /* Substantially increased from 14px for extreme legibility */
+  font-size: 16px; /* Slightly adjusted to balance with smaller icons */
   font-weight: 650; /* Stronger semi-bold matching the reference style */
   color: #334155; /* Matching cool slate-blue for perfectly uniform and clear visibility */
 }

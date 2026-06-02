@@ -1,11 +1,17 @@
 .hospitals-sol-page {
   font-family: 'Nunito Sans', sans-serif;
   color: #333333;
-  margin-top: 140px; /* offset for fixed navbar */
+  margin-top: 84px; /* Exact offset for fixed navbar (20px top + 64px height) to prevent white gap */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background-color: var(--bg-white);
+}
+
+@media (max-width: 768px) {
+  .hospitals-sol-page {
+    margin-top: 76px; /* 20px top + 56px height on mobile */
+  }
 }
 
 .bg-light-tint {
@@ -14,7 +20,7 @@
 
 /* Hero Section */
 .hospitals-hero-section {
-  padding: 60px 0 40px;
+  padding: 40px 0 20px;
   background: radial-gradient(circle at 10% 20%, rgba(240, 253, 250, 0.5) 0%, rgba(255, 255, 255, 1) 90%);
 }
 
@@ -639,4 +645,78 @@
   .modal-body-split {
     grid-template-columns: 1fr;
   }
+}
+
+/* Phase 2: Mobile Typography Optimization */
+@media (max-width: 768px) {
+  /* Section tags & subtitles */
+  .section-tag { font-size: 12px; }
+  .hospitals-hero-subtitle { font-size: 15px; }
+  
+  /* Search & Form Typography */
+  .h-search-field label { font-size: 13px; }
+  .input-with-icon-h input { font-size: 14px; padding-left: 16px !important; }
+  .input-with-icon-h .icon { display: none !important; }
+  .h-search-primary-btn { font-size: 15px; }
+  
+  /* Section headers */
+  .section-title-sm { font-size: 20px; }
+  .results-count { font-size: 13px; }
+  
+  /* Hospital Card Typography */
+  .h-card-content h4 { font-size: 16px; line-height: 1.3; }
+  .h-card-address { font-size: 13px; }
+  .metric-type { font-size: 12px; }
+  .metric-rating { font-size: 12px; }
+  .h-book-now-btn { font-size: 13px; }
+  .h-status-badge { font-size: 10px; padding: 3px 10px; }
+  
+  /* Empty State Typography */
+  .no-hosp-found h4 { font-size: 18px; }
+  .no-hosp-found p { font-size: 14px; }
+  .reset-btn { font-size: 13px; }
+  
+  /* Premium Modal Typography */
+  .modal-pre-title { font-size: 12px; }
+  .modal-header-section p { font-size: 14px; }
+  .m-badge { font-size: 11px; padding: 4px 12px; }
+  
+  .meta-lbl { font-size: 12px; }
+  .meta-val { font-size: 13px; }
+  .detail-about h4, .detail-services h4 { font-size: 16px; }
+  .detail-about p { font-size: 14px; }
+  
+  /* Phase 3: Cards & Images */
+  .hospitals-search-bar-card, .hospital-card-item, .hospital-visit-modal-card, .detail-about, .detail-services {
+    padding: 16px !important;
+  }
+  .hospitals-cards-grid {
+    gap: 16px !important;
+  }
+  .h-banner-img {
+    height: 160px !important;
+  }
+  .modal-main-img {
+    height: 200px !important;
+  }
+  .desktop-map img, .mock-map-box {
+    height: 150px !important;
+  }
+
+  .detail-services li { font-size: 13px; }
+  .status-active-badge { font-size: 12px; padding: 8px 16px; }
+  
+  /* Phase 4: Animations & Transitions */
+  .hospital-card-item:hover, .h-book-now-btn:hover, .primary-cta-btn:hover, .sec-act-btn:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  /* Faster tap feedback */
+  button, .hospital-card-item {
+    transition: all 0.15s ease-out !important;
+  }
+  
+  .floating-verified-badge { font-size: 11px; padding: 6px 12px; }
+  .primary-cta-btn { font-size: 16px; padding: 14px; }
+  .sec-act-btn { font-size: 14px; padding: 12px; }
 }

@@ -122,7 +122,8 @@
 @media (max-width: 768px) {
   .solutions-grid {
     grid-template-columns: 1fr;
-    max-width: 400px;
+    width: 100%;
+    max-width: 100%;
   }
   .solutions-section {
     padding: 70px 0;

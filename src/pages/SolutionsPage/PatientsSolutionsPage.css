@@ -2947,6 +2947,63 @@
     padding: 0 14px;
     font-size: 13px;
   }
+
+/* Phase 2: Mobile Typography Optimization */
+  /* Generic Typography Classes */
+  .filter-group h4, .no-doctors-card h4, .summary-doc-details h4, .profile-card h4,
+  .clinic-info-details h5, .step-header h4 {
+    font-size: 15px !important;
+    line-height: 1.3 !important;
+  }
+  
+  /* Generic Headings */
+  .filters-header h3, .name-row h3, .select-date-card h3, .select-time-card h3,
+  .select-consult-card h3, .form-header h3, .profile-doc-details h3 {
+    font-size: 16px !important;
+    line-height: 1.3 !important;
+  }
+  
+  /* Generic Paragraphs & Descriptions */
+  .patients-sol-page p:not([class*="title"]), .step-info p, .clinic-address-text, .consult-type-card p {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Labels, Badges & Secondary Text */
+  .patients-sol-page label, .input-group label { font-size: 13px !important; }
+  .hours-lbl, .hours-val, .doc-specialty, .doc-experience, .badge { font-size: 12px !important; }
+  .patients-sol-page small { font-size: 12px !important; }
+  
+  /* Hide left search icon to give placeholder more space */
+  .input-with-icon .icon { display: none !important; }
+  .input-with-icon input, .input-with-icon select { padding-left: 16px !important; }
+  
+  /* Phase 3: Cards & Images */
+  .filters-card, .doctor-card, .booking-card, .summary-card, .details-form-card, 
+  .review-appointment-card, .profile-card, .main-info-card, .booking-widget-card, .need-help-card {
+    padding: 16px !important;
+  }
+  .review-doc-grid, .doc-main-info {
+    gap: 16px !important;
+  }
+  .doc-avatar {
+    width: 80px !important;
+    height: 80px !important;
+  }
+  .mock-map-box {
+    height: 150px !important;
+  }
+
+  /* Phase 4: Animations & Transitions */
+  .doctor-card:hover, .booking-card:hover, .btn:hover, button:hover, .clinic-location-grid:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  /* Tap response */
+  button, .doctor-card, .booking-card, .clinic-info-details, .select-date-card {
+    transition: all 0.15s ease-out !important;
+  }
+  
   .results-toolbar {
     flex-direction: column;
     align-items: flex-start;
@@ -3010,6 +3067,22 @@
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 12px !important;
+  }
+  .review-doc-summary-box {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .review-doc-grid {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+    gap: 12px !important;
+  }
+  .form-actions-row {
+    flex-direction: column !important;
+    gap: 16px !important;
+  }
+  .form-back-btn, .form-proceed-btn {
+    width: 100% !important;
   }
 }
 

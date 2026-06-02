@@ -716,3 +716,85 @@
     gap: 12px;
   }
 }
+
+@media (max-width: 768px) {
+  /* Layout Fixes (Phase 1) */
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  .hero-image-box {
+    display: block !important;
+    width: 100% !important;
+    max-width: 380px !important;
+    margin: 0 auto !important;
+  }
+  .hero-content {
+    text-align: center !important;
+  }
+  .hero-promo-img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 16px !important;
+  }
+  .glass-floating-card {
+    position: relative !important;
+    bottom: auto !important;
+    left: auto !important;
+    margin: -30px auto 0 auto !important;
+    width: fit-content !important;
+    z-index: 10 !important;
+  }
+
+  /* Phase 2: Mobile Typography Optimization */
+  
+  /* Card Titles & Generic Headings (excluding tuned hero/section titles) */
+  .perk-card h3, .doc-detail h3, .fee-wrap h3 {
+    font-size: 16px !important;
+    line-height: 1.3 !important;
+  }
+  .glass-floating-card h4, .no-docs-card h4 {
+    font-size: 15px !important;
+  }
+  
+  /* Body Text & Descriptions */
+  .hero-content p { font-size: 15px !important; line-height: 1.5 !important; }
+  .glass-floating-card p { font-size: 12px !important; }
+  .section-title-wrap p { font-size: 14px !important; }
+  .perk-card p { font-size: 14px !important; line-height: 1.5 !important; }
+  .no-docs-card p { font-size: 14px !important; }
+  .cta-inner-card p { font-size: 14px !important; }
+  
+  /* Labels, Filters & Badges */
+  .filter-label { font-size: 13px !important; }
+  .badge-tag, .specialty-badge { font-size: 11px !important; padding: 4px 10px !important; }
+  .stat-label { font-size: 12px !important; }
+  
+  /* Buttons */
+  .btn-outline, .btn-primary { font-size: 14px !important; }
+  
+  /* Phase 3: Cards & Images */
+  .glass-floating-card, .perk-card, .doctor-profile-card, .no-docs-card, .cta-inner-card {
+    padding: 16px !important;
+    gap: 12px !important;
+  }
+  .doc-img-wrapper img {
+    height: 180px !important;
+  }
+  .perk-card .perk-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  /* Phase 4: Animations & Transitions */
+  .perk-card:hover, .doctor-profile-card:hover, .glass-floating-card:hover, 
+  .btn-outline:hover, .btn-primary:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  /* Speed up transitions for tap responsiveness */
+  button, .perk-card, .doctor-profile-card {
+    transition: all 0.15s ease-out !important;
+  }
+}

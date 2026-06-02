@@ -30,6 +30,14 @@ html::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
 }
 
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    max-width: 100vw;
+  }
+}
+
 a {
   text-decoration: none;
   color: inherit;

@@ -16,15 +16,17 @@
 
 .stats-grid {
   display: flex;
-  justify-content: space-evenly; /* Perfectly distributes equal space on the left, right, and in between all items */
+  justify-content: space-between; 
   align-items: center;
   width: 100%;
   height: 100%;
 }
 
-.stat-item {
+.stats-section .stat-item {
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   gap: 20px; /* Slightly increased gap for the larger icon */
 }
 
@@ -88,10 +90,12 @@
   box-shadow: 0 10px 22px rgba(255, 184, 0, 0.25);
 }
 
-.stat-text {
+.stats-section .stat-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .stat-value {
@@ -126,7 +130,7 @@
     justify-content: center;
     gap: 43px; /* Scaled down from 48px */
   }
-  .stat-item {
+  .stats-section .stat-item {
     width: 40%;
     justify-content: flex-start;
   }
@@ -136,7 +140,7 @@
   .stats-section {
     padding: 40px 0;
   }
-  .stat-item {
+  .stats-section .stat-item {
     width: 100%;
     justify-content: flex-start;
     padding-left: 10%;

@@ -434,7 +434,12 @@
     max-width: 100%;
   }
   .about-hero-image-wrapper {
-    display: none; /* Hide the right-side image on tablet and below */
+    display: block; /* Show the right-side image below content on mobile */
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    aspect-ratio: 505 / 534;
+    margin: 0 auto;
   }
   .about-hero-title {
     font-size: 32px;

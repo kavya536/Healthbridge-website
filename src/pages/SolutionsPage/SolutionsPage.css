@@ -1,7 +1,7 @@
 /* Solutions Main Page Styling */
 .solutions-page {
   padding-top: 140px; /* Accounts for floating navbar */
-  background: #FAF8F6; /* Warm rich luxury background color matching the design system */
+  background: linear-gradient(180deg, rgba(97, 232, 207, 0.19) 0%, rgba(207, 248, 240, 0.19) 55.1%, rgba(255, 255, 255, 0.19) 100%);
   min-height: 100vh;
   font-family: 'Nunito Sans', sans-serif;
 }

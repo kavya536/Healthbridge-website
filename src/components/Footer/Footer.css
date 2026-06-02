@@ -195,7 +195,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .footer-links-container {
     grid-template-columns: 1fr;
   }

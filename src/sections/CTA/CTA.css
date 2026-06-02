@@ -110,8 +110,8 @@
 }
 
 .store-btn img {
-  height: 55px; /* Significantly increased height from 43px to match the reference image exactly and make them clearly visible */
-  border-radius: 8px; /* Smooth rounded corners for store badges */
+  height: 44px; /* Decreased size as requested */
+  border-radius: 8px;
   display: block;
 }
 
@@ -189,16 +189,22 @@
   }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 768px) {
   .cta-title {
     font-size: 24px;
   }
   .store-buttons {
     flex-direction: column;
     align-items: center;
+    width: 100%;
     gap: 12px;
   }
+  .store-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
   .store-btn img {
-    height: 48px;
+    height: 38px;
   }
 }

@@ -162,7 +162,7 @@ export default function HospitalsSolutionsPage() {
                     type="text" 
                     value={searchLocation} 
                     onChange={(e) => setSearchLocation(e.target.value)} 
-                    placeholder="Enter area (e.g. Kukatpally, Madhapur, Gachibowli...)" 
+                    placeholder="Enter area (e.g. Kukatpally...)" 
                   />
                   {searchLocation && (
                     <button className="clear-search-btn" onClick={() => setSearchLocation('')}>×</button>

@@ -61,7 +61,7 @@ const mockPharmacies = [
     delivery: 'Free delivery',
     deliveryTime: 35,
     priceLevel: 3,
-    image: '/e7363611f40fffb1f27ed4e92418331f4f7c299a.jpg',
+    image: '/ph_img2.jpg',
     address: 'Mindspace IT Park Road, Hitech City, Hyderabad, 500081',
     phone: '+91 91234 56789',
     hours: '08:00 AM - 11:00 PM',
@@ -115,7 +115,7 @@ const mockPharmacies = [
     delivery: 'Store Pickup Only',
     deliveryTime: 60,
     priceLevel: 1,
-    image: '/pharmacy_store.jpg',
+    image: '/ph_img.jpg',
     address: 'MG Road Near Clock Tower, Secunderabad, 500003',
     phone: '+91 97030 77665',
     hours: '10:00 AM - 09:30 PM',
@@ -593,15 +593,15 @@ export default function PharmaciesSolutionsPage() {
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                       </svg>
-                      Search
+                      <span className="btn-text-hide-mobile">Search</span>
                     </button>
                   </div>
                 </div>
 
 
                 {/* Filter & Sorting chips inside Search Panel */}
-                <div className="pharmacy-inline-chips-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '24px' }}>
-                  <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <div className="pharmacy-inline-chips-row">
+                  <div className="pharmacy-filter-chips-wrapper">
                     <button 
                     type="button"
                     className={`filter-chip ${deliveryFilter ? 'active' : ''}`}
@@ -633,7 +633,7 @@ export default function PharmaciesSolutionsPage() {
                   </div>
                   
                   {/* Sort Dropdown */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div className="pharmacy-sort-wrapper">
                     <span style={{ fontSize: '14px', color: '#718096', fontWeight: 600 }}>Sort by:</span>
                     <select 
                       value={sortFilter}
